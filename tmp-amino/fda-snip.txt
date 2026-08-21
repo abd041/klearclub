@@ -1,0 +1,8 @@
+ap-1 group\",\"children\":[\"$\",\"span\",null,{\"children\":\"Research Use Only\"}]}]}]]}]]}]\n"])</script><script>self.__next_f.push([1,"52:[\"$\",\"div\",null,{\"role\":\"region\",\"aria-label\":\"FDA research-use disclaimer\",\"className\":\"my-6 rounded-md border-l-4 border-amber-400 bg-amber-400/10 ring-1 ring-amber-400/20\",\"children\":[\"$
+---
+.01\",\"y2\":\"17\"}]]}],[\"$\",\"div\",null,{\"className\":\"space-y-1.5\",\"children\":[[\"$\",\"p\",null,{\"className\":\"text-xs font-bold uppercase tracking-wider text-amber-300\",\"children\":\"FDA Disclaimer\"}],[\"$\",\"p\",null,{\"className\":\"text-[12px] leading-relaxed text-white/85\",\"children\":[\"Statements made regarding our produc
+---
+er:text-white transition-colors duration-200 inline-flex items-center gap-1 group" href="/us/research-use"><span>Research Use Only</span></a></li></ul></div></div></div><div role="region" aria-label="FDA research-use disclaimer" class="my-6 rounded-md border-l-4 border-amber-400 bg-amber-400/10 ring-1 ring-amber-400/20"><div class="flex gap-3 px-4 
+---
+></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg><div class="space-y-1.5"><p class="text-xs font-bold uppercase tracking-wider text-amber-300">FDA Disclaimer</p><p class="text-[12px] leading-relaxed text-white/85">Statements made regarding our products have<!-- --> <span class="font-semibold"
+---

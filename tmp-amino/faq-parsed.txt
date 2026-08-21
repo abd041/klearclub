@@ -1,0 +1,105 @@
+FAQ heading idx: 35293
+=3840&amp;q=75&amp;dpl=dpl_13Zfha78cAPhU5VMyMrMVTG745vc"/></div></div><div class="content-container relative z-20 h-full min-h-[50vh] lg:min-h-[60vh] flex items-center justify-center"><div class="text-center max-w-3xl mx-auto py-16 lg:py-24"><div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 backdrop-blur-sm border border-black/5 mb-6"><svg class="w-4 h-4 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg><span class="text-sm font-medium text-gray-700">Quick Answers</span></div><h1 class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-semibold text-black leading-[1.05] tracking-tight mb-4 lg:mb-6">Frequently Asked Questions</h1><p class="text-lg sm:text-xl lg:text-2xl text-black/70 leading-relaxed max-w-2xl mx-auto">Everything you need to know about research peptides, ordering, shipping, and more.</p></div></div></section><section class="py-16 lg:py-24 bg-gray-50"><div class="content-container"><div class="max-w-4xl mx-auto"><div class="mb-12 last:mb-0"><h2 class="text-2xl font-semibold text-black mb-6">Ordering</h2><div class="space-y-4"><details class="group bg-white rounded-2xl border 
+
+details count: 20
+
+Q1: How do I place an order?
+A: Browse 40+ research compounds, including ready-to-use sprays and blends, add to your cart, and check out. We accept Visa and American Express cards plus Apple Pay and Google Pay, and your order enters processing shortly after payment confirmation. Browse the catalog
+class: group bg-white rounded-2xl border border-gray-100 overflow-hidden
+
+Q2: What payment methods do you accept?
+A: We accept Visa and American Express credit cards, plus Apple Pay and Google Pay. All transactions are processed through secure, encrypted payment gateways to protect your information.
+class: group bg-white rounded-2xl border border-gray-100 overflow-hidden
+
+Q3: Can I modify or cancel my order?
+A: Orders can be modified or cancelled within 1 hour of placement. After this window, orders enter processing and cannot be changed. Contact support@aminoclub.com immediately if you need to make changes.
+class: group bg-white rounded-2xl border border-gray-100 overflow-hidden
+
+Q4: How long does shipping take?
+A: Orders are processed within 0-2 business days, and standard shipping typically arrives within 1-4 business days from fulfillment. 2-day and overnight options are available at checkout. Every order ships discreetly and includes free shipment protection.
+class: group bg-white rounded-2xl border border-gray-100 overflow-hidden
+
+Q5: How are peptides packaged for shipping?
+A: No cold chain needed: our peptides ship lyophilized (freeze-dried), which makes them highly stable with a long shelf life regardless of shipping conditions or heat. Each vial is securely cushioned in discreet packaging to prevent physical damage in transit.
+class: group bg-white rounded-2xl border border-gray-100 overflow-hidden
+
+Q6: What is the purity of your peptides?
+A: Every peptide we supply meets a 99%+ purity standard, and every batch is tested 8 separate ways at an independent ISO 17025 accredited lab. Certificates of Analysis (CoA) with the full 8-assay panel are published for every product. Browse the certificate library
+class: group bg-white rounded-2xl border border-gray-100 overflow-hidden
+
+Q7: How do I verify the vial in my hand?
+A: Every vial label carries a QR code. Scan it and you land on that exact batch's certificate, already highlighted, so you can match the lot number on your label to its published lab results in seconds. Or search certificates by lot number
+class: group bg-white rounded-2xl border border-gray-100 overflow-hidden
+
+Q8: Do you carry sprays?
+A: Yes. Select compounds are available as ready-to-use liquid spray formats alongside the classic lyophilized vials, with the same third-party testing and published certificates on every batch. Shop spray formats
+class: group bg-white rounded-2xl border border-gray-100 overflow-hidden
+
+Q9: How should I store my peptides?
+A: Sealed lyophilized vials are heat-stable and keep well at room temperature in a cool, dark place. Refrigerating or freezing sealed vials is optional; stability doesn't change much either way as long as the vial stays sealed. Protect from light, and once a vial is reconstituted, refrigerate it at 2-8°C.
+class: group bg-white rounded-2xl border border-gray-100 overflow-hidden
+
+Q10: What is Amino H2O?
+A: Amino H2O is sterile water containing 0.9% benzyl alcohol as a preservative. It is a standard laboratory supply used in research settings. We offer Amino H2O in our store as research supply.
+class: group bg-white rounded-2xl border border-gray-100 overflow-hidden
+
+Q11: How do loyalty points work?
+A: Every order earns points automatically: 2.5 points per $1 on a free account. 100 points equals $1 off at cart or checkout, applied like cash back in 100-point steps. Your balance lives in your account and never needs a code. Check your points balance
+class: group bg-white rounded-2xl border border-gray-100 overflow-hidden
+
+Q12: What does a membership get me?
+A: Paid tiers earn points faster: Insider 3.5, VIP 5, and Founder 10 points per $1, up to 4x the free rate. That means cash back stacks on every order, and members get early access to new compounds. Compare membership tiers
+class: group bg-white rounded-2xl border border-gray-100 overflow-hidden
+
+Q13: What is Build-a-Box?
+A: Pick any 4 research compounds from the catalog and we pack and ship them monthly at 40% off retail, with a free Amino H2O in every box and free 2-day delivery. Swap items anytime after your first delivery. 3 monthly deliveries to start, then cancel anytime. Build your box
+class: group bg-white rounded-2xl border border-gray-100 overflow-hidden
+
+Q14: How do bulk orders work?
+A: Order 10+ units of any compound (across its dosages) and every unit is 40% off. Reach 50+ units of that product and the whole line drops to 50% off. One-time orders, no subscription, with free 2-day delivery and an adult signature on delivery. Same CoA-verified vials as every other order. See bulk pricing
+class: group bg-white rounded-2xl border border-gray-100 overflow-hidden
+
+Q15: Are your peptides third-party tested?
+A: Yes, 8x tested: every batch runs an 8-assay panel at an independent ISO 17025 accredited laboratory covering peptide purity (HPLC), net peptide content, identity, appearance, fentanyl screen, heavy metals (ICP-MS), sterility (PCR), and endotoxin. Full results are published as Certificates of Analysis (CoA). See the full 8-assay panel
+class: group bg-white rounded-2xl border border-gray-100 overflow-hidden
+
+Q16: How do I access Certificates of Analysis?
+A: Three ways: browse the full certificate library on our CoA page, open any product page and scroll to its certificates, or scan the QR code on your vial to jump straight to that batch. You can also request specific CoAs by emailing support@aminoclub.com with your order number. Open the certificate library
+class: group bg-white rounded-2xl border border-gray-100 overflow-hidden
+
+Q17: Where are your peptides manufactured?
+A: Our research peptides are synthesized by vetted, USA-based manufacturing partners operating documented quality procedures. We maintain complete supply chain transparency and never source from overseas manufacturers.
+class: group bg-white rounded-2xl border border-gray-100 overflow-hidden
+
+Q18: What is your return policy?
+A: We offer damage protection on every order. If your product arrives damaged in transit, contact us with photos for a one-time replacement. All claims require photo evidence and are subject to review. One replacement per customer per order. Reconstituted products are not eligible. We do not offer refunds for change of mind or misuse.
+class: group bg-white rounded-2xl border border-gray-100 overflow-hidden
+
+Q19: Is everything you sell research use only?
+A: Yes. Every product is sold strictly for in-vitro research, laboratory experimentation, and educational purposes, and is not intended for human, veterinary, or food use. Read the research-use terms
+class: group bg-white rounded-2xl border border-gray-100 overflow-hidden
+
+Q20: How do I contact customer support?
+A: Email us at support@aminoclub.com for any questions or concerns. We typically respond within 24 hours on business days. A person reads every message.
+class: group bg-white rounded-2xl border border-gray-100 overflow-hidden
+H2: Ordering
+H2: Shipping
+H2: Products
+H2: Savings & Rewards
+H2: Quality & Testing
+H2: Returns & Support
+
+=== Quick Answers @ 35142 ===
+0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg><span class="text-sm font-medium text-gray-700">Quick Answers</span></div><h1 class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-semibold text-black leading-[1.05] tracking-tight mb-4 lg:mb-6">Frequently Asked Questions</h1><p class="text-lg sm:text-xl lg:text-2xl text-black/70 leading-relaxed max-w-2xl mx-auto">Everything you need to know about research peptides, ordering, shipping, and more.</p></div></div></section><section class="py-16 lg:py-24 bg-gray-50"><div class="content-contain
+
+=== Still have questions @ 57864 ===
+n reads every message.</p></div></details></div></div></div><div class="max-w-2xl mx-auto mt-16 text-center"><div class="bg-white rounded-3xl p-8 lg:p-10 shadow-sm border border-gray-100"><h3 class="text-xl lg:text-2xl font-semibold text-black mb-3">Still have questions?</h3><p class="text-gray-600 mb-6">Our support team is here to help with any questions not covered above.</p><div class="flex flex-col sm:flex-row items-center justify-center gap-3"><a href="mailto:support@aminoclub.com" class="inline-flex items-center justify-center gap-2 h-11 px-6 bg-black hover:bg-black/90 text-white font-medium rounded-full transition-colors">Email Support</a></div></div></div></div></section><div class="
+
+=== Email Support @ 58251 ===
+ass="flex flex-col sm:flex-row items-center justify-center gap-3"><a href="mailto:support@aminoclub.com" class="inline-flex items-center justify-center gap-2 h-11 px-6 bg-black hover:bg-black/90 text-white font-medium rounded-full transition-colors">Email Support</a></div></div></div></div></section><div class="relative overflow-x-clip"><section class="relative pt-12 lg:pt-20 pb-20 sm:pb-24 lg:pb-28 bg-gradient-to-b from-[#fefeca] to-[#e9fae7] w-full" aria-label="Call to action"><div class="absolute left-[-15px] sm:left-[-5px] lg:left-[35px] xl:left-[75px] top-[-20px] lg:top-[-35px] w-[55px] sm:w-[65px] lg:w-[85px] xl:w-[100px] h-[110px] sm:h-[130px] lg:h-[170px] xl:h-[200px] pointer-events-
+
+=== bg-gradient @ 12356 ===
+sform duration-200">0</span></button><!--/$--></div></nav></header></div><div role="region" aria-label="End of Summer Sale, 35% off sitewide with code HEAT35, ends August 31" class="relative isolate w-full overflow-hidden border-b-2 border-[#C99A4E] bg-gradient-to-r from-[#2E070E] via-[#69101F] to-[#2E070E] text-white shadow-[inset_0_1px_0_rgba(232,200,126,0.28)]"><style>         .eos-ray {           opacity: 0.35;           animation: eos-ray-twinkle 3.2s ease-in-out infinite;         }         .eos-rays {           animation: eos-rays-breathe 7s ease-in-out infinite;         }         @keyframes eos-ray-twinkle {           0%, 100% { opacity: 0.35; }           50% { opacity: 1; }         }
+
+=== hero @ 27508 ===
+e(-6deg)"><img alt="Amino H2O" loading="lazy" decoding="async" data-nimg="fill" class="object-contain" style="position:absolute;height:100%;width:100%;left:0;top:0;right:0;bottom:0;color:transparent" sizes="20vw" srcSet="/_next/image?url=%2Fimages%2Fhero%2FAminoH2ODesktop.png&amp;w=128&amp;q=75&amp;dpl=dpl_13Zfha78cAPhU5VMyMrMVTG745vc 128w, /_next/image?url=%2Fimages%2Fhero%2FAminoH2ODesktop.png&amp;w=256&amp;q=75&amp;dpl=dpl_13Zfha78cAPhU5VMyMrMVTG745vc 256w, /_next/image?url=%2Fimages%2Fhero%2FAminoH2ODesktop.png&amp;w=384&amp;q=75&amp;dpl=dpl_13Zfha78cAPhU5VMyMrMVTG745vc 384w, /_next/image?url=%2Fimages%2Fhero%2FAminoH2ODesktop.png&amp;w=640&amp;q=75&amp;dpl=dpl_13Zfha78cAPhU5VMyMrMVTG745

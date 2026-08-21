@@ -1,0 +1,1 @@
+data-testid="stack-picker-card" data-handle="glp-3"><div class="relative aspect-[4/3] bg-[#F4F7F6] overflow-hidden">[img]<button type="button" class="font-stack-mono absolute bottom-2 left-2 inline-flex items-center gap-1 h-7 px-2 rounded-md bg-white border border-[#E2E8E5] text-[10px] text-[#111417] shadow

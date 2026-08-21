@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1200" viewBox="0 0 900 1200">
+  <rect width="900" height="1200" fill="#ffffff"/>
+  <rect x="40" y="40" width="820" height="1120" fill="none" stroke="#e2e8f0" stroke-width="2"/>
+  <text x="80" y="110" font-family="Arial, sans-serif" font-size="14" fill="#94a3b8" letter-spacing="4">KLEAR CLUB</text>
+  <text x="80" y="160" font-family="Arial, sans-serif" font-size="32" font-weight="700" fill="#0f172a">Certificate of Analysis</text>
+  <text x="80" y="210" font-family="Arial, sans-serif" font-size="16" fill="#475569">Material: Cagrilintide</text>
+  <text x="80" y="240" font-family="Arial, sans-serif" font-size="16" fill="#475569">Lot: KC-CAGRIL-0002</text>
+  <text x="80" y="270" font-family="Arial, sans-serif" font-size="16" fill="#475569">Use: Laboratory research only</text>
+  <text x="80" y="340" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#0f172a">Third-party 8-assay panel</text>
+  <text x="80" y="390" font-family="Arial, sans-serif" font-size="16" fill="#0f172a">Purity (HPLC) — ≥ 99.0%</text>
+  <text x="80" y="430" font-family="Arial, sans-serif" font-size="16" fill="#0f172a">Net peptide content — Pass</text>
+  <text x="80" y="470" font-family="Arial, sans-serif" font-size="16" fill="#0f172a">Identity — Confirmed</text>
+  <text x="80" y="510" font-family="Arial, sans-serif" font-size="16" fill="#0f172a">Appearance — White lyophilized powder / solution</text>
+  <text x="80" y="550" font-family="Arial, sans-serif" font-size="16" fill="#0f172a">Fentanyl screen — Not detected</text>
+  <text x="80" y="590" font-family="Arial, sans-serif" font-size="16" fill="#0f172a">Heavy metals (ICP-MS) — Pass</text>
+  <text x="80" y="630" font-family="Arial, sans-serif" font-size="16" fill="#0f172a">Sterility (PCR) — Pass</text>
+  <text x="80" y="670" font-family="Arial, sans-serif" font-size="16" fill="#0f172a">Endotoxin — Pass</text>
+  <text x="80" y="760" font-family="Arial, sans-serif" font-size="13" fill="#64748b">Representative report. Orders ship with a matching lot-specific certificate.</text>
+  <text x="80" y="790" font-family="Arial, sans-serif" font-size="13" fill="#64748b">Not for human, veterinary, or food use.</text>
+</svg>
