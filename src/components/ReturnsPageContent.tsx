@@ -54,13 +54,13 @@ const ELIGIBLE = [
   "Incorrect items received",
 ] as const;
 
-const NOT_ELIGIBLE = [
+const NOT_ELIGIBLE: readonly { text: string; highlight?: string }[] = [
   { text: "Anything reported more than ", highlight: "14 days after delivery" },
   { text: "Reconstituted products" },
   { text: "Damage claims without photo evidence" },
   { text: "Products improperly stored after delivery" },
   { text: "Products without proof of purchase" },
-] as const;
+];
 
 function ShieldCheckIcon({ className }: { className?: string }) {
   return (
@@ -218,7 +218,7 @@ export function ReturnsPageContent() {
                       <XIcon className="mt-0.5 h-5 w-5 flex-shrink-0 text-red-500" />
                       <span>
                         {item.text}
-                        {"highlight" in item && item.highlight ? (
+                        {item.highlight ? (
                           <span className="font-medium text-black">{item.highlight}</span>
                         ) : null}
                       </span>
