@@ -17,7 +17,7 @@ export function HomeCtaSubscribeSection() {
   return (
     <div className="relative overflow-x-clip">
       <section
-        className="relative w-full bg-gradient-to-b from-[#fefeca] to-[#e9fae7] pt-12 pb-20 sm:pb-24 lg:pt-20 lg:pb-28"
+        className="relative w-full bg-gradient-to-b from-[#fffde7] to-[#fef9c3] pt-12 pb-20 sm:pb-24 lg:pt-20 lg:pb-28"
         aria-label="Call to action"
       >
         {/* DSIP — top left */}

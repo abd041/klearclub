@@ -45,7 +45,7 @@ const cards = [
 
 export function WhyChooseSection() {
   return (
-    <section className="relative overflow-hidden bg-white px-5 py-16 font-sans sm:px-8 sm:py-20">
+    <section className="relative overflow-hidden bg-[#f7f7f8] px-5 py-16 font-sans sm:px-8 sm:py-20">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 bg-[url('/why-choose/molecules.svg')] bg-[length:1200px_auto] bg-[position:center_20px] bg-no-repeat"

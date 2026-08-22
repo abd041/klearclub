@@ -18,7 +18,7 @@ export function ResearchBundlesSection() {
   }));
 
   return (
-    <section className="relative overflow-hidden bg-[#f7f8f7]">
+    <section className="relative overflow-hidden bg-[#f5f5f4]">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 top-0 h-full bg-[radial-gradient(ellipse_at_70%_45%,rgba(167,184,255,0.28),transparent_58%),radial-gradient(ellipse_at_82%_38%,rgba(214,201,255,0.22),transparent_52%)]"

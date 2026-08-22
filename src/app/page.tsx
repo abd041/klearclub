@@ -1,4 +1,5 @@
 import { BulkOrdersSection } from "@/components/BulkOrdersSection";
+import { GuaranteeSection } from "@/components/GuaranteeSection";
 import { HomeCtaSubscribeSection } from "@/components/HomeCtaSubscribeSection";
 import { HomeFaqSection } from "@/components/HomeFaqSection";
 import { HomeFeaturedProducts } from "@/components/HomeFeaturedProducts";
@@ -13,6 +14,7 @@ export default function HomePage() {
   return (
     <div>
       <HomeHero />
+      <GuaranteeSection />
       <HomeFeaturedProducts />
       <SubscriptionBoxSection />
       <BulkOrdersSection />

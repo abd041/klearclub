@@ -31,12 +31,10 @@ export function SubscriptionBoxSection() {
       <div className="flex items-center bg-white px-5 py-14 sm:px-10 lg:px-16 xl:px-20">
         <div className="w-full max-w-[560px]">
           <span className="inline-flex items-center rounded-full bg-[#dcfce7] px-3.5 py-1 text-[13px] font-medium text-[#15803d]">
-            New
-            <span className="mx-1.5 text-[10px] leading-none">•</span>
-            Subscription box
+            Membership savings
           </span>
-          <h2 className="mt-6 font-serif text-[36px] font-bold leading-[1.15] tracking-[-0.02em] text-black sm:text-[44px]">
-            Pick any 4. Save 40% every month.
+          <h2 className="mt-6 text-[34px] font-bold leading-[1.12] tracking-[-0.03em] text-[#111111] sm:text-[42px]">
+            Why researchers save 40% every month.
           </h2>
           <p className="mt-4 max-w-[520px] text-[16px] leading-[1.6] text-[#555555]">
             Build a box from any research compounds in the catalog and we pack and ship it monthly, at 40% off retail for as long as you subscribe.
@@ -56,17 +54,18 @@ export function SubscriptionBoxSection() {
           <div className="mt-9 flex flex-wrap items-center gap-x-4 gap-y-2">
             <Link
               href="/build-a-box"
-              className="inline-flex h-12 items-center rounded-full bg-black px-7 text-[15px] font-semibold text-white no-underline"
+              className="inline-flex h-12 items-center gap-2 rounded-[10px] bg-black px-7 text-[15px] font-semibold text-white no-underline"
               style={{ color: "#ffffff" }}
             >
-              Build your box
+              Start Today
+              <span aria-hidden="true">→</span>
             </Link>
             <p className="text-[13px] leading-5 text-[#888888]">3 monthly deliveries to start, then cancel anytime.</p>
           </div>
         </div>
       </div>
 
-      <div className="relative flex items-center justify-center bg-gradient-to-br from-[#f0fcec] via-[#eef8f4] to-[#e3f1fd] px-5 py-16 sm:px-10 lg:justify-end lg:pr-16 lg:pl-6">
+      <div className="relative flex items-center justify-center bg-gradient-to-br from-[#e8f5e9] via-[#eef8f1] to-[#e8f0f8] px-5 py-16 sm:px-10 lg:justify-end lg:pr-16 lg:pl-6">
         <div className="relative w-full max-w-[300px] rounded-[32px] bg-white p-6 shadow-[0_20px_50px_rgba(15,23,42,0.10)] lg:-ml-4 lg:mr-2">
           <div className="absolute -right-4 -top-4 flex h-[84px] w-[84px] items-center justify-center rounded-full bg-[#fff3a3] text-center shadow-[0_8px_20px_rgba(180,150,20,0.18)]">
             <span className="font-serif text-[22px] font-bold leading-[0.95] text-black">

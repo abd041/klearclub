@@ -26,69 +26,70 @@ const cards = [
   },
 ];
 
+/** Amino-style guarantee band: lilac left + white right with stacked cards. */
 export function GuaranteeSection() {
   return (
-    <>
-      <div className="relative z-0 h-[380px] min-w-0 overflow-hidden bg-gradient-to-b from-[#eeebfe] to-[#faeff2] sm:h-[460px] lg:h-auto lg:min-h-[360px]">
-        <Image
-          src="/hero/nad.png"
-          alt="NAD+ research vial"
-          width={380}
-          height={800}
-          unoptimized
-          className="absolute left-[6%] top-[14%] h-[68%] w-auto max-w-none rotate-[18deg] object-contain drop-shadow-[0_24px_36px_rgba(15,23,42,0.16)]"
-        />
-      </div>
+    <section className="bg-gradient-to-r from-[#f3eeff] via-[#f7f4ff] to-white">
+      <div className="site-container grid items-stretch lg:grid-cols-2">
+        <div className="relative flex min-h-[320px] items-center justify-center overflow-hidden py-10 sm:min-h-[380px] lg:min-h-[420px] lg:py-12">
+          <Image
+            src="/hero/nad.png"
+            alt="NAD+ research vial"
+            width={280}
+            height={560}
+            unoptimized
+            className="relative z-10 h-[260px] w-auto rotate-[14deg] object-contain drop-shadow-[0_28px_40px_rgba(15,23,42,0.16)] sm:h-[320px] lg:h-[360px]"
+          />
+        </div>
 
-      <div className="relative z-10 flex min-w-0 items-start overflow-visible bg-white px-5 pt-8 pb-12 sm:px-8 lg:min-h-[360px] lg:pl-12 lg:pr-16 lg:pt-10 lg:pb-10">
-        <div className="w-full max-w-[540px]">
-          <h2 className="text-[30px] font-bold leading-tight tracking-[-0.03em] text-black sm:text-[32px]">
-            The Klear Club Guarantee
-          </h2>
-          <p className="mt-2.5 max-w-[470px] text-[15px] leading-[1.6] text-[#6b6b6b]">
-            Documented quality for research and laboratory use. Every batch meets our internal purity standards.
-          </p>
+        <div className="flex items-start px-1 py-10 sm:py-12 lg:pl-8 lg:pr-2 lg:py-14">
+          <div className="w-full max-w-[540px]">
+            <h2 className="text-[28px] font-bold leading-tight tracking-[-0.03em] text-black sm:text-[32px]">
+              The Klear Club Guarantee
+            </h2>
+            <p className="mt-2.5 max-w-[470px] text-[15px] leading-[1.6] text-[#666666]">
+              Documented quality for research and laboratory use. Every batch meets our internal purity standards.
+            </p>
 
-          <div className="mt-7 -ml-16 w-[calc(100%+4rem)] flex flex-col gap-3 sm:-ml-20 sm:w-[calc(100%+5rem)] lg:-ml-[3.5rem] lg:w-[calc(100%+3.5rem)]">
-            {cards.map((card) => (
-              <article
-                key={card.title}
-                className="relative flex items-center gap-[14px] overflow-hidden rounded-md bg-white py-5 pr-5 pl-3.5 shadow-[0_4px_16px_rgba(15,23,42,0.08)]"
-              >
-                <span
-                  aria-hidden="true"
-                  className="absolute inset-y-0 left-0 w-2"
-                  style={{ background: card.accent }}
-                />
-                <div
-                  className="ml-2 flex h-[50px] w-[50px] shrink-0 items-center justify-center rounded-full"
-                  style={{ background: card.iconBg }}
+            <div className="mt-7 flex flex-col gap-3">
+              {cards.map((card) => (
+                <article
+                  key={card.title}
+                  className="relative flex items-center gap-[14px] overflow-hidden rounded-[12px] bg-white py-4 pr-5 pl-3.5 shadow-[0_4px_16px_rgba(15,23,42,0.08)]"
                 >
-                  <CardIcon name={card.icon} />
-                </div>
-                <div className="min-w-0 flex-1">
-                  <div className="flex items-center gap-1.5">
-                    {card.tip ? (
-                      <>
-                        <h3 className="text-[15px] font-bold text-black">
-                          <span className="border-b border-dotted border-[#b5b5b5] pb-px">
-                            {card.title}
-                          </span>
-                        </h3>
-                        <Hint text={card.tip} />
-                      </>
-                    ) : (
-                      <h3 className="text-[15px] font-bold text-black">{card.title}</h3>
-                    )}
+                  <span
+                    aria-hidden="true"
+                    className="absolute inset-y-0 left-0 w-[6px]"
+                    style={{ background: card.accent }}
+                  />
+                  <div
+                    className="ml-2 flex h-[48px] w-[48px] shrink-0 items-center justify-center rounded-full"
+                    style={{ background: card.iconBg }}
+                  >
+                    <CardIcon name={card.icon} />
                   </div>
-                  <p className="mt-0.5 text-[13px] leading-5 text-[#6b6b6b]">{card.subtitle}</p>
-                </div>
-              </article>
-            ))}
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center gap-1.5">
+                      {card.tip ? (
+                        <>
+                          <h3 className="text-[15px] font-bold text-black">
+                            <span className="border-b border-dotted border-[#b5b5b5] pb-px">{card.title}</span>
+                          </h3>
+                          <Hint text={card.tip} />
+                        </>
+                      ) : (
+                        <h3 className="text-[15px] font-bold text-black">{card.title}</h3>
+                      )}
+                    </div>
+                    <p className="mt-0.5 text-[13px] leading-5 text-[#6b6b6b]">{card.subtitle}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
           </div>
         </div>
       </div>
-    </>
+    </section>
   );
 }
 
@@ -124,27 +125,20 @@ function CardIcon({ name }: { name: "check" | "truck" | "tube" }) {
       </svg>
     );
   }
-
   if (name === "truck") {
     return (
       <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M3 7.2h10.2v8.2H3V7.2Z" fill="#2e74ba" />
-        <path d="M13.2 10.1h3.8l2.4 2.8v2.5h-6.2v-5.3Z" fill="#2e74ba" />
-        <circle cx="6.6" cy="17.2" r="1.55" fill="#2e74ba" />
-        <circle cx="16.4" cy="17.2" r="1.55" fill="#2e74ba" />
+        <path d="M3 7h11v8H3V7Z" stroke="#3b82f6" strokeWidth="1.6" />
+        <path d="M14 10h3.2L20 13v2h-6v-5Z" stroke="#3b82f6" strokeWidth="1.6" />
+        <circle cx="7" cy="17" r="1.6" stroke="#3b82f6" strokeWidth="1.5" />
+        <circle cx="17" cy="17" r="1.6" stroke="#3b82f6" strokeWidth="1.5" />
       </svg>
     );
   }
-
   return (
-    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <g transform="rotate(-22 12 13)">
-        <path
-          d="M10.4 3.2h3.2v8.4l2 6.2a2.35 2.35 0 0 1-2.25 3h-2.7a2.35 2.35 0 0 1-2.25-3l2-6.2V3.2Z"
-          fill="#8d6e3a"
-        />
-      </g>
-      <circle cx="17.4" cy="18.8" r="1.2" fill="#8d6e3a" />
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M9 3h6v3l2 3v9a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V9l2-3V3Z" stroke="#b45309" strokeWidth="1.6" />
+      <path d="M9 10h6" stroke="#b45309" strokeWidth="1.5" strokeLinecap="round" />
     </svg>
   );
 }

@@ -59,7 +59,7 @@ export function BulkOrdersSection() {
   const saved = Math.round((retail - sale) * 100) / 100;
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-r from-[#f4f7c4] via-[#eaf6ec] to-[#d9e8fb] px-5 py-24 sm:px-8 lg:py-28">
+    <section className="relative overflow-hidden bg-gradient-to-r from-[#f4f7c4] via-[#eaf6ec] to-[#dceaf8] px-5 py-24 sm:px-8 lg:py-28">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
         {tiles.map((tile, index) => (
           <div
@@ -146,10 +146,11 @@ export function BulkOrdersSection() {
 
         <Link
           href="/bulk"
-          className="mt-8 inline-flex h-12 min-w-[200px] items-center justify-center rounded-full bg-black px-10 text-[15px] font-semibold text-white no-underline"
+          className="mt-8 inline-flex h-12 min-w-[200px] items-center justify-center gap-2 rounded-[10px] bg-black px-10 text-[15px] font-semibold text-white no-underline"
           style={{ color: "#ffffff" }}
         >
-          Order in bulk
+          Buy Now
+          <span aria-hidden="true">→</span>
         </Link>
         <p className="mt-3 text-[13px] text-[#9ca3af]">No subscription. An adult signs on delivery.</p>
       </div>

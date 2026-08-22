@@ -49,9 +49,9 @@ export function HomeFaqSection() {
   const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <section className="bg-[#f7f7f8] px-5 py-16 font-sans sm:px-8 sm:py-20">
+    <section className="bg-white px-5 py-16 font-sans sm:px-8 sm:py-20">
       <div className="mx-auto w-full max-w-[860px]">
-        <h2 className="text-center text-[28px] font-bold tracking-[-0.03em] text-black sm:text-[34px]">
+        <h2 className="text-center text-[28px] font-bold tracking-[-0.03em] text-[#111111] sm:text-[34px]">
           Frequently Asked Questions
         </h2>
         <p className="mt-3 text-center text-[15px] text-[#6b6b6b]">

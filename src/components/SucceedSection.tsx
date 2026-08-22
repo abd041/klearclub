@@ -14,7 +14,7 @@ function GhostButton({ href, children }: { href: string; children: string }) {
 
 export function SucceedSection() {
   return (
-    <section className="bg-[#e9f5e9] px-5 py-16 font-sans sm:px-8">
+    <section className="bg-[#eef6e8] px-5 py-16 font-sans sm:px-8">
       <div className="mx-auto w-full max-w-[1400px]">
         <h2 className="text-center text-[28px] font-bold tracking-[-0.03em] text-black sm:text-[32px]">
           Everything you need to succeed

@@ -10,22 +10,22 @@ export function HomeFeaturedProducts() {
   const featured = FEATURED_SLUGS.map((slug) => products.find((p) => p.slug === slug)).filter(Boolean);
 
   return (
-    <section className="bg-[#fafafa] py-14 sm:py-16">
+    <section className="bg-white py-14 sm:py-16">
       <div className="site-container">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
-            <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-[#9a9a9a]">
+            <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-[#8a93a0]">
               Research catalog
             </p>
-            <h2 className="mt-1 text-[28px] font-bold tracking-[-0.03em] text-black sm:text-[34px]">
-              Popular <span className="font-serif italic">compounds</span>
+            <h2 className="mt-1 text-[28px] font-bold tracking-[-0.03em] text-[#111111] sm:text-[34px]">
+              Popular compounds
             </h2>
           </div>
           <Link
             href="/store"
-            className="inline-flex h-10 items-center rounded-full border border-[#d8d8d8] bg-white px-5 text-[13px] font-medium text-black no-underline hover:border-black"
+            className="inline-flex h-10 items-center rounded-[10px] border border-[#d5dbe3] bg-white px-5 text-[13px] font-medium text-black no-underline hover:border-black"
           >
-            View all products →
+            Shop all →
           </Link>
         </div>
 

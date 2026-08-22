@@ -8,18 +8,19 @@ import { useCart } from "@/context/CartContext";
 import { cn } from "@/lib/cn";
 
 const PRIMARY = [
-  { href: "/store", label: "Products" },
-  { href: "/coa", label: "COAs" },
-  { href: "/quality", label: "Quality" },
-  { href: "/research", label: "Research" },
-  { href: "/membership", label: "Membership" },
+  { href: "/store", label: "Shop All" },
+  { href: "/bulk", label: "Wholesale" },
+  { href: "/coa", label: "Certificates of Analysis" },
+  { href: "/membership", label: "Rewards" },
+  { href: "/quality", label: "About" },
 ];
 
 const MORE = [
+  { href: "/research", label: "Research" },
   { href: "/build-a-box", label: "Build a Box", isNew: true },
-  { href: "/bulk", label: "Bulk Orders", isNew: true },
   { href: "/bundles", label: "Research Bundles", isNew: true },
   { href: "/partners", label: "Partner Program" },
+  { href: "/faq", label: "Help" },
   { href: "/contact", label: "Contact" },
 ];
 

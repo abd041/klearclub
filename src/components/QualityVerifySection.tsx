@@ -62,13 +62,36 @@ export function QualityVerifySection() {
     <section className="bg-white px-5 py-16 font-sans sm:px-8 sm:py-20">
       <div className="mx-auto grid w-full max-w-[1400px] items-start gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12">
         <div>
-          <h2 className="max-w-[520px] text-[32px] font-bold leading-[1.12] tracking-[-0.035em] text-black sm:text-[40px]">
+          <h2 className="max-w-[520px] text-[32px] font-bold leading-[1.12] tracking-[-0.035em] text-[#111111] sm:text-[40px]">
             Quality you can verify, not just trust
           </h2>
           <p className="mt-4 max-w-[480px] text-[15px] leading-[1.65] text-[#6b6b6b]">
             Every batch is 8x tested by accredited U.S. laboratories. We don&apos;t ask you to take our word for it: we
             give you the proof.
           </p>
+
+          <form
+            action="/coa"
+            method="get"
+            className="mt-6 flex max-w-[480px] overflow-hidden rounded-[12px] border border-[#d8dde5] bg-white shadow-[0_4px_16px_rgba(15,23,42,0.05)]"
+          >
+            <label className="sr-only" htmlFor="home-batch-search">
+              Search batch number
+            </label>
+            <input
+              id="home-batch-search"
+              name="q"
+              type="search"
+              placeholder="Look up a batch number…"
+              className="min-w-0 flex-1 border-0 bg-transparent px-4 py-3 text-[14px] text-[#111111] outline-none placeholder:text-[#9aa3ae]"
+            />
+            <button
+              type="submit"
+              className="shrink-0 bg-black px-4 text-[13px] font-semibold text-white"
+            >
+              Search
+            </button>
+          </form>
 
           <div className="mt-8 flex max-w-[520px] items-stretch divide-x divide-[#e5e5e5]">
             <Stat value="99%+" label="Purity Guaranteed" />
