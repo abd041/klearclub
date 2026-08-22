@@ -69,6 +69,7 @@ export function CartQty({
   return (
     <QuantityStepper
       size="sm"
+      max={50}
       value={quantity}
       onChange={(next) => setQuantity(productSlug, variantId, next)}
     />

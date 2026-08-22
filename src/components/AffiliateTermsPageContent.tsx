@@ -7,7 +7,7 @@ import Link from "next/link";
 export function AffiliateTermsPageContent() {
   return (
     <main className="bg-white">
-      <div className="mx-auto w-full max-w-[1440px] px-6 py-12 lg:py-20">
+      <div className="site-container py-12 lg:py-20">
         <div className="mx-auto max-w-3xl">
           <div className="mb-10">
             <p className="text-xs font-medium tracking-wider text-gray-500 uppercase">

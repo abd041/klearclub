@@ -8,7 +8,7 @@ import { CoaModalProvider } from "@/components/CoaModal";
 import { HomeCtaSubscribeSection } from "@/components/HomeCtaSubscribeSection";
 import { ProductBuyBox } from "@/components/ProductBuyBox";
 import { VerifiedResultsPanel } from "@/components/VerifiedResultsPanel";
-import { productImage } from "@/data/media";
+import { productImage, productImageClass, PRODUCT_IMAGE_BG } from "@/data/media";
 import {
   pdpAminoCount,
   pdpLots,
@@ -41,25 +41,20 @@ export function ProductDetail({ product }: { product: Product }) {
       </div>
 
       <section className="py-6 lg:py-8">
-        <div className="mx-auto max-w-[1500px] px-4 sm:px-6 lg:px-8">
+        <div className="site-container">
           <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-5">
-            <div className="relative flex min-h-[300px] items-center justify-center overflow-hidden rounded-[20px] border border-[#e8e8e8] bg-[#f8f8f8] p-6 lg:min-h-[450px] lg:rounded-[24px] lg:p-8">
-              <div
-                aria-hidden="true"
-                className="absolute inset-0"
-                style={{
-                  background:
-                    "radial-gradient(ellipse 62% 48% at 50% 56%, rgba(233,252,230,0.95), rgba(248,248,248,0) 72%)",
-                }}
-              />
+            <div
+              className="relative flex min-h-[300px] items-center justify-center overflow-hidden rounded-[20px] border border-[#2a2a2a] p-4 lg:min-h-[450px] lg:rounded-[24px] lg:p-6"
+              style={{ backgroundColor: PRODUCT_IMAGE_BG }}
+            >
               <Image
                 src={productImage(product)}
                 alt={product.name}
-                width={300}
-                height={400}
+                width={640}
+                height={800}
                 priority
                 unoptimized
-                className="relative h-auto max-h-[260px] w-auto object-contain drop-shadow-[0_18px_28px_rgba(19,19,21,0.10)] lg:max-h-[380px]"
+                className={`relative h-auto max-h-[280px] w-auto lg:max-h-[400px] ${productImageClass}`}
               />
               <div className="absolute right-3.5 bottom-3.5 left-3.5 flex flex-wrap gap-1.5">
                 <span className="inline-flex items-center gap-1.5 rounded-full border border-black/10 bg-white/85 px-2.5 py-1 text-[10px] font-semibold tracking-[0.1em] text-black/60 uppercase backdrop-blur">
@@ -102,7 +97,7 @@ export function ProductDetail({ product }: { product: Product }) {
       </section>
 
       <section className="py-4 lg:py-6">
-        <div className="mx-auto max-w-[1500px] px-4 sm:px-6 lg:px-8">
+        <div className="site-container">
           <p className="mb-3 text-center text-[11px] font-semibold tracking-[0.18em] text-gray-400 uppercase">
             More ways to save
           </p>
@@ -128,7 +123,7 @@ export function ProductDetail({ product }: { product: Product }) {
       </section>
 
       <section className="py-10 lg:py-16">
-        <div className="mx-auto max-w-[1500px] px-4 sm:px-8 lg:px-12">
+        <div className="site-container">
           <div className="rounded-[24px] bg-[#f6f7f9] px-4 py-10 sm:px-8 lg:px-12 lg:py-14">
             <div className="mx-auto mb-8 max-w-2xl text-center lg:mb-10">
               <p className="text-[11px] font-semibold tracking-[0.22em] text-[#16a34a] uppercase">
@@ -156,7 +151,7 @@ export function ProductDetail({ product }: { product: Product }) {
       </section>
 
       <section className="py-8 lg:py-12" aria-labelledby="compound-heading">
-        <div className="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8">
+        <div className="site-container max-w-[1200px]">
           <header className="mb-5 lg:mb-6">
             <p className="text-[11px] font-semibold tracking-[0.18em] text-black/45 uppercase">
               Technical specifications
@@ -230,7 +225,7 @@ export function ProductDetail({ product }: { product: Product }) {
       </section>
 
       <section className="bg-[#fafafa] py-10 lg:py-14">
-        <div className="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8">
+        <div className="site-container max-w-[1200px]">
           <div className="max-w-3xl">
             <p className="text-[11px] font-semibold tracking-[0.18em] text-black/45 uppercase">
               Peer-reviewed literature
@@ -267,7 +262,7 @@ export function ProductDetail({ product }: { product: Product }) {
       </section>
 
       <section className="py-8 lg:py-12">
-        <div className="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8">
+        <div className="site-container max-w-[1200px]">
           <div className="rounded-2xl border border-black/10 bg-white p-6 lg:p-8">
             <h2 className="mb-3 text-[11px] font-semibold tracking-[0.16em] text-black/45 uppercase">
               Important research notice

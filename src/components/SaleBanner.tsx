@@ -47,7 +47,7 @@ export function SaleBanner() {
         <SunMark />
       </div>
 
-      <div className="relative mx-auto flex h-[48px] max-w-[1440px] items-center justify-center gap-x-3 overflow-hidden px-4 sm:h-[52px] sm:gap-x-5 sm:px-8">
+      <div className="site-container relative flex h-[48px] items-center justify-center gap-x-3 overflow-hidden sm:h-[52px] sm:gap-x-5">
         <p className="shrink-0 text-[10px] font-light uppercase tracking-[0.28em] text-white sm:text-[11px]">
           End of summer sale
         </p>

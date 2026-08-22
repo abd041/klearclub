@@ -3,20 +3,14 @@
 import { usePathname } from "next/navigation";
 import { useCart } from "@/context/CartContext";
 import { formatMoney } from "@/lib/format";
-import { salePrice } from "@/lib/commerce";
 
 export function CartBar() {
   const pathname = usePathname();
-  const { count, resolved, isOpen, openCart } = useCart();
+  const { count, subtotal, isOpen, openCart } = useCart();
   const hidden =
     count === 0 || isOpen || pathname === "/cart" || pathname === "/checkout";
 
   if (hidden) return null;
-
-  const total = resolved.reduce(
-    (sum, line) => sum + salePrice(line.unitPrice) * line.quantity,
-    0,
-  );
 
   return (
     <div className="pointer-events-none fixed right-5 bottom-5 z-[45] flex justify-end">
@@ -33,7 +27,7 @@ export function CartBar() {
             {count}
           </span>
         </span>
-        <span className="text-[16px] font-semibold tracking-[-0.02em]">{formatMoney(total)}</span>
+        <span className="text-[16px] font-semibold tracking-[-0.02em]">{formatMoney(subtotal)}</span>
         <span className="mx-4 h-6 w-px bg-white/25" />
         <span className="text-[13px] font-bold tracking-[0.08em]">VIEW CART</span>
         <span aria-hidden="true" className="ml-2 text-[16px]">

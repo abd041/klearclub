@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Logo } from "@/components/Logo";
 import { useCart } from "@/context/CartContext";
-import { productImage } from "@/data/media";
+import { productImage, productImageClass, PRODUCT_IMAGE_BG } from "@/data/media";
 import { getProduct } from "@/data/products";
 import { formatMoney } from "@/lib/format";
 import { localCommerceAdapter } from "@/lib/commerce";
@@ -182,14 +182,14 @@ export default function CheckoutPage() {
                   const product = getProduct(line.productSlug);
                   return (
                     <li key={`${line.productSlug}-${line.variantId}`} className="flex items-center gap-3">
-                      <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-[8px] bg-[#f4f4f4]">
+                      <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-[8px]" style={{ backgroundColor: PRODUCT_IMAGE_BG }}>
                         {product ? (
                           <Image
                             src={productImage(product)}
                             alt={line.name}
                             fill
                             unoptimized
-                            className="object-cover"
+                            className={productImageClass}
                           />
                         ) : null}
                       </div>

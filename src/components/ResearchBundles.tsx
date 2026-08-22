@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useMemo, useState } from "react";
 import { BundleAuthPanel } from "@/components/BundleAuthPanel";
 import { getProductCoas } from "@/data/coas";
-import { productImage } from "@/data/media";
+import { productImage, productImageClass, PRODUCT_IMAGE_BG } from "@/data/media";
 import { products } from "@/data/products";
 import { cn } from "@/lib/cn";
 import { formatMoney } from "@/lib/format";
@@ -181,8 +181,8 @@ function TicketPanel({
             const { product, variant } = resolved;
             return (
               <div key={item.id} className="flex items-center gap-3 rounded-xl border border-[#EEF2F0] bg-[#F4F7F6]/50 px-3 py-2.5">
-                <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-lg bg-white">
-                  <Image src={productImage(product)} alt="" fill unoptimized className="object-contain p-1" sizes="40px" />
+                <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-lg" style={{ backgroundColor: PRODUCT_IMAGE_BG }}>
+                  <Image src={productImage(product)} alt="" fill unoptimized className={productImageClass} sizes="40px" />
                 </div>
                 <div className="min-w-0 flex-1">
                   <p className="truncate text-[13px] font-semibold text-[#111417]">{product.name}</p>
@@ -473,14 +473,14 @@ export function ResearchBundles() {
                     data-testid="stack-picker-card"
                     data-handle={product.slug}
                   >
-                    <div className="relative aspect-[4/3] overflow-hidden" style={{ background: bg }}>
+                    <div className="relative aspect-[4/5] overflow-hidden" style={{ backgroundColor: PRODUCT_IMAGE_BG }}>
                       <Image
                         src={productImage(product)}
                         alt={product.name}
                         fill
                         unoptimized
                         sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                        className="object-contain object-center p-3"
+                        className={productImageClass}
                       />
                       {loaded ? (
                         <span className="font-mono absolute top-2 right-2 rounded-md bg-[#2742F5] px-2 py-1 text-[10px] font-bold text-white">

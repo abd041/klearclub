@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { productImage } from "@/data/media";
+import { productImage, productImageClass, PRODUCT_IMAGE_BG } from "@/data/media";
 import { getProduct } from "@/data/products";
 import { formatMoney } from "@/lib/format";
 
@@ -85,15 +85,15 @@ export function SubscriptionBoxSection() {
           <div className="mt-4 grid grid-cols-2 gap-3">
             {items.map((item) =>
               item.product ? (
-                <div key={item.slug} className="overflow-hidden rounded-2xl" style={{ background: item.bg }}>
-                  <div className="relative h-[100px]">
+                <div key={item.slug} className="overflow-hidden rounded-2xl" style={{ backgroundColor: PRODUCT_IMAGE_BG }}>
+                  <div className="relative aspect-[4/5]">
                     <Image
                       src={productImage(item.product)}
                       alt={item.product.name}
                       fill
                       unoptimized
                       sizes="160px"
-                      className="object-contain p-2.5"
+                      className={productImageClass}
                     />
                   </div>
                   <p className="px-2 pb-2.5 text-center text-[11px] font-bold text-black">

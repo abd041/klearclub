@@ -7,7 +7,7 @@ import { useCart } from "@/context/CartContext";
 import { CoaOpenButton } from "@/components/CoaModal";
 import { productImage } from "@/data/media";
 import { formatMoney } from "@/lib/format";
-import { FREE_SHIPPING_AT, SALE_OFF, salePrice } from "@/lib/commerce";
+import { FREE_SHIPPING_AT, SALE_OFF, salePrice, volumeUnitPrice } from "@/lib/commerce";
 import { cn } from "@/lib/cn";
 import type { Product } from "@/types/catalog";
 
@@ -29,11 +29,7 @@ function arrives() {
 }
 
 function unitPrice(retail: number, qty: number) {
-  if (qty >= 10) return Math.round(retail * 0.6 * 100) / 100;
-  const sale = salePrice(retail);
-  if (qty >= 3) return Math.round(sale * (1 - 0.053) * 100) / 100;
-  if (qty >= 2) return Math.round(sale * (1 - 0.036) * 100) / 100;
-  return sale;
+  return volumeUnitPrice(retail, qty);
 }
 
 function bundleForQty(qty: number) {

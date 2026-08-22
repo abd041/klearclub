@@ -10,7 +10,7 @@ import {
   type ReactNode,
 } from "react";
 import { getProduct } from "@/data/products";
-import { FREE_SHIPPING_AT } from "@/lib/commerce";
+import { FREE_SHIPPING_AT, mergeCartLines, volumeUnitPrice } from "@/lib/commerce";
 import type { CartLine } from "@/types/catalog";
 
 const STORAGE_KEY = "klearclub.cart.v1";
@@ -19,6 +19,7 @@ type ResolvedLine = CartLine & {
   name: string;
   variantLabel: string;
   unitPrice: number;
+  saleUnitPrice: number;
   lineTotal: number;
   form: "vial" | "spray" | "supply";
 };
@@ -31,6 +32,7 @@ type CartContextValue = {
   remainingForFreeShipping: number;
   isOpen: boolean;
   addItem: (productSlug: string, variantId: string, quantity?: number) => void;
+  addItems: (items: CartLine[]) => void;
   setQuantity: (productSlug: string, variantId: string, quantity: number) => void;
   removeItem: (productSlug: string, variantId: string) => void;
   clear: () => void;
@@ -46,7 +48,7 @@ function readStoredLines(): CartLine[] {
     const raw = window.localStorage.getItem(STORAGE_KEY);
     if (!raw) return [];
     const parsed = JSON.parse(raw) as CartLine[];
-    return Array.isArray(parsed) ? parsed : [];
+    return mergeCartLines(Array.isArray(parsed) ? parsed : []);
   } catch {
     return [];
   }
@@ -56,6 +58,10 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const [lines, setLines] = useState<CartLine[]>([]);
   const [isOpen, setIsOpen] = useState(false);
   const [ready, setReady] = useState(false);
+
+  const commitLines = useCallback((updater: (current: CartLine[]) => CartLine[]) => {
+    setLines((current) => mergeCartLines(updater(current)));
+  }, []);
 
   useEffect(() => {
     setLines(readStoredLines());
@@ -69,26 +75,24 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   const addItem = useCallback(
     (productSlug: string, variantId: string, quantity = 1) => {
-      setLines((current) => {
-        const match = current.find(
-          (line) => line.productSlug === productSlug && line.variantId === variantId,
-        );
-        if (match) {
-          return current.map((line) =>
-            line === match
-              ? { ...line, quantity: line.quantity + quantity }
-              : line,
-          );
-        }
-        return [...current, { productSlug, variantId, quantity }];
-      });
+      commitLines((current) => [...current, { productSlug, variantId, quantity }]);
+      setIsOpen(true);
     },
-    [],
+    [commitLines],
+  );
+
+  const addItems = useCallback(
+    (items: CartLine[]) => {
+      if (items.length === 0) return;
+      commitLines((current) => [...current, ...items]);
+      setIsOpen(true);
+    },
+    [commitLines],
   );
 
   const setQuantity = useCallback(
     (productSlug: string, variantId: string, quantity: number) => {
-      setLines((current) => {
+      commitLines((current) => {
         if (quantity <= 0) {
           return current.filter(
             (line) =>
@@ -102,17 +106,20 @@ export function CartProvider({ children }: { children: ReactNode }) {
         );
       });
     },
-    [],
+    [commitLines],
   );
 
-  const removeItem = useCallback((productSlug: string, variantId: string) => {
-    setLines((current) =>
-      current.filter(
-        (line) =>
-          !(line.productSlug === productSlug && line.variantId === variantId),
-      ),
-    );
-  }, []);
+  const removeItem = useCallback(
+    (productSlug: string, variantId: string) => {
+      commitLines((current) =>
+        current.filter(
+          (line) =>
+            !(line.productSlug === productSlug && line.variantId === variantId),
+        ),
+      );
+    },
+    [commitLines],
+  );
 
   const clear = useCallback(() => setLines([]), []);
 
@@ -121,13 +128,15 @@ export function CartProvider({ children }: { children: ReactNode }) {
       const product = getProduct(line.productSlug);
       const variant = product?.variants.find((item) => item.id === line.variantId);
       if (!product || !variant) return [];
+      const saleUnitPrice = volumeUnitPrice(variant.price, line.quantity);
       return [
         {
           ...line,
           name: product.name,
           variantLabel: variant.label,
           unitPrice: variant.price,
-          lineTotal: variant.price * line.quantity,
+          saleUnitPrice,
+          lineTotal: saleUnitPrice * line.quantity,
           form: product.form,
         },
       ];
@@ -146,6 +155,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
     remainingForFreeShipping,
     isOpen,
     addItem,
+    addItems,
     setQuantity,
     removeItem,
     clear,

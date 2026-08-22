@@ -121,7 +121,7 @@ export function ResearchUsePageContent() {
     <div className="bg-white">
       {/* Hero */}
       <section className="relative overflow-hidden bg-gradient-to-b from-[#f4f7ef] via-white to-white">
-        <div className="mx-auto flex min-h-[52vh] w-full max-w-[1440px] flex-col items-center justify-center px-6 py-16 text-center lg:min-h-[58vh] lg:items-start lg:py-24 lg:text-left">
+        <div className="site-container flex min-h-[52vh] flex-col items-center justify-center py-16 text-center lg:min-h-[58vh] lg:items-start lg:py-24 lg:text-left">
           <div className="max-w-3xl">
             <h1 className="text-4xl leading-[1.08] font-semibold tracking-tight text-black sm:text-5xl lg:text-6xl xl:text-7xl">
               Research Use Only,{" "}
@@ -176,7 +176,7 @@ export function ResearchUsePageContent() {
 
       {/* Applications */}
       <section className="bg-white px-6 py-14 lg:py-20">
-        <div className="mx-auto w-full max-w-[1440px]">
+        <div className="site-container">
           <h2 className="mb-10 text-center text-3xl font-semibold text-black lg:text-4xl">
             Intended research{" "}
             <span className="font-[family-name:var(--font-fraunces)] font-normal italic">applications.</span>
@@ -200,7 +200,7 @@ export function ResearchUsePageContent() {
 
       {/* Research-grade with receipts */}
       <section className="bg-[#f7faf7] px-6 py-14 lg:py-20">
-        <div className="mx-auto w-full max-w-[1440px]">
+        <div className="site-container">
           <div className="mb-10 text-center">
             <h2 className="text-3xl font-semibold text-black lg:text-4xl">
               Research-grade,{" "}
@@ -335,7 +335,7 @@ export function ResearchUsePageContent() {
 
       {/* Featured compounds */}
       <section id="featured-compounds" className="bg-white px-6 py-14 lg:py-20">
-        <div className="mx-auto w-full max-w-[1440px]">
+        <div className="site-container">
           <div className="mb-8 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
             <div>
               <h2 className="text-3xl font-semibold text-black lg:text-4xl">

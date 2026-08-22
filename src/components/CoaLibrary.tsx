@@ -6,7 +6,7 @@ import { useEffect, useMemo, useState } from "react";
 import { CoaDialog } from "@/components/CoaModal";
 import { HomeCtaSubscribeSection } from "@/components/HomeCtaSubscribeSection";
 import { getProductCoas, productCoas, type ProductCoaFile } from "@/data/coas";
-import { productImage } from "@/data/media";
+import { productImage, productImageClass, PRODUCT_IMAGE_BG } from "@/data/media";
 import { products } from "@/data/products";
 import { cn } from "@/lib/cn";
 import { formatMoney } from "@/lib/format";
@@ -350,14 +350,15 @@ export function CoaLibrary() {
                     <div className="flex items-start gap-3.5">
                       <Link
                         href={`/products/${entry.slug}`}
-                        className="relative h-[88px] w-[72px] shrink-0 overflow-hidden rounded-xl bg-gray-50 ring-1 ring-gray-100"
+                        className="relative h-[88px] w-[72px] shrink-0 overflow-hidden rounded-xl ring-1 ring-[#2a2a2a]"
+                        style={{ backgroundColor: PRODUCT_IMAGE_BG }}
                       >
                         <Image
                           src={productImage(entry.product)}
                           alt={entry.product.name}
                           fill
                           unoptimized
-                          className="object-contain p-1.5 transition-transform duration-300 group-hover:scale-105"
+                          className={`${productImageClass} transition-transform duration-300 group-hover:scale-105`}
                           sizes="72px"
                         />
                       </Link>

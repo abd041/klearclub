@@ -134,8 +134,8 @@ export function Membership() {
     <div className="bg-white">
       {/* Plans */}
       <section className="bg-white pt-10 pb-12 lg:pt-16 lg:pb-20">
-        <div className="mx-auto max-w-6xl px-5 sm:px-8">
-          <div className="mx-auto grid max-w-6xl grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+        <div className="site-container">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
             {TIERS.map((tier) => {
               const popular = tier.id === "vip";
               const dark = tier.dark;
@@ -293,7 +293,7 @@ export function Membership() {
 
       {/* Join */}
       <section id="join" className="scroll-mt-20 bg-[#f5f5f5]/60 py-12 lg:py-20">
-        <div className="mx-auto max-w-2xl px-5 sm:px-8">
+        <div className="site-container max-w-2xl">
           <div className="text-center">
             <p className="text-xs font-semibold tracking-[0.2em] text-[#131315]/60 uppercase">Sign up</p>
             <h2 className="mt-2 text-3xl font-semibold tracking-tight text-[#131315] lg:text-4xl">
@@ -430,7 +430,7 @@ export function Membership() {
 
       {/* Points */}
       <section className="scroll-mt-20 border-t border-[#e8e8e8]/50 bg-white py-14 lg:py-20">
-        <div className="mx-auto max-w-5xl px-5 sm:px-8">
+        <div className="site-container max-w-5xl">
           <div className="text-center">
             <p className="text-xs font-semibold tracking-[0.2em] text-[#131315]/60 uppercase">How it works</p>
             <h2 className="mt-2 text-3xl font-semibold tracking-tight text-[#131315] lg:text-4xl">

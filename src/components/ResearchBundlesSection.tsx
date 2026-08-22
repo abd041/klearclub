@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { productImage } from "@/data/media";
+import { productImage, productImageClass, PRODUCT_IMAGE_BG } from "@/data/media";
 import { getProduct } from "@/data/products";
 
 const TICKER = "YOU EARN 10% IN POINTS  ·  FREE 2-DAY SHIPPING  ·  THIRD-PARTY COAs  ·  ONE LINK  ·  THEY SAVE 35%";
@@ -78,14 +78,14 @@ export function ResearchBundlesSection() {
                     key={item.slug}
                     className={`flex items-center gap-2.5 py-[7px] ${index < items.length - 1 ? "border-b border-[#f1f2f1]" : ""}`}
                   >
-                    <span className="relative h-8 w-8 shrink-0 overflow-hidden rounded-lg" style={{ background: item.bg }}>
+                    <span className="relative h-8 w-8 shrink-0 overflow-hidden rounded-lg" style={{ backgroundColor: PRODUCT_IMAGE_BG }}>
                       {item.product ? (
                         <Image
                           src={productImage(item.product)}
                           alt=""
                           fill
                           unoptimized
-                          className="object-contain p-[2px]"
+                          className={productImageClass}
                         />
                       ) : null}
                     </span>

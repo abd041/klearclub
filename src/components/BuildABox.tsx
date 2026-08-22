@@ -6,7 +6,7 @@ import { BoxAuthSheet } from "@/components/BoxAuthSheet";
 import { BoxCheckoutSheet, type BoxLine } from "@/components/BoxCheckoutSheet";
 import { useCart } from "@/context/CartContext";
 import { getProductCoas } from "@/data/coas";
-import { productImage } from "@/data/media";
+import { productImage, productImageClass, PRODUCT_IMAGE_BG } from "@/data/media";
 import { products } from "@/data/products";
 import { cn } from "@/lib/cn";
 import { formatMoney } from "@/lib/format";
@@ -113,7 +113,7 @@ function resolveSlot(slot: BoxSlot) {
 }
 
 export function BuildABox() {
-  const { addItem } = useCart();
+  const { addItems } = useCart();
   const [query, setQuery] = useState("");
   const [filter, setFilter] = useState<FilterId>("all");
   const [boxes, setBoxes] = useState<Array<Array<BoxSlot | null>>>([emptyBox()]);
@@ -278,15 +278,27 @@ export function BuildABox() {
   }
 
   function finishAuthCheckout() {
-    for (const line of summaryLines) {
-      addItem(line.productSlug, line.variantId, 1);
-    }
+    const items = summaryLines.reduce<Array<{ productSlug: string; variantId: string; quantity: number }>>(
+      (acc, line) => {
+        const match = acc.find(
+          (item) => item.productSlug === line.productSlug && item.variantId === line.variantId,
+        );
+        if (match) {
+          match.quantity += 1;
+        } else {
+          acc.push({ productSlug: line.productSlug, variantId: line.variantId, quantity: 1 });
+        }
+        return acc;
+      },
+      [],
+    );
+    addItems(items);
     setAuthOpen(false);
   }
 
   return (
     <div className="bg-white">
-      <div className="mx-auto max-w-7xl px-4 pt-8 pb-28 sm:px-6 lg:px-8 lg:pt-12 lg:pb-16">
+      <div className="site-container pb-28 pt-8 sm:pb-20 lg:pb-16">
         <header>
           <div className="max-w-2xl">
             <p className="text-xs font-semibold tracking-[0.14em] text-gray-400 uppercase">Subscription box</p>
@@ -466,14 +478,14 @@ export function BuildABox() {
                     key={product.slug}
                     className="flex h-full flex-col overflow-hidden rounded-[20px] border border-transparent bg-[#f9f9f9] transition-colors"
                   >
-                    <div className="relative aspect-[4/3] overflow-hidden bg-neutral-100">
+                    <div className="relative aspect-[4/5] overflow-hidden" style={{ backgroundColor: PRODUCT_IMAGE_BG }}>
                       <Image
                         src={productImage(product)}
                         alt={product.name}
                         fill
                         unoptimized
                         sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                        className="object-contain object-center p-3"
+                        className={productImageClass}
                       />
                       <a
                         href={coa?.href || `/coas/${product.slug}.svg`}
@@ -860,14 +872,14 @@ function BoxPanel({
               >
                 <div
                   className="relative h-12 w-12 shrink-0 overflow-hidden rounded-xl"
-                  style={{ background: pdpBackground(product.slug) }}
+                  style={{ backgroundColor: PRODUCT_IMAGE_BG }}
                 >
                   <Image
                     src={productImage(product)}
                     alt=""
                     fill
                     unoptimized
-                    className="object-contain p-1"
+                    className={productImageClass}
                     sizes="48px"
                   />
                 </div>

@@ -132,7 +132,7 @@ export function ContactSupport() {
           ))}
         </div>
 
-        <div className="relative z-20 mx-auto flex h-full min-h-[60vh] w-full max-w-[1440px] items-center justify-center px-6 lg:min-h-[70vh]">
+        <div className="site-container relative z-20 flex h-full min-h-[60vh] items-center justify-center lg:min-h-[70vh]">
           <div className="mx-auto max-w-3xl py-16 text-center lg:py-24">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-black/5 bg-white/80 px-4 py-2 backdrop-blur-sm">
               <span className="h-2 w-2 animate-pulse rounded-full bg-green-500" />
@@ -166,7 +166,7 @@ export function ContactSupport() {
 
       {/* Track order */}
       <section className="border-b border-gray-100 bg-white">
-        <div className="mx-auto w-full max-w-[1440px] px-6">
+        <div className="site-container">
           <div className="mx-auto max-w-3xl py-6">
             <a
               href="mailto:support@klearclub.com?subject=Track%20my%20order"
@@ -204,7 +204,7 @@ export function ContactSupport() {
 
       {/* Support FAQ */}
       <section className="bg-gray-50 py-16 lg:py-24" aria-labelledby="contact-faq-heading">
-        <div className="mx-auto w-full max-w-[1440px] px-6">
+        <div className="site-container">
           <div className="mb-10 text-center lg:mb-14">
             <h2 id="contact-faq-heading" className="mb-4 text-3xl font-semibold text-black md:text-4xl">
               Support FAQ

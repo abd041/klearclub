@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { FormEvent, useEffect, useState } from "react";
 import { floatingHeroImages } from "@/data/media";
 
@@ -41,7 +42,7 @@ export function ResearcherGate() {
   const vials = [...floatingHeroImages, ...floatingHeroImages].slice(0, 12);
 
   return (
-    <div className="fixed inset-0 z-[80] overflow-hidden bg-gradient-to-b from-slate-50 via-blue-50/50 to-slate-100">
+    <div className="fixed inset-0 z-[80] overflow-hidden bg-[#fafafa]">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
         {vials.map((item, index) => {
           const drift = drifts[index % drifts.length];
@@ -52,7 +53,7 @@ export function ResearcherGate() {
               style={{
                 left: `${3 + index * 8}%`,
                 width: `clamp(56px, ${7.2 + (index % 3)}vw, 118px)`,
-                opacity: 0.88,
+                opacity: 0.55,
                 animation: `vial-drift ${drift.duration}s ${drift.delay}s linear infinite`,
                 ["--drift-rot" as string]: `${drift.rotate}deg`,
               }}
@@ -63,7 +64,7 @@ export function ResearcherGate() {
                   alt=""
                   width={160}
                   height={220}
-                  className="h-auto w-full select-none object-contain drop-shadow-[0_25px_45px_rgba(15,23,42,0.16)]"
+                  className="h-auto w-full select-none object-contain drop-shadow-[0_25px_45px_rgba(15,23,42,0.1)]"
                   draggable={false}
                 />
               </div>
@@ -79,33 +80,36 @@ export function ResearcherGate() {
           </div>
           <form
             onSubmit={onSubmit}
-            className="rounded-2xl border border-slate-200 bg-white/95 p-6 shadow-[0_20px_60px_-20px_rgba(15,23,42,0.25)] backdrop-blur md:p-8"
+            className="rounded-[20px] border border-[#ececec] bg-white p-6 shadow-[0_20px_60px_-20px_rgba(15,23,42,0.12)] md:p-8"
           >
-            <h1 className="text-2xl font-semibold tracking-tight text-slate-900 md:text-3xl">
+            <h1 className="text-[24px] font-bold tracking-[-0.03em] text-black md:text-[28px]">
               Researcher verification
             </h1>
-            <p className="mt-2 text-sm text-slate-600">
-              Klear Club sells research peptides exclusively to qualified researchers and laboratories for in vitro and laboratory use. Please confirm before continuing.
+            <p className="mt-2 text-[14px] leading-[1.55] text-[#666]">
+              Klear Club sells research peptides exclusively to qualified researchers and laboratories for in vitro and
+              laboratory use. Please confirm before continuing.
             </p>
-            <label className="mt-6 flex items-start gap-3 text-sm leading-6 text-slate-700">
-              <input required type="checkbox" className="mt-1" />
+            <label className="mt-6 flex items-start gap-3 text-[14px] leading-[1.55] text-[#444]">
+              <input required type="checkbox" className="mt-1 accent-black" />
               I am at least 21 years of age.
             </label>
-            <label className="mt-3 flex items-start gap-3 text-sm leading-6 text-slate-700">
-              <input required type="checkbox" className="mt-1" />
-              I confirm I am a qualified researcher purchasing for in vitro / laboratory research only — not for human or veterinary use.
+            <label className="mt-3 flex items-start gap-3 text-[14px] leading-[1.55] text-[#444]">
+              <input required type="checkbox" className="mt-1 accent-black" />
+              I confirm I am a qualified researcher purchasing for in vitro / laboratory research only — not for human
+              or veterinary use.
             </label>
             <button
               type="submit"
-              className="mt-6 flex h-12 w-full items-center justify-center rounded-full bg-black text-sm font-medium text-white transition hover:scale-[1.02]"
+              className="mt-6 flex h-12 w-full items-center justify-center rounded-full bg-black text-[14px] font-medium text-white transition hover:opacity-90"
             >
               Enter Klear Club
             </button>
-            <p className="mt-4 text-xs leading-5 text-slate-500">
-              By proceeding you affirm the statements above are true. Products are not for human or veterinary use, not for use in diagnostic procedures, and have not been evaluated by the U.S. Food and Drug Administration.{" "}
-              <a href="/disclaimer" className="underline">
+            <p className="mt-4 text-[12px] leading-[1.55] text-[#9a9a9a]">
+              By proceeding you affirm the statements above are true. Products are not for human or veterinary use, not
+              for use in diagnostic procedures, and have not been evaluated by the U.S. Food and Drug Administration.{" "}
+              <Link href="/disclaimer" className="text-black underline underline-offset-2">
                 Full disclaimer.
-              </a>
+              </Link>
             </p>
           </form>
         </div>

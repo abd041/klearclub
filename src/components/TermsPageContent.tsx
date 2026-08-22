@@ -158,7 +158,7 @@ export function TermsPageContent() {
       </section>
 
       <section className="bg-white py-16 lg:py-24" aria-label="Terms of service details">
-        <div className="mx-auto w-full max-w-[1440px] px-6">
+        <div className="site-container">
           <div className="mx-auto max-w-3xl">
             <p className="mb-8 text-sm text-gray-500">Last Updated: February 20, 2026</p>
 

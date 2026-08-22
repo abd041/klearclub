@@ -218,7 +218,7 @@ export function ShippingPageContent() {
           ))}
         </div>
 
-        <div className="relative z-20 mx-auto flex h-full min-h-[50vh] max-w-[1440px] items-center justify-center px-6 lg:min-h-[60vh]">
+        <div className="site-container relative z-20 flex h-full min-h-[50vh] items-center justify-center lg:min-h-[60vh]">
           <div className="mx-auto max-w-3xl py-16 text-center lg:py-24">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-black/5 bg-white/80 px-4 py-2 backdrop-blur-sm">
               <ShieldCheckIcon className="h-4 w-4 text-indigo-600" />
@@ -235,7 +235,7 @@ export function ShippingPageContent() {
       </section>
 
       <section className="bg-white py-16 lg:py-24" aria-labelledby="shipping-options-heading">
-        <div className="mx-auto w-full max-w-[1440px] px-6">
+        <div className="site-container">
           <div className="mb-12 text-center">
             <h2 id="shipping-options-heading" className="mb-4 text-3xl font-semibold text-black lg:text-4xl">
               Shipping Options
@@ -290,7 +290,7 @@ export function ShippingPageContent() {
       </section>
 
       <section className="bg-gray-50 py-16 lg:py-24" aria-label="Shipping details">
-        <div className="mx-auto w-full max-w-[1440px] px-6">
+        <div className="site-container">
           <div className="mx-auto grid max-w-4xl gap-8 md:grid-cols-2">
             {INFO_CARDS.map((card) => (
               <div key={card.title} className="rounded-2xl border border-gray-100 bg-white p-8">
@@ -313,7 +313,7 @@ export function ShippingPageContent() {
       </section>
 
       <section className="bg-white py-16 lg:py-24" aria-labelledby="shipping-questions-heading">
-        <div className="mx-auto w-full max-w-[1440px] px-6">
+        <div className="site-container">
           <div className="mx-auto max-w-2xl text-center">
             <h2 id="shipping-questions-heading" className="mb-4 text-2xl font-semibold text-black lg:text-3xl">
               Questions About Shipping?

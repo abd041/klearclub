@@ -48,7 +48,7 @@ export function HomeCtaSubscribeSection() {
           </div>
         </div>
 
-        <div className="relative z-20 mx-auto w-full max-w-[1440px] px-6">
+        <div className="relative z-20 site-container">
           <div className="mx-auto max-w-3xl px-8 text-center sm:px-12 lg:px-16">
             <h2 className="mb-6 text-xl leading-[1.35] font-semibold text-black sm:text-2xl md:text-3xl lg:mb-8 lg:text-4xl">
               All the research peptides you need, with the{" "}
@@ -88,7 +88,7 @@ export function HomeCtaSubscribeSection() {
       </section>
 
       <div className="relative z-30 -mt-8 pb-12 sm:-mt-10 lg:-mt-12">
-        <div className="mx-auto w-full max-w-[1440px] px-6">
+        <div className="site-container">
           <div
             className="relative overflow-hidden rounded-2xl bg-gradient-to-b from-[#e8e5ff] to-[#f8eaed] px-5 py-6 sm:px-8 lg:rounded-3xl lg:px-10 lg:py-8"
             style={{ boxShadow: "0 -4px 40px rgba(0, 0, 0, 0.06)" }}

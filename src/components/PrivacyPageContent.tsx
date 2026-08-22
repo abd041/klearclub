@@ -167,7 +167,7 @@ export function PrivacyPageContent() {
       </section>
 
       <section className="bg-white py-16 lg:py-24" aria-label="Privacy policy details">
-        <div className="mx-auto w-full max-w-[1440px] px-6">
+        <div className="site-container">
           <div className="mx-auto max-w-3xl">
             <p className="mb-8 text-sm text-gray-500">Last Updated: January 1, 2026</p>
 

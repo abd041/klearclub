@@ -48,5 +48,6 @@ export type Article = {
   title: string;
   excerpt: string;
   readTime: string;
+  category: "Documentation" | "Handling" | "Quality" | "Compliance";
   body: string[];
 };

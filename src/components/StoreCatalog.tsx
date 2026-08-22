@@ -116,7 +116,7 @@ export function StoreCatalog() {
   }, [filter, query, sort]);
 
   return (
-    <div className="mx-auto w-full max-w-[1400px] px-5 sm:px-8">
+    <div className="site-container pb-16 pt-8 sm:pb-20">
       <div className="grid items-center gap-4 lg:grid-cols-[auto_minmax(280px,560px)_auto] lg:gap-8">
         <div className="min-w-0">
           <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-[#9a9a9a]">
@@ -224,7 +224,6 @@ export function StoreCatalog() {
         {visible.map((product) => (
           <ProductCard key={product.slug} product={product} />
         ))}
-        {filter === "sprays" ? <MoreProductsCard /> : null}
       </div>
     </div>
   );
@@ -291,27 +290,6 @@ function PromoCard({
         {cta}
       </Link>
     </div>
-  );
-}
-
-function MoreProductsCard() {
-  return (
-    <article className="flex h-full min-h-[420px] flex-col items-center justify-center rounded-[20px] bg-[#f3f3f3] px-8 py-10 text-center">
-      <svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
-        <rect x="12" y="14" width="12" height="16" rx="4" fill="#cfcfcf" />
-        <path d="M16 8h4v4h4v3H12v-3h4V8Z" fill="#cfcfcf" />
-      </svg>
-      <h3 className="mt-5 text-[22px] font-bold tracking-[-0.03em] text-black">20+ More Products</h3>
-      <p className="mt-2 max-w-[220px] text-[14px] leading-[1.45] text-[#7a7a7a]">
-        Sign in or create an account to view our full catalog
-      </p>
-      <Link
-        href="/account"
-        className="mt-6 inline-flex h-11 items-center rounded-full border border-black bg-white px-6 text-[14px] font-medium text-black no-underline"
-      >
-        Get Access ›
-      </Link>
-    </article>
   );
 }
 

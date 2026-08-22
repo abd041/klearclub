@@ -1,14 +1,14 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { GooglePayCardModal } from "@/components/GooglePayCardModal";
 import { useCart } from "@/context/CartContext";
 import { formatMoney } from "@/lib/format";
-import { FREE_SHIPPING_AT, SALE_OFF, salePrice, localCommerceAdapter } from "@/lib/commerce";
-import { productImage } from "@/data/media";
+import { FREE_SHIPPING_AT, SALE_OFF, localCommerceAdapter } from "@/lib/commerce";
+import { productImage, productImageClass, PRODUCT_IMAGE_BG } from "@/data/media";
 import { getProduct } from "@/data/products";
 
 const WATER_SLUG = "klear-h2o";
@@ -30,7 +30,7 @@ function cutoffRemaining() {
 
 export function CartDrawer() {
   const router = useRouter();
-  const { resolved, count, isOpen, closeCart, removeItem, setQuantity, addItem, clear } = useCart();
+  const { resolved, count, isOpen, closeCart, removeItem, setQuantity, addItem, clear, subtotal } = useCart();
   const [promoOpen, setPromoOpen] = useState(false);
   const [promoCode, setPromoCode] = useState("");
   const [promoApplied, setPromoApplied] = useState(false);
@@ -69,16 +69,7 @@ export function CartDrawer() {
   const hasWater = resolved.some((line) => line.productSlug === WATER_SLUG);
   const showUpsell = Boolean(water) && !hasWater && !upsellHidden && resolved.length > 0;
 
-  const priced = useMemo(
-    () =>
-      resolved.map((line) => {
-        const unit = promoApplied ? salePrice(line.unitPrice) : line.unitPrice;
-        return { ...line, displayUnit: unit, displayTotal: unit * line.quantity };
-      }),
-    [promoApplied, resolved],
-  );
-
-  const subtotal = priced.reduce((sum, line) => sum + line.displayTotal, 0);
+  const priced = resolved;
   const remaining = Math.max(0, FREE_SHIPPING_AT - subtotal);
   const progress = Math.min(100, (subtotal / FREE_SHIPPING_AT) * 100);
   const points = Math.round(subtotal * 2.5);
@@ -155,14 +146,14 @@ export function CartDrawer() {
                       key={`${line.productSlug}-${line.variantId}`}
                       className="relative flex gap-3.5 border-b border-[#eeeeee] py-4"
                     >
-                      <div className="relative h-[78px] w-[78px] shrink-0 overflow-hidden rounded-[14px] bg-[#f5f5f5]">
+                      <div className="relative h-[78px] w-[78px] shrink-0 overflow-hidden rounded-[14px]" style={{ backgroundColor: PRODUCT_IMAGE_BG }}>
                         {product ? (
                           <Image
                             src={productImage(product)}
                             alt={line.name}
                             fill
                             unoptimized
-                            className="object-cover"
+                            className={productImageClass}
                           />
                         ) : null}
                       </div>
@@ -183,14 +174,14 @@ export function CartDrawer() {
                               }
                               aria-label="Quantity"
                             >
-                              {Array.from({ length: 10 }, (_, index) => index + 1).map((qty) => (
+                              {Array.from({ length: Math.max(50, line.quantity) }, (_, index) => index + 1).map((qty) => (
                                 <option key={qty} value={qty}>
                                   {qty}
                                 </option>
                               ))}
                             </select>
                           </label>
-                          <p className="text-[17px] font-bold text-black">{formatMoney(line.displayTotal)}</p>
+                          <p className="text-[17px] font-bold text-black">{formatMoney(line.lineTotal)}</p>
                         </div>
                       </div>
                       <button
@@ -261,8 +252,8 @@ export function CartDrawer() {
                     ×
                   </button>
                   <div className="flex items-center gap-3">
-                    <div className="relative h-[52px] w-[52px] shrink-0 overflow-hidden rounded-[12px] bg-white shadow-[0_1px_4px_rgba(0,0,0,0.06)]">
-                      <Image src={productImage(water)} alt={water.name} fill unoptimized className="object-contain p-1" />
+                    <div className="relative h-[52px] w-[52px] shrink-0 overflow-hidden rounded-[12px] shadow-[0_1px_4px_rgba(0,0,0,0.06)]" style={{ backgroundColor: PRODUCT_IMAGE_BG }}>
+                      <Image src={productImage(water)} alt={water.name} fill unoptimized className={productImageClass} />
                     </div>
                     <div className="min-w-0 flex-1">
                       <p className="text-[10px] font-bold tracking-[0.12em] text-[#22a45a]">

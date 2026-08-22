@@ -75,7 +75,7 @@ export function PartnerProgram() {
           />
         </div>
 
-        <div className="relative mx-auto h-full min-h-fit w-full max-w-[1440px] px-6 lg:min-h-[450px] xl:min-h-[520px] 2xl:min-h-[580px]">
+        <div className="site-container relative h-full min-h-fit lg:min-h-[450px] xl:min-h-[520px] 2xl:min-h-[580px]">
           <div className="flex h-full min-h-fit flex-col lg:grid lg:min-h-[inherit] lg:grid-cols-2">
             <div className="z-20 order-2 flex flex-col items-center justify-center gap-2 pt-4 pb-8 text-center lg:order-1 lg:items-start lg:gap-4 lg:py-8 lg:text-left xl:py-10">
               <h1 className="max-w-lg text-[2.75rem] leading-[1.05] font-semibold tracking-tight text-black sm:text-5xl md:text-6xl lg:max-w-xl lg:text-5xl xl:text-6xl 2xl:text-[4rem]">
@@ -159,7 +159,7 @@ export function PartnerProgram() {
 
       {/* Built for research referrals */}
       <section className="bg-white py-16 lg:py-20">
-        <div className="mx-auto w-full max-w-[1440px] px-6">
+        <div className="site-container">
           <div className="mb-12 text-center lg:mb-16">
             <h2 className="mb-4 text-3xl leading-tight font-semibold text-black md:text-4xl lg:text-5xl">
               Built for research referrals
@@ -212,7 +212,7 @@ export function PartnerProgram() {
 
       {/* How it works */}
       <section id="how-it-works" className="bg-gradient-to-b from-[#faf9ff] to-white py-16 lg:py-20">
-        <div className="mx-auto w-full max-w-[1440px] px-6">
+        <div className="site-container">
           <div className="mb-12 text-center lg:mb-16">
             <h2 className="mb-4 text-3xl leading-tight font-semibold text-black md:text-4xl lg:text-5xl">
               How it works
@@ -280,7 +280,7 @@ export function PartnerProgram() {
 
       {/* Why refer researchers to us */}
       <section className="bg-white py-16 lg:py-20">
-        <div className="mx-auto w-full max-w-[1440px] px-6">
+        <div className="site-container">
           <div className="mb-12 text-center lg:mb-16">
             <h2 className="mb-4 text-3xl leading-tight font-semibold text-black md:text-4xl lg:text-5xl">
               Why refer researchers to us
@@ -332,7 +332,7 @@ export function PartnerProgram() {
 
       {/* Simple, transparent referral value */}
       <section className="bg-gradient-to-b from-white to-[#faf9ff] py-16 lg:py-20">
-        <div className="mx-auto w-full max-w-[1440px] px-6">
+        <div className="site-container">
           <div className="mb-12 text-center lg:mb-16">
             <h2 className="mb-4 text-3xl leading-tight font-semibold text-black md:text-4xl lg:text-5xl">
               Simple, transparent referral value
@@ -424,7 +424,7 @@ export function PartnerProgram() {
 
       {/* Frequently asked questions */}
       <section className="bg-gradient-to-b from-white to-[#faf9ff] py-16 lg:py-20">
-        <div className="mx-auto w-full max-w-[1440px] px-6">
+        <div className="site-container">
           <div className="mx-auto max-w-3xl">
             <div className="mb-12 text-center">
               <h2 className="mb-4 text-3xl leading-tight font-semibold text-black md:text-4xl lg:text-5xl">
@@ -502,7 +502,7 @@ export function PartnerProgram() {
             </div>
           </div>
 
-          <div className="relative z-20 mx-auto w-full max-w-[1440px] px-6">
+          <div className="relative z-20 site-container">
             <div className="mx-auto max-w-3xl px-8 text-center sm:px-12 lg:px-16">
               <h2 className="mb-6 text-xl leading-[1.35] font-semibold text-black sm:text-2xl md:text-3xl lg:mb-8 lg:text-4xl">
                 Refer researchers to{" "}
@@ -537,7 +537,7 @@ export function PartnerProgram() {
         </section>
 
         <div className="relative z-30 -mt-8 pb-12 sm:-mt-10 lg:-mt-12">
-          <div className="mx-auto w-full max-w-[1440px] px-6">
+          <div className="site-container">
             <div
               className="relative overflow-hidden rounded-2xl bg-gradient-to-b from-[#e8e5ff] to-[#f8eaed] px-5 py-6 sm:px-8 lg:rounded-3xl lg:px-10 lg:py-8"
               style={{ boxShadow: "0 -4px 40px rgba(0, 0, 0, 0.06)" }}

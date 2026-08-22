@@ -123,7 +123,7 @@ export function ReturnsPageContent() {
           ))}
         </div>
 
-        <div className="relative z-20 mx-auto flex h-full min-h-[50vh] max-w-[1440px] items-center justify-center px-6 lg:min-h-[60vh]">
+        <div className="site-container relative z-20 flex h-full min-h-[50vh] items-center justify-center lg:min-h-[60vh]">
           <div className="mx-auto max-w-3xl py-16 text-center lg:py-24">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-black/5 bg-white/80 px-4 py-2 backdrop-blur-sm">
               <ShieldCheckIcon className="h-4 w-4 text-blue-600" />
@@ -140,7 +140,7 @@ export function ReturnsPageContent() {
       </section>
 
       <section className="bg-white py-16 lg:py-24" aria-label="Damage protection policy">
-        <div className="mx-auto w-full max-w-[1440px] px-6">
+        <div className="site-container">
           <div className="mx-auto max-w-4xl">
             <div
               className="mb-12 rounded-3xl border border-green-100 p-8 text-center lg:p-12"
@@ -232,7 +232,7 @@ export function ReturnsPageContent() {
       </section>
 
       <section className="bg-gray-50 py-16 lg:py-24" aria-labelledby="damaged-heading">
-        <div className="mx-auto w-full max-w-[1440px] px-6">
+        <div className="site-container">
           <div className="mx-auto max-w-4xl">
             <div className="rounded-3xl border border-gray-100 bg-white p-8 shadow-sm lg:p-12">
               <div className="mb-8 text-center">
@@ -311,7 +311,7 @@ export function ReturnsPageContent() {
       </section>
 
       <section className="bg-white py-16 lg:py-24" aria-labelledby="timeline-heading">
-        <div className="mx-auto w-full max-w-[1440px] px-6">
+        <div className="site-container">
           <div className="mx-auto max-w-3xl text-center">
             <h2 id="timeline-heading" className="mb-6 text-2xl font-semibold text-black lg:text-3xl">
               Replacement Timeline

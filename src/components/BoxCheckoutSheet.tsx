@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
-import { productImage } from "@/data/media";
+import { productImage, productImageClass, PRODUCT_IMAGE_BG } from "@/data/media";
 import { cn } from "@/lib/cn";
 import { formatMoney } from "@/lib/format";
 import { pdpBackground } from "@/lib/product-pdp";
@@ -156,14 +156,14 @@ export function BoxCheckoutSheet({
               >
                 <div
                   className="relative h-12 w-12 shrink-0 overflow-hidden rounded-xl"
-                  style={{ background: pdpBackground(line.product.slug) }}
+                  style={{ backgroundColor: PRODUCT_IMAGE_BG }}
                 >
                   <Image
                     src={productImage(line.product)}
                     alt=""
                     fill
                     unoptimized
-                    className="object-contain p-1"
+                    className={productImageClass}
                     sizes="48px"
                   />
                 </div>

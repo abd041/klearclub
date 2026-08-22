@@ -6,9 +6,15 @@ const shop = [
   { href: "/store", label: "All Products" },
   { href: "/build-a-box", label: "Build a Box", isNew: true },
   { href: "/bulk", label: "Bulk Orders", isNew: true },
+  { href: "/bundles", label: "Research Bundles", isNew: true },
+  { href: "/membership", label: "Membership" },
 ];
 
-const resources = [{ href: "/coa", label: "Certificates of Analysis" }];
+const resources = [
+  { href: "/coa", label: "Certificates of Analysis" },
+  { href: "/quality", label: "Quality Assurance" },
+  { href: "/research", label: "Research Library" },
+];
 
 const support = [
   { href: "/contact", label: "Contact Us" },
@@ -30,24 +36,24 @@ export function Footer() {
 
   return (
     <footer className="mt-auto bg-[#0a1930] font-sans text-white">
-      <div className="mx-auto w-full max-w-[1400px] px-5 pt-14 pb-8 sm:px-8 lg:pt-16">
+      <div className="site-container pt-14 pb-8 lg:pt-16">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.35fr_repeat(4,minmax(0,1fr))] lg:gap-8">
           <div className="max-w-[280px]">
             <Logo className="[&_img]:brightness-0 [&_img]:invert" />
             <p className="mt-5 text-[13px] leading-[1.65] text-[#9aa8b5]">
               Premium research-grade peptides for controlled laboratory studies. Third-party tested with Certificate of
-              Analysis.
+              Analysis on every batch.
             </p>
             <div className="mt-5 flex items-center gap-2.5">
-              <SocialLink href="#" label="Instagram">
+              <SocialPlaceholder label="Instagram">
                 <InstagramIcon />
-              </SocialLink>
-              <SocialLink href="#" label="X">
+              </SocialPlaceholder>
+              <SocialPlaceholder label="X">
                 <XIcon />
-              </SocialLink>
-              <SocialLink href="#" label="YouTube">
+              </SocialPlaceholder>
+              <SocialPlaceholder label="YouTube">
                 <YouTubeIcon />
-              </SocialLink>
+              </SocialPlaceholder>
             </div>
           </div>
 
@@ -83,18 +89,11 @@ export function Footer() {
                 Statements made regarding our products have{" "}
                 <span className="font-semibold">not been evaluated by the U.S. Food and Drug Administration</span>. These
                 products are{" "}
-                <span className="font-semibold">not intended to diagnose, treat, cure, or prevent any disease</span>. Product
-                information on this website is provided for laboratory research purposes only. All products are sold
-                strictly for laboratory research use by qualified professionals and are{" "}
-                <span className="font-semibold">not for human, veterinary, or food use in any form</span>. Information
-                presented on this website is not a substitute for, or alternative to, information from a qualified health
-                care practitioner. Please consult a licensed health care professional regarding any potential interactions
-                or complications before using any product. This notice is required under the Federal Food, Drug, and
-                Cosmetic Act.{" "}
-                <Link
-                  href="/disclaimer"
-                  className="font-medium text-amber-300 underline-offset-2 hover:underline"
-                >
+                <span className="font-semibold">not intended to diagnose, treat, cure, or prevent any disease</span>.
+                Product information on this website is provided for laboratory research purposes only. All products are
+                sold strictly for laboratory research use by qualified professionals and are{" "}
+                <span className="font-semibold">not for human, veterinary, or food use in any form</span>.{" "}
+                <Link href="/disclaimer" className="font-medium text-amber-300 underline-offset-2 hover:underline">
                   Read the full disclaimer →
                 </Link>
               </p>
@@ -166,15 +165,16 @@ function NewBadge() {
   );
 }
 
-function SocialLink({ href, label, children }: { href: string; label: string; children: ReactNode }) {
+function SocialPlaceholder({ label, children }: { label: string; children: ReactNode }) {
   return (
-    <a
-      href={href}
-      aria-label={label}
-      className="flex h-9 w-9 items-center justify-center rounded-full bg-[#12243f] text-white no-underline hover:bg-[#1a3256]"
+    <span
+      role="img"
+      aria-label={`${label} — coming soon`}
+      title={`${label} — coming soon`}
+      className="flex h-9 w-9 cursor-default items-center justify-center rounded-full bg-[#12243f] text-white/50"
     >
       {children}
-    </a>
+    </span>
   );
 }
 

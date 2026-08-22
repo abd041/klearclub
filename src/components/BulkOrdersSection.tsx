@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { productImage } from "@/data/media";
+import { productImage, productImageClass, PRODUCT_IMAGE_BG } from "@/data/media";
 import { getProduct } from "@/data/products";
 import { formatMoney } from "@/lib/format";
 
@@ -116,14 +116,14 @@ export function BulkOrdersSection() {
         </div>
 
         <div className="mt-8 flex w-full max-w-[560px] items-center gap-4 rounded-[32px] bg-white p-4 text-left shadow-[0_18px_50px_rgba(15,23,42,0.10)] sm:gap-5 sm:p-5">
-          <div className="relative h-[92px] w-[92px] shrink-0 overflow-hidden rounded-2xl bg-[#ece8f7] sm:h-[108px] sm:w-[108px]">
+          <div className="relative aspect-[4/5] w-[92px] shrink-0 overflow-hidden rounded-2xl sm:w-[108px]" style={{ backgroundColor: PRODUCT_IMAGE_BG }}>
             {product ? (
               <Image
                 src={productImage(product)}
                 alt={product.name}
                 fill
                 unoptimized
-                className="object-contain p-2"
+                className={productImageClass}
               />
             ) : null}
             <span className="absolute bottom-2 right-2 rounded-full bg-black px-2 py-0.5 text-[11px] font-semibold text-white">

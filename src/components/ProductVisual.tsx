@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { cn } from "@/lib/cn";
-import { productImage } from "@/data/media";
+import { productImage, productImageClass, PRODUCT_IMAGE_BG } from "@/data/media";
 import type { Product } from "@/types/catalog";
 
 type ProductVisualProps = {
@@ -17,13 +17,13 @@ export function ProductVisual({
   branded = true,
 }: ProductVisualProps) {
   return (
-    <div className={cn("relative overflow-hidden bg-white", className)}>
+    <div className={cn("relative overflow-hidden", className)} style={{ backgroundColor: PRODUCT_IMAGE_BG }}>
       <Image
         src={productImage(product)}
         alt={`${product.name} research vial`}
         fill
         sizes="(max-width: 768px) 100vw, 420px"
-        className="object-contain p-5 sm:p-7"
+        className={productImageClass}
         priority={priority}
       />
       {branded ? (
