@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { useCart } from "@/context/CartContext";
-import { productImage, productImageClass } from "@/data/media";
+import { productImage, productCardImageClass } from "@/data/media";
 import { formatMoney } from "@/lib/format";
 import { SALE_OFF, salePrice } from "@/lib/commerce";
 import { ProductImageStage } from "@/components/ProductImageStage";
@@ -97,7 +97,7 @@ export function ProductCard({ product }: { product: Product }) {
 
   return (
     <article className="flex h-full flex-col overflow-hidden rounded-[18px] border border-[#e8e8e8] bg-white">
-      <ProductImageStage slug={product.slug} className="aspect-[4/5]">
+      <ProductImageStage slug={product.slug} className="aspect-[5/6]">
         <Link href={`/products/${product.slug}`} className="absolute inset-0 z-[1] no-underline" aria-label={`View ${product.name}`} />
         <Image
           src={productImage(product)}
@@ -105,7 +105,7 @@ export function ProductCard({ product }: { product: Product }) {
           fill
           unoptimized
           sizes="(max-width: 640px) 50vw, (max-width: 1280px) 33vw, 25vw"
-          className={productImageClass}
+          className={productCardImageClass}
         />
 
         {product.form === "spray" ? (
@@ -119,7 +119,7 @@ export function ProductCard({ product }: { product: Product }) {
           -{Math.round(SALE_OFF * 100)}%
         </span>
 
-        <div className="absolute inset-x-0 bottom-0 z-[2] flex items-center justify-between gap-2 px-2.5 pt-8 pb-2.5">
+        <div className="absolute inset-x-0 bottom-0 z-[2] flex items-center justify-between gap-2 px-2.5 pt-5 pb-2">
           <Link
             href={`/coa/${product.slug}`}
             onClick={(e) => e.stopPropagation()}

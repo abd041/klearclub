@@ -21,8 +21,12 @@ export function productImage(product: Pick<Product, "slug" | "form">) {
   return `/products/${product.slug}.png`;
 }
 
-/** Transparent vial on gradient card background. */
+/** Thumbnails on flat white backgrounds. */
 export const productImageClass = "object-contain object-center p-3 sm:p-4";
+
+/** Gradient product cards — anchor image lower to reduce empty space below the vial. */
+export const productCardImageClass =
+  "object-contain object-bottom px-3 pt-2 pb-0.5 sm:px-4 sm:pt-3 sm:pb-1";
 
 export function productLot(slug: string) {
   const code = slug.replace(/[^a-z0-9]/gi, "").slice(0, 6).toUpperCase();

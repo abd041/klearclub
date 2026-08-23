@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { cn } from "@/lib/cn";
-import { productImage, productImageClass } from "@/data/media";
+import { productImage, productCardImageClass } from "@/data/media";
 import { ProductImageStage } from "@/components/ProductImageStage";
 import type { Product } from "@/types/catalog";
 
@@ -24,7 +24,7 @@ export function ProductVisual({
         alt={`${product.name} research vial`}
         fill
         sizes="(max-width: 768px) 100vw, 420px"
-        className={productImageClass}
+        className={productCardImageClass}
         priority={priority}
       />
       {branded ? (

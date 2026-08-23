@@ -79,15 +79,27 @@ export function productPalette(slug: string): ProductPalette {
   return PALETTES[hash];
 }
 
+function lightenHex(hex: string, amount: number) {
+  const n = Number.parseInt(hex.slice(1), 16);
+  const r = (n >> 16) & 255;
+  const g = (n >> 8) & 255;
+  const b = n & 255;
+  const mix = (channel: number) => Math.round(channel + (255 - channel) * amount);
+  return `#${[mix(r), mix(g), mix(b)].map((c) => c.toString(16).padStart(2, "0")).join("")}`;
+}
+
 /** Soft studio cyclorama — smooth pastel wall-to-floor transition, no banding. */
 export function productCardStageStyle(slug: string): CSSProperties {
   const { top, label, bottom } = productPalette(slug);
+  const wall = lightenHex(top, 0.22);
+  const mid = lightenHex(label, 0.18);
+  const floor = lightenHex(bottom, 0.12);
   return {
-    backgroundColor: top,
+    backgroundColor: wall,
     backgroundImage: [
-      "radial-gradient(ellipse 68% 20% at 50% 92%, rgba(15,23,42,0.11) 0%, rgba(15,23,42,0.03) 50%, transparent 72%)",
-      "radial-gradient(ellipse 105% 75% at 50% -8%, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.22) 38%, transparent 65%)",
-      `linear-gradient(180deg, ${top} 0%, ${label} 50%, ${bottom} 100%)`,
+      "radial-gradient(ellipse 68% 20% at 50% 92%, rgba(15,23,42,0.07) 0%, rgba(15,23,42,0.02) 50%, transparent 72%)",
+      "radial-gradient(ellipse 105% 75% at 50% -8%, rgba(255,255,255,0.94) 0%, rgba(255,255,255,0.28) 38%, transparent 65%)",
+      `linear-gradient(180deg, ${wall} 0%, ${mid} 50%, ${floor} 100%)`,
     ].join(", "),
   };
 }
