@@ -14,15 +14,15 @@ const HERO = {
   vial: "/products/vial.png",
 } as const;
 
-/** Solid studio backdrop used by all catalog product PNGs. */
-export const PRODUCT_IMAGE_BG = "#000000";
+/** Light backdrop for cart / checkout thumbnails. */
+export const PRODUCT_IMAGE_BG = "#ffffff";
 
 export function productImage(product: Pick<Product, "slug" | "form">) {
   return `/products/${product.slug}.png`;
 }
 
-/** Shared presentation for catalog product photography (black studio, no crop). */
-export const productImageClass = "object-contain object-center";
+/** Transparent vial on gradient card background. */
+export const productImageClass = "object-contain object-center p-3 sm:p-4";
 
 export function productLot(slug: string) {
   const code = slug.replace(/[^a-z0-9]/gi, "").slice(0, 6).toUpperCase();

@@ -8,7 +8,8 @@ import { CoaModalProvider } from "@/components/CoaModal";
 import { HomeCtaSubscribeSection } from "@/components/HomeCtaSubscribeSection";
 import { ProductBuyBox } from "@/components/ProductBuyBox";
 import { VerifiedResultsPanel } from "@/components/VerifiedResultsPanel";
-import { productImage, productImageClass, PRODUCT_IMAGE_BG } from "@/data/media";
+import { productImage, productImageClass } from "@/data/media";
+import { ProductImageStage } from "@/components/ProductImageStage";
 import {
   pdpAminoCount,
   pdpLots,
@@ -43,9 +44,9 @@ export function ProductDetail({ product }: { product: Product }) {
       <section className="py-6 lg:py-8">
         <div className="site-container">
           <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-5">
-            <div
-              className="relative flex min-h-[300px] items-center justify-center overflow-hidden rounded-[20px] border border-[#2a2a2a] p-4 lg:min-h-[450px] lg:rounded-[24px] lg:p-6"
-              style={{ backgroundColor: PRODUCT_IMAGE_BG }}
+            <ProductImageStage
+              slug={product.slug}
+              className="relative flex min-h-[300px] items-center justify-center rounded-[20px] border border-[#ececec] p-4 lg:min-h-[450px] lg:rounded-[24px] lg:p-6"
             >
               <Image
                 src={productImage(product)}
@@ -54,9 +55,9 @@ export function ProductDetail({ product }: { product: Product }) {
                 height={800}
                 priority
                 unoptimized
-                className={`relative h-auto max-h-[280px] w-auto lg:max-h-[400px] ${productImageClass}`}
+                className={`relative z-[2] h-auto max-h-[280px] w-auto lg:max-h-[400px] ${productImageClass}`}
               />
-              <div className="absolute right-3.5 bottom-3.5 left-3.5 flex flex-wrap gap-1.5">
+              <div className="absolute right-3.5 bottom-3.5 left-3.5 z-[3] flex flex-wrap gap-1.5">
                 <span className="inline-flex items-center gap-1.5 rounded-full border border-black/10 bg-white/85 px-2.5 py-1 text-[10px] font-semibold tracking-[0.1em] text-black/60 uppercase backdrop-blur">
                   <span className="h-1.5 w-1.5 rounded-full bg-[#16a34a]" />
                   8x tested · ISO 17025
@@ -68,7 +69,7 @@ export function ProductDetail({ product }: { product: Product }) {
                   Research use only
                 </span>
               </div>
-            </div>
+            </ProductImageStage>
 
             <div className="flex flex-col rounded-[20px] border border-[#e8e8e8] bg-white p-5 lg:rounded-[24px] lg:p-7">
               <p className="mb-2 text-[11px] font-semibold tracking-[0.18em] text-black/45 uppercase">

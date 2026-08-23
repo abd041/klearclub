@@ -46,15 +46,15 @@ export function HomeHero() {
           </div>
         </div>
 
-        <div className="relative z-10 mx-auto w-full max-w-[560px] lg:mx-0 lg:max-w-none">
-          <div className="animate-hero-float relative mx-auto aspect-[5/4] w-full max-w-[520px] will-change-transform lg:ml-auto lg:mr-0 lg:aspect-[6/5] lg:max-w-[560px]">
+        <div className="relative z-10 mx-auto w-full max-w-[420px] lg:mx-0 lg:max-w-none">
+          <div className="animate-hero-float relative mx-auto aspect-[2/3] w-full max-w-[340px] will-change-transform sm:max-w-[380px] lg:ml-auto lg:mr-0 lg:max-w-[420px]">
             <Image
               src="/hero/hero-products.png"
-              alt="Klear Club research peptides"
+              alt="Klear Club NAD+ research peptide vial"
               fill
               priority
               unoptimized
-              sizes="(min-width: 1024px) 45vw, 90vw"
+              sizes="(min-width: 1024px) 28vw, 70vw"
               className="object-contain object-center drop-shadow-[0_28px_48px_rgba(15,23,42,0.14)]"
             />
           </div>

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { cn } from "@/lib/cn";
-import { productImage, productImageClass, PRODUCT_IMAGE_BG } from "@/data/media";
+import { productImage, productImageClass } from "@/data/media";
+import { ProductImageStage } from "@/components/ProductImageStage";
 import type { Product } from "@/types/catalog";
 
 type ProductVisualProps = {
@@ -17,7 +18,7 @@ export function ProductVisual({
   branded = true,
 }: ProductVisualProps) {
   return (
-    <div className={cn("relative overflow-hidden", className)} style={{ backgroundColor: PRODUCT_IMAGE_BG }}>
+    <ProductImageStage slug={product.slug} className={cn("h-full w-full", className)}>
       <Image
         src={productImage(product)}
         alt={`${product.name} research vial`}
@@ -35,6 +36,6 @@ export function ProductVisual({
           className="pointer-events-none absolute bottom-4 left-1/2 h-6 w-auto -translate-x-1/2 opacity-90 sm:h-7"
         />
       ) : null}
-    </div>
+    </ProductImageStage>
   );
 }

@@ -4,33 +4,64 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { useCart } from "@/context/CartContext";
-import { productImage, productImageClass, PRODUCT_IMAGE_BG } from "@/data/media";
+import { productImage, productImageClass } from "@/data/media";
 import { formatMoney } from "@/lib/format";
 import { SALE_OFF, salePrice } from "@/lib/commerce";
-import { productPalette } from "@/lib/product-palette";
+import { ProductImageStage } from "@/components/ProductImageStage";
 import { cn } from "@/lib/cn";
 import type { Product } from "@/types/catalog";
 
 const SHORT: Record<string, string> = {
   "glp-3": "Triple-Action Metabolic Compound",
-  "bpc-157": "Tissue Repair Research Peptide",
-  "ghk-cu": "Copper Tripeptide Complex",
-  tesamorelin: "GHRH Research Analog",
-  "tb-500": "Thymosin Beta-4 Fragment",
-  "melanotan-ii": "Melanocortin Receptor Analog",
-  "nad-plus": "Cellular Energy Coenzyme",
-  "aod-9604": "Lipolytic Research Fragment",
+  "glp-2": "Metabolic Peptide",
+  "glp-1": "Metabolic Peptide",
+  "ghk-cu": "Dermal Compound",
+  tesamorelin: "Secretagogue Peptide",
+  "mots-c": "Metabolic Peptide",
+  "nad-plus": "Cellular Peptide",
+  "cjc-ipa-no-dac": "Secretagogue Peptide",
+  "bpc-157": "Cellular Peptide",
+  "klear-h2o": "Research Supplies",
+  kpv: "Cellular Peptide",
+  klow: "Cellular Peptide Blend",
+  semax: "Cognitive & Neuroprotective Peptide",
+  glutathione: "Antioxidant & Detoxification Peptide",
+  "melanotan-ii": "Pigmentation Peptide",
+  glow: "Cellular Peptide Blend",
+  selank: "Cognitive & Anxiolytic Peptide",
+  "melanotan-i": "Pigmentation Peptide",
+  "tb-500": "Cellular Peptide",
+  "igf-1-lr3": "Growth Factor Analog Peptide",
+  "5-amino-1mq": "Metabolic Peptide",
+  "wolverine-stack": "Cellular Peptide Blend",
+  "pt-141": "Cellular Peptide",
+  cagrilintide: "Metabolic Research Peptide",
+  "aod-9604": "Cellular Factor",
+  dsip: "Circadian Peptide",
+  epithalon: "Cellular Peptide",
+  ipamorelin: "GH Secretagogue Peptide",
+  "snap-8": "Dermal Peptide",
+  "thymosin-alpha-1": "Cellular Peptide",
   "ghk-cu-spray": "Dermal Spray",
-  "nad-plus-spray": "Cellular Spray",
-  "semax-spray": "Neuro Spray",
-  "selank-spray": "Neuro Spray",
+  "nad-plus-spray": "Cellular Peptide Spray",
+  "semax-spray": "Cognitive Neuro Spray",
+  "selank-spray": "Anxiolytic Neuro Spray",
   "pt-141-spray": "Melanocortin Spray",
-  "melanotan-ii-spray": "Melanocortin Spray",
-  "dsip-spray": "Circadian Spray",
+  "melanotan-ii-spray": "Pigmentation Spray",
+  "ll-37": "Antimicrobial Peptide",
+  cartalax: "Cartilage Research Peptide",
+  sermorelin: "Secretagogue Peptide",
+  kisspeptin: "Metabolic Peptide",
+  dihexa: "Cognitive Peptide",
+  vip: "Cellular Peptide",
+  "ara-290": "Cellular Peptide",
+  "dsip-spray": "Circadian Peptide",
   "adalank-spray": "Neuro Spray",
   "adamax-spray": "Neuro Spray",
-  "bpc-tb-spray": "Tissue Repair Spray",
-  "bpc-spray": "Tissue Repair Spray",
+  "bpc-tb-spray": "Cellular Peptide Blend",
+  "bpc-spray": "Cellular Peptide",
+  pinealon: "Cellular Peptide",
+  "ahk-cu": "Dermal Compound",
 };
 
 function purityFor(slug: string) {
@@ -54,7 +85,6 @@ export function ProductCard({ product }: { product: Product }) {
   const selected = product.variants.find((v) => v.id === variantId) ?? product.variants[0];
   const retail = selected.price;
   const sale = salePrice(retail);
-  const palette = productPalette(product.slug);
   const purity = purityFor(product.slug);
   const bestseller = product.slug === "glp-3";
   const multiVariant = product.variants.length > 1;
@@ -67,7 +97,7 @@ export function ProductCard({ product }: { product: Product }) {
 
   return (
     <article className="flex h-full flex-col overflow-hidden rounded-[18px] border border-[#e8e8e8] bg-white">
-      <div className="relative aspect-[4/5] overflow-hidden" style={{ backgroundColor: PRODUCT_IMAGE_BG }}>
+      <ProductImageStage slug={product.slug} className="aspect-[4/5]">
         <Link href={`/products/${product.slug}`} className="absolute inset-0 z-[1] no-underline" aria-label={`View ${product.name}`} />
         <Image
           src={productImage(product)}
@@ -89,21 +119,18 @@ export function ProductCard({ product }: { product: Product }) {
           -{Math.round(SALE_OFF * 100)}%
         </span>
 
-        <div
-          className="absolute inset-x-0 bottom-0 z-[2] flex items-center justify-between gap-2 px-2.5 py-2"
-          style={{ backgroundColor: palette.pedestal }}
-        >
+        <div className="absolute inset-x-0 bottom-0 z-[2] flex items-center justify-between gap-2 px-2.5 pt-8 pb-2.5">
           <Link
             href={`/coa/${product.slug}`}
             onClick={(e) => e.stopPropagation()}
-            className="inline-flex max-w-[62%] items-center gap-1 rounded-full bg-white px-2.5 py-1 text-[10px] font-medium text-black no-underline"
+            className="inline-flex max-w-[62%] items-center gap-1 rounded-full bg-white px-2.5 py-1 text-[10px] font-medium text-black no-underline shadow-[0_2px_8px_rgba(15,23,42,0.06)]"
           >
             <CheckIcon />
             <span className="truncate">{purity}% View COA</span>
             <span aria-hidden="true" className="text-[#666]">&gt;</span>
           </Link>
           {bestseller ? (
-            <span className="inline-flex shrink-0 items-center gap-0.5 rounded-full bg-[#f6e59a] px-2.5 py-1 text-[10px] font-semibold text-black">
+            <span className="inline-flex shrink-0 items-center gap-0.5 rounded-full bg-[#f6e59a] px-2.5 py-1 text-[10px] font-semibold text-black shadow-[0_2px_8px_rgba(15,23,42,0.06)]">
               <StarIcon />
               #1 Bestseller
             </span>
@@ -111,7 +138,7 @@ export function ProductCard({ product }: { product: Product }) {
             <span className="shrink-0" aria-hidden="true" />
           )}
         </div>
-      </div>
+      </ProductImageStage>
 
       <div className="flex min-h-[172px] flex-1 flex-col px-3.5 pt-3 pb-3.5">
         <Link href={`/products/${product.slug}`} className="no-underline">
