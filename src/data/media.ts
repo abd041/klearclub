@@ -1,19 +1,5 @@
 import type { Product } from "@/types/catalog";
 
-const HERO = {
-  bpc: "/hero/bpc.png",
-  tb: "/hero/tb.png",
-  nad: "/hero/nad.png",
-  ghk: "/hero/ghk.png",
-  dsip: "/hero/dsip.png",
-  water: "/hero/h2o.png",
-  tesamorelin: "/hero/tesamorelin.png",
-  melanotan: "/hero/melanotan.png",
-  aod: "/hero/aod.png",
-  spray: "/hero/spray.png",
-  vial: "/products/vial.png",
-} as const;
-
 /** Light backdrop for cart / checkout thumbnails. */
 export const PRODUCT_IMAGE_BG = "#ffffff";
 
