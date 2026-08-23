@@ -36,13 +36,13 @@ export function Footer() {
 
   return (
     <footer className="mt-auto bg-[#0a1930] font-sans text-white">
-      <div className="site-container pt-14 pb-8 lg:pt-16">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.35fr_repeat(4,minmax(0,1fr))] lg:gap-8">
-          <div className="max-w-[280px]">
+      <div className="site-container pt-12 pb-8 sm:pt-14 lg:pt-16">
+        <div className="lg:grid lg:grid-cols-[1.35fr_repeat(4,minmax(0,1fr))] lg:items-start lg:gap-8">
+          <div className="max-w-[320px]">
             <Logo className="[&_img]:brightness-0 [&_img]:invert" />
             <p className="mt-5 text-[13px] leading-[1.65] text-[#9aa8b5]">
               Premium research-grade peptides for controlled laboratory studies. Third-party tested with Certificate of
-              Analysis on every batch.
+              Analysis.
             </p>
             <div className="mt-5 flex items-center gap-2.5">
               <SocialPlaceholder label="Instagram">
@@ -57,16 +57,18 @@ export function Footer() {
             </div>
           </div>
 
-          <FooterCol title="Shop" links={shop} />
-          <FooterCol title="Resources" links={resources} />
-          <FooterCol title="Support" links={support} />
-          <FooterCol title="Legal" links={legal} />
+          <div className="mt-10 grid grid-cols-2 gap-x-6 gap-y-10 sm:gap-x-10 lg:contents lg:mt-0">
+            <FooterCol title="Shop" links={shop} />
+            <FooterCol title="Resources" links={resources} />
+            <FooterCol title="Support" links={support} />
+            <FooterCol title="Legal" links={legal} />
+          </div>
         </div>
 
         <div
           role="region"
           aria-label="FDA research-use disclaimer"
-          className="my-6 rounded-md border-l-4 border-amber-400 bg-amber-400/10 ring-1 ring-amber-400/20"
+          className="mt-10 rounded-md border-l-4 border-amber-400 bg-[#12243f] sm:mt-12"
         >
           <div className="flex gap-3 px-4 py-4 sm:px-5 sm:py-5">
             <svg
@@ -101,7 +103,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-x-4 gap-y-3 text-[12px] text-[#9aa8b5]">
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-x-4 gap-y-3 text-[12px] text-[#9aa8b5] sm:mt-10">
           <span>We accept</span>
           <div className="flex flex-wrap items-center gap-4 text-white">
             <VisaMark />
@@ -138,9 +140,9 @@ function FooterCol({
   links: { href: string; label: string; isNew?: boolean }[];
 }) {
   return (
-    <div>
+    <div className="min-w-0">
       <p className="text-[12px] font-bold uppercase tracking-[0.08em] text-white">{title}</p>
-      <ul className="mt-4 space-y-2.5">
+      <ul className="mt-3 space-y-2.5 sm:mt-4">
         {links.map((link) => (
           <li key={`${link.href}-${link.label}`}>
             <Link

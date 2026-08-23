@@ -33,14 +33,23 @@ export function productLot(slug: string) {
   return `KC-${code}-0002`;
 }
 
-export const floatingHeroImages = [
-  { src: HERO.bpc, alt: "BPC-157" },
-  { src: HERO.tb, alt: "TB-500" },
-  { src: HERO.nad, alt: "NAD+" },
-  { src: HERO.water, alt: "Klear H2O" },
-  { src: HERO.dsip, alt: "DSIP" },
-  { src: HERO.ghk, alt: "GHK-Cu" },
-  { src: HERO.tesamorelin, alt: "Tesamorelin" },
-  { src: HERO.melanotan, alt: "Melanotan II" },
-  { src: HERO.aod, alt: "AOD-9604" },
-];
+/** Klear catalog assets for floating vial animations (researcher gate, etc.). */
+export const floatingProductSlugs = [
+  "bpc-157",
+  "tb-500",
+  "nad-plus",
+  "klear-h2o",
+  "dsip",
+  "ghk-cu",
+  "tesamorelin",
+  "melanotan-ii",
+  "aod-9604",
+  "glp-3",
+  "semax",
+  "ipamorelin",
+] as const;
+
+export const floatingHeroImages = floatingProductSlugs.map((slug) => ({
+  src: productImage({ slug, form: "vial" }),
+  alt: slug,
+}));

@@ -11,6 +11,62 @@ const LINES = [
   { slug: "glp-1", qty: "x1", bg: "#f3e8e4" },
 ] as const;
 
+type BundleItem = {
+  slug: string;
+  qty: string;
+  bg: string;
+  product: ReturnType<typeof getProduct>;
+};
+
+function BundleMainCard({ items, className }: { items: BundleItem[]; className?: string }) {
+  return (
+    <div
+      className={`flex flex-col rounded-[28px] bg-white px-5 py-4 shadow-[0_24px_60px_rgba(15,23,42,0.08),0_2px_8px_rgba(15,23,42,0.04)] ring-1 ring-black/[0.03] ${className ?? ""}`}
+    >
+      <div className="flex items-start justify-between">
+        <p className="font-mono text-[10px] font-medium uppercase tracking-[0.18em] text-[#b4bab8]">Research bundle</p>
+        <span className="rounded-full bg-[#e8ecfe] px-2 py-0.5 text-[11px] font-semibold text-[#2D4BF0]">-35%</span>
+      </div>
+      <p className="mt-1 text-[21px] font-bold leading-tight tracking-[-0.03em] text-[#111111]">Shared with you</p>
+
+      <ul className="mt-2.5 flex-1">
+        {items.map((item, index) => (
+          <li
+            key={item.slug}
+            className={`flex items-center gap-2.5 py-[7px] ${index < items.length - 1 ? "border-b border-[#f1f2f1]" : ""}`}
+          >
+            <span className="relative h-8 w-8 shrink-0 overflow-hidden rounded-lg" style={{ backgroundColor: PRODUCT_IMAGE_BG }}>
+              {item.product ? (
+                <Image src={productImage(item.product)} alt="" fill unoptimized className={productImageClass} />
+              ) : null}
+            </span>
+            <span className="min-w-0 flex-1 text-[13px] font-medium text-[#111111]">
+              {item.product?.name ?? item.slug}
+            </span>
+            <span className="font-mono text-[12px] text-[#9aa3a1]">{item.qty}</span>
+          </li>
+        ))}
+      </ul>
+
+      <div className="mt-1 flex items-center justify-between border-t border-dashed border-[#e6e8e7] pt-2.5">
+        <span className="font-mono text-[10px] font-medium uppercase tracking-[0.14em] text-[#9aa3a1]">2-day shipping</span>
+        <span className="font-mono text-[11px] font-bold uppercase tracking-[0.04em] text-[#1f9d53]">Free</span>
+      </div>
+    </div>
+  );
+}
+
+function PointsBadge({ className }: { className?: string }) {
+  return (
+    <div
+      className={`flex flex-col justify-center rounded-[18px] bg-[#2D4BF0] px-4 text-white shadow-[0_16px_36px_rgba(45,75,240,0.42)] ${className ?? ""}`}
+    >
+      <p className="text-[16px] font-bold leading-none tracking-[-0.02em]">+10% back</p>
+      <p className="mt-1 text-[11px] leading-none text-white/88">in points, every order</p>
+    </div>
+  );
+}
+
 export function ResearchBundlesSection() {
   const items = LINES.map((line) => ({
     ...line,
@@ -18,13 +74,13 @@ export function ResearchBundlesSection() {
   }));
 
   return (
-    <section className="relative overflow-hidden bg-[#f5f5f4]">
+    <section className="home-section-y relative overflow-hidden bg-[#f5f5f4]">
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-0 h-full bg-[radial-gradient(ellipse_at_70%_45%,rgba(167,184,255,0.28),transparent_58%),radial-gradient(ellipse_at_82%_38%,rgba(214,201,255,0.22),transparent_52%)]"
+        className="pointer-events-none absolute inset-x-0 top-0 h-full bg-[radial-gradient(ellipse_at_50%_78%,rgba(167,184,255,0.32),transparent_58%),radial-gradient(ellipse_at_72%_70%,rgba(214,201,255,0.24),transparent_52%)] lg:bg-[radial-gradient(ellipse_at_70%_45%,rgba(167,184,255,0.28),transparent_58%),radial-gradient(ellipse_at_82%_38%,rgba(214,201,255,0.22),transparent_52%)]"
       />
 
-      <div className="relative mx-auto grid max-w-[1280px] items-center gap-8 px-5 py-14 sm:px-8 lg:grid-cols-[minmax(0,1fr)_680px] lg:py-16 xl:px-10">
+      <div className="relative mx-auto grid max-w-[1280px] items-center gap-10 px-5 sm:px-8 lg:grid-cols-[minmax(0,1fr)_680px] lg:gap-8 xl:px-10">
         <div className="max-w-[520px]">
           <p className="font-mono text-[11px] font-medium uppercase tracking-[0.22em] text-[#b4bab8]">
             Research Bundles · New
@@ -48,7 +104,33 @@ export function ResearchBundlesSection() {
           </div>
         </div>
 
-        <div className="mx-auto w-full max-w-[680px] overflow-x-auto lg:mx-0 lg:overflow-visible">
+        {/* Mobile — stacked card illustration */}
+        <div className="relative mx-auto w-full max-w-[340px] pb-2 pt-2 sm:max-w-[360px] lg:hidden">
+          <div className="pointer-events-none absolute left-1/2 top-[42%] h-52 w-52 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#9db0ff]/38 blur-[68px]" />
+          <div className="pointer-events-none absolute right-[8%] top-[18%] h-40 w-40 rounded-full bg-[#c9b8ff]/30 blur-[58px]" />
+
+          <div className="relative">
+            <div className="absolute right-0 top-2 z-0 h-[92px] w-[58%] max-w-[210px] rounded-[24px] border border-white/70 bg-white/75 p-3.5 shadow-[0_18px_50px_rgba(15,23,42,0.06)] backdrop-blur-md">
+              <p className="font-mono text-[9px] font-medium uppercase tracking-[0.18em] text-[#c5cbc9]">Bundle ticket</p>
+              <div className="mt-2.5 space-y-2">
+                <div className="h-[6px] w-[72%] rounded-full bg-[#eceeed]" />
+                <div className="h-[6px] w-[54%] rounded-full bg-[#f3f4f3]" />
+              </div>
+            </div>
+
+            <div className="relative z-10 pt-7">
+              <BundleMainCard items={items} className="w-full" />
+              <PointsBadge className="absolute -bottom-2 right-[-6px] z-20 h-[56px] w-[170px] sm:right-0" />
+            </div>
+          </div>
+
+          <div className="relative z-20 mt-7 inline-flex h-[31px] items-center rounded-full bg-[#111111] px-[18px] font-mono text-[11px] font-medium tracking-[0.01em] text-white shadow-[0_12px_24px_rgba(15,23,42,0.18)]">
+            one link · shared anywhere
+          </div>
+        </div>
+
+        {/* Desktop — animated canvas */}
+        <div className="mx-auto hidden w-full max-w-[680px] overflow-visible lg:mx-0 lg:block">
           <div className="relative h-[400px] w-[680px]">
             <div className="pointer-events-none absolute left-[28%] top-[6%] h-56 w-56 rounded-full bg-[#9db0ff]/35 blur-[70px]" />
             <div className="pointer-events-none absolute right-[6%] top-[16%] h-52 w-52 rounded-full bg-[#c9b8ff]/30 blur-[80px]" />
@@ -61,58 +143,15 @@ export function ResearchBundlesSection() {
               </div>
             </div>
 
-            <div className="animate-bundle-float absolute left-[123px] top-[18px] z-10 flex h-[279px] w-[275px] flex-col rounded-[28px] bg-white px-5 py-4 shadow-[0_24px_60px_rgba(15,23,42,0.08),0_2px_8px_rgba(15,23,42,0.04)] ring-1 ring-black/[0.03]">
-              <div className="flex items-start justify-between">
-                <p className="font-mono text-[10px] font-medium uppercase tracking-[0.18em] text-[#b4bab8]">
-                  Research bundle
-                </p>
-                <span className="rounded-full bg-[#e8ecfe] px-2 py-0.5 text-[11px] font-semibold text-[#2D4BF0]">
-                  -35%
-                </span>
-              </div>
-              <p className="mt-1 text-[21px] font-bold leading-tight tracking-[-0.03em] text-[#111111]">Shared with you</p>
-
-              <ul className="mt-2.5 flex-1">
-                {items.map((item, index) => (
-                  <li
-                    key={item.slug}
-                    className={`flex items-center gap-2.5 py-[7px] ${index < items.length - 1 ? "border-b border-[#f1f2f1]" : ""}`}
-                  >
-                    <span className="relative h-8 w-8 shrink-0 overflow-hidden rounded-lg" style={{ backgroundColor: PRODUCT_IMAGE_BG }}>
-                      {item.product ? (
-                        <Image
-                          src={productImage(item.product)}
-                          alt=""
-                          fill
-                          unoptimized
-                          className={productImageClass}
-                        />
-                      ) : null}
-                    </span>
-                    <span className="min-w-0 flex-1 text-[13px] font-medium text-[#111111]">
-                      {item.product?.name ?? item.slug}
-                    </span>
-                    <span className="font-mono text-[12px] text-[#9aa3a1]">{item.qty}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <div className="mt-1 flex items-center justify-between border-t border-dashed border-[#e6e8e7] pt-2.5">
-                <span className="font-mono text-[10px] font-medium uppercase tracking-[0.14em] text-[#9aa3a1]">
-                  2-day shipping
-                </span>
-                <span className="font-mono text-[11px] font-bold uppercase tracking-[0.04em] text-[#1f9d53]">Free</span>
-              </div>
+            <div className="animate-bundle-float absolute left-[123px] top-[18px] z-10 h-[279px] w-[275px]">
+              <BundleMainCard items={items} className="h-full" />
             </div>
 
             <div className="animate-bundle-float-delayed absolute left-[58px] top-[345px] z-20 flex h-[31px] items-center rounded-full bg-[#111111] px-[18px] font-mono text-[11px] font-medium tracking-[0.01em] text-white shadow-[0_12px_24px_rgba(15,23,42,0.18)]">
               one link · shared anywhere
             </div>
 
-            <div className="animate-bundle-sway absolute left-[498px] top-[289px] z-20 flex h-[59px] w-[183px] flex-col justify-center rounded-[18px] bg-[#2D4BF0] px-4 text-white shadow-[0_16px_36px_rgba(45,75,240,0.42)]">
-              <p className="text-[16px] font-bold leading-none tracking-[-0.02em]">+10% back</p>
-              <p className="mt-1 text-[11px] leading-none text-white/88">in points, every order</p>
-            </div>
+            <PointsBadge className="animate-bundle-sway absolute left-[498px] top-[289px] z-20 h-[59px] w-[183px]" />
           </div>
         </div>
       </div>

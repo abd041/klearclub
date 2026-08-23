@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { productImage } from "@/data/media";
 import { cn } from "@/lib/cn";
 
 const FAQ = [
@@ -60,7 +61,7 @@ export function PartnerProgram() {
 
   return (
     <div className="bg-white">
-      {/* Hero — matches aminoclub.com/us/affiliate */}
+      {/* Hero — referral partner program */}
       <section
         className="relative w-full min-h-fit overflow-hidden lg:min-h-[450px] xl:min-h-[520px] 2xl:min-h-[580px]"
         aria-label="Klear Club Referral Partner Program - Help researchers find quality supply"
@@ -123,17 +124,38 @@ export function PartnerProgram() {
               <div className="relative h-full w-full max-w-[609px] lg:max-w-none">
                 <div className="animate-float-slow pointer-events-none absolute top-[15%] right-[8%] z-10 w-[18%] select-none sm:top-[5%] sm:right-[10%] sm:w-[25%] lg:top-[10%] lg:right-[15%] lg:w-[15%]">
                   <div className="relative aspect-[1/1.5] w-full" style={{ transform: "rotate(-8deg)" }}>
-                    <Image src="/hero/tb.png" alt="TB-500 Peptide vial" fill unoptimized className="object-contain drop-shadow-lg" sizes="160px" />
+                    <Image
+                      src={productImage({ slug: "tb-500", form: "vial" })}
+                      alt="TB-500 Peptide vial"
+                      fill
+                      unoptimized
+                      className="object-contain drop-shadow-lg"
+                      sizes="160px"
+                    />
                   </div>
                 </div>
                 <div className="animate-float pointer-events-none absolute top-[8%] left-[5%] z-10 w-[20%] select-none sm:top-[15%] sm:left-[8%] sm:w-[30%] lg:top-[20%] lg:left-[10%] lg:w-[18%]">
                   <div className="relative aspect-[1/1.5] w-full" style={{ transform: "rotate(12deg)" }}>
-                    <Image src="/hero/bpc.png" alt="BPC-157 Peptide vial" fill unoptimized className="object-contain drop-shadow-lg" sizes="180px" />
+                    <Image
+                      src={productImage({ slug: "bpc-157", form: "vial" })}
+                      alt="BPC-157 Peptide vial"
+                      fill
+                      unoptimized
+                      className="object-contain drop-shadow-lg"
+                      sizes="180px"
+                    />
                   </div>
                 </div>
                 <div className="animate-float-delayed pointer-events-none absolute right-[6%] bottom-[20%] z-10 w-[22%] select-none sm:right-[5%] sm:bottom-[10%] sm:w-[35%] lg:right-[8%] lg:bottom-[15%] lg:w-[20%]">
                   <div className="relative aspect-[1/1.5] w-full" style={{ transform: "rotate(-5deg)" }}>
-                    <Image src="/hero/AminoH2o.png" alt="Klear H2O" fill unoptimized className="object-contain drop-shadow-lg" sizes="200px" />
+                    <Image
+                      src={productImage({ slug: "klear-h2o", form: "vial" })}
+                      alt="Klear H2O"
+                      fill
+                      unoptimized
+                      className="object-contain drop-shadow-lg"
+                      sizes="200px"
+                    />
                   </div>
                 </div>
 
@@ -486,13 +508,20 @@ export function PartnerProgram() {
         >
           <div className="pointer-events-none absolute top-[-25px] left-[-15px] z-10 h-[100px] w-[50px] sm:top-[-25px] sm:left-[-10px] sm:h-[120px] sm:w-[60px] lg:top-[-40px] lg:left-[20px] lg:h-[160px] lg:w-[80px] xl:left-[60px] xl:h-[180px] xl:w-[90px]">
             <div className="relative h-full w-full rotate-[12deg]">
-              <Image src="/hero/ghk.png" alt="" fill unoptimized className="object-contain drop-shadow-lg" sizes="90px" />
+              <Image
+                src={productImage({ slug: "ghk-cu", form: "vial" })}
+                alt=""
+                fill
+                unoptimized
+                className="object-contain drop-shadow-lg"
+                sizes="90px"
+              />
             </div>
           </div>
           <div className="pointer-events-none absolute right-[-10px] bottom-[-30px] z-[70] h-[90px] w-[45px] sm:right-[-5px] sm:h-[110px] sm:w-[55px] lg:right-[40px] lg:bottom-[-50px] lg:h-[140px] lg:w-[70px] xl:right-[80px] xl:h-[160px] xl:w-[80px]">
             <div className="relative h-full w-full rotate-[-8deg]">
               <Image
-                src="/hero/melanotan.png"
+                src={productImage({ slug: "melanotan-ii", form: "vial" })}
                 alt=""
                 fill
                 unoptimized

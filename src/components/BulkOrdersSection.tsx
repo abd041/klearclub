@@ -1,25 +1,37 @@
 import Image from "next/image";
 import Link from "next/link";
-import { productImage, productImageClass, PRODUCT_IMAGE_BG } from "@/data/media";
+import { ProductImageStage } from "@/components/ProductImageStage";
+import { productCardImageClass, productImage } from "@/data/media";
 import { getProduct } from "@/data/products";
 import { formatMoney } from "@/lib/format";
+import { productPalette } from "@/lib/product-palette";
 
-const localImages = [
-  "/hero/bpc.png",
-  "/hero/tb.png",
-  "/hero/nad.png",
-  "/hero/h2o.png",
-  "/hero/dsip.png",
-  "/hero/ghk.png",
-  "/hero/tesamorelin.png",
-  "/hero/melanotan.png",
-  "/hero/aod.png",
-  "/hero/spray.png",
-  "/hero/GHK-Cu.png",
-  "/hero/AminoH2o.png",
-];
-
-const tileBgs = ["#ece8f7", "#fde8e8", "#e3f2fd", "#fff4cc", "#e8f5e9", "#fce4ec", "#e0f2fe", "#f3e8ff", "#f3e8e4", "#dceaf8"];
+const floatingProductSlugs = [
+  "glp-3",
+  "bpc-157",
+  "klear-h2o",
+  "ghk-cu",
+  "nad-plus",
+  "tb-500",
+  "tesamorelin",
+  "mots-c",
+  "semax",
+  "melanotan-ii",
+  "ipamorelin",
+  "dsip",
+  "glp-2",
+  "glp-1",
+  "selank",
+  "aod-9604",
+  "nad-plus-spray",
+  "ghk-cu-spray",
+  "epithalon",
+  "kpv",
+  "klow",
+  "glutathione",
+  "cjc-ipa-no-dac",
+  "igf-1-lr3",
+] as const;
 
 const tiles = [
   { left: "2%", size: 92, opacity: 0.72, tilt: -8, dur: "16s", delay: "-2s" },
@@ -50,6 +62,17 @@ const tiles = [
   { left: "71%", size: 82, opacity: 0.56, tilt: 4, dur: "16s", delay: "-9s" },
 ];
 
+const mobileBackdropTiles = [
+  { top: "6%", left: "-10%", size: 96, rotate: -14, slug: 0 },
+  { top: "12%", left: "58%", size: 88, rotate: 10, slug: 1 },
+  { top: "34%", left: "-14%", size: 82, rotate: 8, slug: 2 },
+  { top: "28%", left: "68%", size: 92, rotate: -9, slug: 3 },
+  { top: "58%", left: "-8%", size: 86, rotate: -6, slug: 4 },
+  { top: "52%", left: "62%", size: 94, rotate: 12, slug: 5 },
+  { top: "78%", left: "8%", size: 80, rotate: 7, slug: 6 },
+  { top: "72%", left: "54%", size: 90, rotate: -11, slug: 7 },
+];
+
 export function BulkOrdersSection() {
   const product = getProduct("glp-3");
   const unit = product?.variants[0]?.price ?? 69.99;
@@ -59,8 +82,45 @@ export function BulkOrdersSection() {
   const saved = Math.round((retail - sale) * 100) / 100;
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-r from-[#f4f7c4] via-[#eaf6ec] to-[#dceaf8] px-5 py-24 sm:px-8 lg:py-28">
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
+    <section className="home-section-y relative overflow-hidden bg-gradient-to-r from-[#f4f7c4] via-[#eaf6ec] to-[#dceaf8] px-4 sm:px-8 lg:px-5">
+      {/* Mobile — blurred product backdrop */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden lg:hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#f4f7c4] via-[#eaf6ec] to-[#dceaf8]" />
+        <div className="absolute inset-0 scale-110 blur-2xl">
+          {mobileBackdropTiles.map((tile, index) => {
+            const slug = floatingProductSlugs[tile.slug % floatingProductSlugs.length];
+            const palette = productPalette(slug);
+            return (
+              <div
+                key={`mobile-backdrop-${index}`}
+                className="absolute overflow-hidden rounded-[22px] opacity-80"
+                style={{
+                  top: tile.top,
+                  left: tile.left,
+                  width: tile.size,
+                  height: tile.size,
+                  transform: `rotate(${tile.rotate}deg)`,
+                  background: palette.top,
+                }}
+              >
+                <Image
+                  src={productImage({ slug, form: "vial" })}
+                  alt=""
+                  width={tile.size}
+                  height={tile.size}
+                  unoptimized
+                  className="h-full w-full object-contain object-bottom p-1.5 pb-0.5"
+                  draggable={false}
+                />
+              </div>
+            );
+          })}
+        </div>
+        <div className="absolute inset-0 bg-white/20" />
+      </div>
+
+      {/* Desktop — animated rain tiles */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 hidden overflow-hidden lg:block">
         {tiles.map((tile, index) => (
           <div
             key={`${tile.left}-${index}`}
@@ -78,15 +138,15 @@ export function BulkOrdersSection() {
           >
             <div
               className="h-full w-full overflow-hidden rounded-[22px] shadow-[0_10px_24px_rgba(15,23,42,0.10)]"
-              style={{ background: tileBgs[index % tileBgs.length] }}
+              style={{ background: productPalette(floatingProductSlugs[index % floatingProductSlugs.length]).top }}
             >
               <Image
-                src={localImages[index % localImages.length]}
+                src={productImage({ slug: floatingProductSlugs[index % floatingProductSlugs.length], form: "vial" })}
                 alt=""
                 width={tile.size}
                 height={tile.size}
                 unoptimized
-                className="h-full w-full select-none object-contain p-1.5"
+                className="h-full w-full select-none object-contain object-bottom p-1.5 pb-0.5"
                 draggable={false}
               />
             </div>
@@ -94,7 +154,7 @@ export function BulkOrdersSection() {
         ))}
       </div>
 
-      <div className="relative z-10 mx-auto flex max-w-[720px] flex-col items-center text-center">
+      <div className="relative z-10 mx-auto flex w-full max-w-[720px] flex-col items-center rounded-[28px] border border-white/60 bg-white/78 px-5 py-8 text-center shadow-[0_24px_60px_rgba(15,23,42,0.08)] backdrop-blur-xl sm:px-6 sm:py-10 lg:max-w-[720px] lg:rounded-none lg:border-0 lg:bg-transparent lg:px-0 lg:py-0 lg:shadow-none lg:backdrop-blur-none">
         <span className="inline-flex items-center rounded-full bg-[#fef9c3] px-3.5 py-1 text-[13px] font-medium text-[#3f3f3f]">
           New
           <span className="mx-1.5 text-[10px] leading-none">•</span>
@@ -116,20 +176,20 @@ export function BulkOrdersSection() {
         </div>
 
         <div className="mt-8 flex w-full max-w-[560px] items-center gap-4 rounded-[32px] bg-white p-4 text-left shadow-[0_18px_50px_rgba(15,23,42,0.10)] sm:gap-5 sm:p-5">
-          <div className="relative aspect-[4/5] w-[92px] shrink-0 overflow-hidden rounded-2xl sm:w-[108px]" style={{ backgroundColor: PRODUCT_IMAGE_BG }}>
+          <ProductImageStage slug="glp-3" className="relative aspect-[5/6] w-[92px] shrink-0 overflow-hidden rounded-2xl sm:w-[108px]">
             {product ? (
               <Image
                 src={productImage(product)}
                 alt={product.name}
                 fill
                 unoptimized
-                className={productImageClass}
+                className={productCardImageClass}
               />
             ) : null}
-            <span className="absolute bottom-2 right-2 rounded-full bg-black px-2 py-0.5 text-[11px] font-semibold text-white">
+            <span className="absolute bottom-2 right-2 z-[2] rounded-full bg-black px-2 py-0.5 text-[11px] font-semibold text-white">
               ×10
             </span>
-          </div>
+          </ProductImageStage>
           <div className="min-w-0 flex-1">
             <p className="text-[16px] font-bold text-black">{product?.name ?? "GLP-3 (RT)"}</p>
             <p className="mt-0.5 text-[13px] text-[#6b7280]">{qty} units</p>

@@ -3,7 +3,8 @@
 import { useEffect, useState, type ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useCart } from "@/context/CartContext";
+import { AddCartSpinner } from "@/components/AddCartSpinner";
+import { useAddToCart } from "@/lib/use-add-to-cart";
 import { CoaOpenButton } from "@/components/CoaModal";
 import { productImage } from "@/data/media";
 import { formatMoney } from "@/lib/format";
@@ -64,10 +65,9 @@ export function ProductBuyBox({
   variantId: string;
   onVariantId: (id: string) => void;
 }) {
-  const { addItem } = useCart();
+  const { addToCart, isAdding, justAdded, isBusy } = useAddToCart();
   const [qty, setQty] = useState(1);
   const [heatApplied, setHeatApplied] = useState(false);
-  const [added, setAdded] = useState(false);
   const [orderLine, setOrderLine] = useState("Order by 3pm ET to ship same day");
   const selected = product.variants.find((item) => item.id === variantId) ?? product.variants[0];
   const retail = selected.price;
@@ -87,15 +87,62 @@ export function ProductBuyBox({
   }, []);
 
   function add() {
-    addItem(product.slug, selected.id, qty);
-    setAdded(true);
-    window.setTimeout(() => setAdded(false), 1200);
+    addToCart(product.slug, selected.id, qty);
   }
 
   return (
     <>
-      <div className="mt-1 border-t border-black/[0.06] pt-5">
-        <div className="flex items-start justify-between gap-4">
+      <div className="mt-5 border-t border-black/[0.06] pt-5 lg:mt-1">
+        <div className="lg:hidden">
+          <div className="flex items-start justify-between gap-3">
+            <div className="min-w-0 flex-1">
+              <p className="mb-2.5 text-[11px] font-semibold tracking-[0.14em] text-[#9ca3af] uppercase">Mass</p>
+              <div className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                {product.variants.map((variant) => {
+                  const on = variant.id === selected.id;
+                  return (
+                    <button
+                      key={variant.id}
+                      type="button"
+                      onClick={() => onVariantId(variant.id)}
+                      className={cn(
+                        "shrink-0 rounded-xl border px-4 py-2.5 text-[13px] font-semibold tracking-[0.04em]",
+                        on ? "border-[#131315] bg-[#131315]" : "border-[#e5e7eb] bg-white text-[#4b5563]",
+                      )}
+                      style={on ? { color: "#ffffff" } : undefined}
+                    >
+                      {variant.label.toUpperCase()}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className="shrink-0 pt-6 text-right">
+              <div className="flex items-baseline justify-end gap-2">
+                <span className="text-sm text-[#9a9a9a] line-through">{formatMoney(retail)}</span>
+                <span className="text-[30px] leading-none font-extrabold tracking-tight text-[#c2183a]">
+                  {formatMoney(sale)}
+                </span>
+              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  setHeatApplied(true);
+                  void navigator.clipboard.writeText("HEAT35");
+                }}
+                className="mt-1.5 text-left text-[11px] leading-snug text-[#666]"
+              >
+                Save {Math.round(SALE_OFF * 100)}% with code <span className="font-semibold text-black">HEAT35</span> ·{" "}
+                <span className="underline decoration-dotted underline-offset-2">
+                  {heatApplied ? "applied" : "tap to apply"}
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div className="hidden items-start justify-between gap-4 lg:flex">
           <div className="min-w-0 flex-1">
             <p className="mb-2 text-[11px] font-semibold tracking-[0.14em] text-black/45 uppercase">Mass</p>
             <div className="flex flex-wrap gap-2">
@@ -213,11 +260,23 @@ export function ProductBuyBox({
           <button
             type="button"
             onClick={add}
-            className="inline-flex h-12 flex-1 items-center justify-center gap-2 rounded-full bg-[#131315] px-5 text-sm font-medium"
+            disabled={isBusy}
+            className={cn(
+              "inline-flex h-12 flex-1 items-center justify-center gap-2 rounded-full px-5 text-sm font-medium disabled:opacity-90",
+              justAdded ? "bg-[#16a34a]" : "bg-[#131315]",
+            )}
             style={{ color: "#ffffff" }}
           >
-            {added ? "Added" : `Add to cart · ${formatMoney(total)}`}
-            <CartIcon />
+            {isAdding ? (
+              <AddCartSpinner />
+            ) : justAdded ? (
+              "Added ✓"
+            ) : (
+              <>
+                {`Add to cart · ${formatMoney(total)}`}
+                <CartIcon />
+              </>
+            )}
           </button>
         </div>
 
@@ -285,8 +344,8 @@ export function ProductBuyBox({
                       type="button"
                       onClick={() => onVariantId(variant.id)}
                       className={cn(
-                        "rounded-lg border px-3 py-2 text-sm font-medium",
-                        on ? "border-[#131315] bg-[#131315] text-white" : "border-gray-300",
+                        "rounded-lg border px-3 py-2 text-sm font-semibold",
+                        on ? "border-[#131315] bg-[#131315]" : "border-gray-300 text-[#555]",
                       )}
                       style={on ? { color: "#ffffff" } : undefined}
                     >
@@ -298,10 +357,14 @@ export function ProductBuyBox({
               <button
                 type="button"
                 onClick={add}
-                className="inline-flex h-10 flex-1 items-center justify-center rounded-full bg-[#131315] px-4 text-sm font-medium"
+                disabled={isBusy}
+                className={cn(
+                  "inline-flex h-10 flex-1 items-center justify-center rounded-full px-4 text-sm font-medium disabled:opacity-90",
+                  justAdded ? "bg-[#16a34a]" : "bg-[#131315]",
+                )}
                 style={{ color: "#ffffff" }}
               >
-                {added ? "Added" : "Add"}
+                {isAdding ? <AddCartSpinner /> : justAdded ? "Added ✓" : "Add"}
               </button>
             </div>
           </div>

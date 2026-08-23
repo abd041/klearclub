@@ -15,7 +15,7 @@ function ShieldCheckIcon({ className }: { className?: string }) {
 }
 
 /**
- * Live aminoclub.com/us/privacy hero:
+ * Privacy hero:
  * LEFT 1 = BPC · RIGHT 2 = TB (top) + H2O (bottom)
  * Positions mirrored from live HTML (inline CSS so layout never collapses).
  */

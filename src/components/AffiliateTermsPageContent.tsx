@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 /**
- * Live: aminoclub.com/us/affiliate-terms
+ * Partner Program Terms layout
  * Clean legal doc layout (no vial hero) — Partner Program Terms v1.3
  */
 export function AffiliateTermsPageContent() {

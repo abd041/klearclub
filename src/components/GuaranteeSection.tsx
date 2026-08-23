@@ -1,4 +1,6 @@
 import Image from "next/image";
+import { productImage } from "@/data/media";
+import { productPalette } from "@/lib/product-palette";
 
 const cards = [
   {
@@ -26,66 +28,105 @@ const cards = [
   },
 ];
 
-/** Amino-style guarantee band: lilac left + white right with stacked cards. */
-export function GuaranteeSection() {
+function GuaranteeCopy() {
   return (
-    <section className="bg-gradient-to-r from-[#f3eeff] via-[#f7f4ff] to-white">
-      <div className="site-container grid items-stretch lg:grid-cols-2">
-        <div className="relative flex min-h-[320px] items-center justify-center overflow-hidden py-10 sm:min-h-[380px] lg:min-h-[420px] lg:py-12">
-          <Image
-            src="/hero/nad.png"
-            alt="NAD+ research vial"
-            width={280}
-            height={560}
-            unoptimized
-            className="relative z-10 h-[260px] w-auto rotate-[14deg] object-contain drop-shadow-[0_28px_40px_rgba(15,23,42,0.16)] sm:h-[320px] lg:h-[360px]"
-          />
+    <div className="w-full max-w-[540px]">
+      <h2 className="text-[28px] font-bold leading-tight tracking-[-0.03em] text-black sm:text-[32px]">
+        The Klear Club Guarantee
+      </h2>
+      <p className="mt-2.5 max-w-[470px] text-[15px] leading-[1.6] text-[#666666]">
+        Documented quality for research and laboratory use. Every batch meets our internal purity standards.
+      </p>
+
+      <div className="mt-7 flex flex-col gap-3">
+        {cards.map((card) => (
+          <article
+            key={card.title}
+            className="relative flex items-center gap-[14px] overflow-hidden rounded-[12px] bg-white py-4 pr-5 pl-3.5 shadow-[0_4px_16px_rgba(15,23,42,0.08)]"
+          >
+            <span
+              aria-hidden="true"
+              className="absolute inset-y-0 left-0 w-[6px]"
+              style={{ background: card.accent }}
+            />
+            <div
+              className="ml-2 flex h-[48px] w-[48px] shrink-0 items-center justify-center rounded-full"
+              style={{ background: card.iconBg }}
+            >
+              <CardIcon name={card.icon} />
+            </div>
+            <div className="min-w-0 flex-1">
+              <div className="flex items-center gap-1.5">
+                {card.tip ? (
+                  <>
+                    <h3 className="text-[15px] font-bold text-black">
+                      <span className="border-b border-dotted border-[#b5b5b5] pb-px">{card.title}</span>
+                    </h3>
+                    <Hint text={card.tip} />
+                  </>
+                ) : (
+                  <h3 className="text-[15px] font-bold text-black">{card.title}</h3>
+                )}
+              </div>
+              <p className="mt-0.5 text-[13px] leading-5 text-[#6b6b6b]">{card.subtitle}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function GuaranteeVial({ className }: { className?: string }) {
+  return (
+    <div className={`relative h-[280px] w-[180px] shrink-0 sm:h-[320px] sm:w-[210px] lg:h-[460px] lg:w-[290px] xl:h-[500px] xl:w-[310px] ${className ?? ""}`}>
+      <Image
+        src={productImage({ slug: "nad-plus", form: "vial" })}
+        alt="NAD+ research vial"
+        fill
+        unoptimized
+        className="origin-center -rotate-[14deg] object-contain object-[center_44%] drop-shadow-[0_32px_48px_rgba(15,23,42,0.18)] lg:rotate-[14deg]"
+      />
+    </div>
+  );
+}
+
+/** Guarantee band: mobile stack (copy → vial), desktop split panel. */
+export function GuaranteeSection() {
+  const nadPalette = productPalette("nad-plus");
+  const panelGradient = `linear-gradient(180deg, ${nadPalette.top} 0%, ${nadPalette.label} 48%, #f3eeff 100%)`;
+  const desktopGradient = `linear-gradient(135deg, ${nadPalette.top} 0%, ${nadPalette.label} 42%, #f3eeff 100%)`;
+
+  return (
+    <section className="home-section-y relative overflow-hidden bg-white">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-y-0 left-0 hidden w-1/2 lg:block"
+        style={{ background: desktopGradient }}
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-y-0 left-0 hidden w-1/2 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.55)_0%,transparent_68%)] lg:block"
+      />
+
+      <div className="site-container relative flex flex-col lg:grid lg:grid-cols-2 lg:items-stretch">
+        <div className="order-1 flex items-start bg-white px-0 pb-10 sm:pb-12 lg:order-2 lg:items-center lg:pb-0 lg:pl-8 lg:pr-2">
+          <GuaranteeCopy />
         </div>
 
-        <div className="flex items-start px-1 py-10 sm:py-12 lg:pl-8 lg:pr-2 lg:py-14">
-          <div className="w-full max-w-[540px]">
-            <h2 className="text-[28px] font-bold leading-tight tracking-[-0.03em] text-black sm:text-[32px]">
-              The Klear Club Guarantee
-            </h2>
-            <p className="mt-2.5 max-w-[470px] text-[15px] leading-[1.6] text-[#666666]">
-              Documented quality for research and laboratory use. Every batch meets our internal purity standards.
-            </p>
+        <div className="relative order-2 -mx-5 w-[calc(100%+2.5rem)] sm:-mx-8 sm:w-[calc(100%+4rem)] lg:order-1 lg:mx-0 lg:w-auto">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 lg:hidden"
+            style={{ background: panelGradient }}
+          />
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.55)_0%,transparent_68%)] lg:hidden"
+          />
 
-            <div className="mt-7 flex flex-col gap-3">
-              {cards.map((card) => (
-                <article
-                  key={card.title}
-                  className="relative flex items-center gap-[14px] overflow-hidden rounded-[12px] bg-white py-4 pr-5 pl-3.5 shadow-[0_4px_16px_rgba(15,23,42,0.08)]"
-                >
-                  <span
-                    aria-hidden="true"
-                    className="absolute inset-y-0 left-0 w-[6px]"
-                    style={{ background: card.accent }}
-                  />
-                  <div
-                    className="ml-2 flex h-[48px] w-[48px] shrink-0 items-center justify-center rounded-full"
-                    style={{ background: card.iconBg }}
-                  >
-                    <CardIcon name={card.icon} />
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <div className="flex items-center gap-1.5">
-                      {card.tip ? (
-                        <>
-                          <h3 className="text-[15px] font-bold text-black">
-                            <span className="border-b border-dotted border-[#b5b5b5] pb-px">{card.title}</span>
-                          </h3>
-                          <Hint text={card.tip} />
-                        </>
-                      ) : (
-                        <h3 className="text-[15px] font-bold text-black">{card.title}</h3>
-                      )}
-                    </div>
-                    <p className="mt-0.5 text-[13px] leading-5 text-[#6b6b6b]">{card.subtitle}</p>
-                  </div>
-                </article>
-              ))}
-            </div>
+          <div className="relative flex min-h-[340px] items-center justify-center overflow-hidden sm:min-h-[380px] lg:min-h-[520px]">
+            <GuaranteeVial />
           </div>
         </div>
       </div>

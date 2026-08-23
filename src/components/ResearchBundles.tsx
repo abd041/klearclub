@@ -3,12 +3,13 @@
 import Image from "next/image";
 import { useMemo, useState } from "react";
 import { BundleAuthPanel } from "@/components/BundleAuthPanel";
+import { ProductImageStage } from "@/components/ProductImageStage";
 import { getProductCoas } from "@/data/coas";
-import { productImage, productImageClass, PRODUCT_IMAGE_BG } from "@/data/media";
+import { productCardImageClass, productImage, productImageClass, PRODUCT_IMAGE_BG } from "@/data/media";
 import { products } from "@/data/products";
 import { cn } from "@/lib/cn";
 import { formatMoney } from "@/lib/format";
-import { pdpBackground, pdpPurity, pdpShortLabel } from "@/lib/product-pdp";
+import { pdpPurity, pdpShortLabel } from "@/lib/product-pdp";
 import type { Product } from "@/types/catalog";
 
 const MIN_VIALS = 3;
@@ -461,7 +462,6 @@ export function ResearchBundles() {
                 const full = ticket.length >= MAX_VIALS;
                 const qty = loadedCount(product.slug);
                 const loaded = qty > 0;
-                const bg = pdpBackground(product.slug);
 
                 return (
                   <div
@@ -473,17 +473,17 @@ export function ResearchBundles() {
                     data-testid="stack-picker-card"
                     data-handle={product.slug}
                   >
-                    <div className="relative aspect-[4/5] overflow-hidden" style={{ backgroundColor: PRODUCT_IMAGE_BG }}>
+                    <ProductImageStage slug={product.slug} className="relative aspect-[4/5]">
                       <Image
                         src={productImage(product)}
                         alt={product.name}
                         fill
                         unoptimized
                         sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                        className={productImageClass}
+                        className={productCardImageClass}
                       />
                       {loaded ? (
-                        <span className="font-mono absolute top-2 right-2 rounded-md bg-[#2742F5] px-2 py-1 text-[10px] font-bold text-white">
+                        <span className="font-mono absolute top-2 right-2 z-[2] rounded-md bg-[#2742F5] px-2 py-1 text-[10px] font-bold text-white">
                           ×{qty} loaded
                         </span>
                       ) : null}
@@ -491,7 +491,7 @@ export function ResearchBundles() {
                         href={coa?.href || `/coas/${product.slug}.svg`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="font-mono absolute bottom-2 left-2 inline-flex h-7 items-center gap-1 rounded-md border border-[#E2E8E5] bg-white px-2 text-[10px] text-[#111417] shadow-sm transition-colors hover:border-[#2742F5]"
+                        className="font-mono absolute bottom-2 left-2 z-[2] inline-flex h-7 items-center gap-1 rounded-md border border-[#E2E8E5] bg-white px-2 text-[10px] text-[#111417] shadow-sm transition-colors hover:border-[#2742F5]"
                         data-testid="coa-chip"
                         aria-label={`View certificate of analysis for ${product.name}`}
                       >
@@ -499,7 +499,7 @@ export function ResearchBundles() {
                         <span className="font-semibold">{purity}%</span>
                         <span className="text-[#5C6663] underline underline-offset-2">COA</span>
                       </a>
-                    </div>
+                    </ProductImageStage>
 
                     <div className="flex flex-1 flex-col gap-2 p-3">
                       <div>

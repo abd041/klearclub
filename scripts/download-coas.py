@@ -1,17 +1,23 @@
-"""Fetch Amino product pages and download COA PDFs locally."""
+"""Download COA PDFs for the local catalog.
+
+Configure COA_SOURCE_BASE (product page origin) before running.
+Saved filenames are normalized to the klear-club-* prefix when applicable.
+"""
 from __future__ import annotations
 
 import json
+import os
 import re
 import time
 import urllib.error
 import urllib.request
 from pathlib import Path
 
-ROOT = Path(r"c:\Users\user\Desktop\klearclub")
+ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "public" / "coas" / "pdf"
 MAP_PATH = ROOT / "src" / "data" / "coas.ts"
 UA = "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
+SOURCE_BASE = os.environ.get("COA_SOURCE_BASE", "").rstrip("/")
 
 SLUGS = [
     "glp-3", "bpc-157", "ghk-cu", "tesamorelin", "tb-500", "melanotan-ii", "nad-plus",
@@ -25,7 +31,7 @@ SLUGS = [
 ]
 
 ALIASES = {
-    "klear-h2o": ["amino-h2o"],
+    "klear-h2o": ["klear-h2o", "h2o"],
     "ghk-cu-spray": ["ghkcu-spray", "ghk-cu-spray"],
     "cjc-ipa-no-dac": ["cjc-1295-ipamorelin", "cjc-ipa", "cjc-ipamorelin"],
     "wolverine-stack": ["bpc-tb-500", "bpc-157-tb-500", "wolverine"],
@@ -76,12 +82,15 @@ def handles_for(slug: str) -> list[str]:
     return uniq
 
 def main() -> None:
+    if not SOURCE_BASE:
+        raise SystemExit("Set COA_SOURCE_BASE to the product catalog origin before running.")
+
     mapping: dict[str, list[dict]] = {}
     OUT.mkdir(parents=True, exist_ok=True)
     for i, slug in enumerate(SLUGS, 1):
         rows: list[dict] = []
         for handle in handles_for(slug):
-            url = f"https://www.aminoclub.com/us/products/{handle}"
+            url = f"{SOURCE_BASE}/us/products/{handle}"
             try:
                 html = fetch(url).decode("utf-8", "ignore")
             except Exception as exc:
@@ -97,7 +106,7 @@ def main() -> None:
         dest_dir.mkdir(parents=True, exist_ok=True)
         for row in rows:
             dest = dest_dir / row["file"]
-            remote = "https://www.aminoclub.com" + row["url"]
+            remote = SOURCE_BASE + row["url"]
             try:
                 data = fetch(remote)
             except Exception as exc:
@@ -118,27 +127,17 @@ def main() -> None:
         mapping[slug] = saved
         time.sleep(0.15)
 
-    MAP_PATH.parent.mkdir(parents=True, exist_ok=True)
-    MAP_PATH.write_text(render_ts(mapping), encoding="utf-8")
-    print("wrote", MAP_PATH)
-
-def render_ts(mapping: dict[str, list[dict]]) -> str:
-    body = json.dumps(mapping, indent=2)
-    return (
-        "export type ProductCoaFile = {\n"
-        "  lot: string;\n"
-        "  label: string;\n"
-        "  href: string;\n"
-        "};\n\n"
-        "export const productCoas: Record<string, ProductCoaFile[]> = "
-        + body
-        + ";\n\n"
-        "export function getProductCoas(slug: string): ProductCoaFile[] {\n"
-        "  const files = productCoas[slug] ?? [];\n"
-        "  if (files.length) return files;\n"
-        "  return [{ lot: slug, label: slug, href: `/coas/${slug}.svg` }];\n"
-        "}\n"
+    MAP_PATH.write_text(
+        "export type CoaEntry = { lot: string; label: string; href: string };\n"
+        "export const PRODUCT_COAS: Record<string, CoaEntry[]> = "
+        + json.dumps(mapping, indent=2)
+        + ";\n"
+        "export function getProductCoas(slug: string) {\n"
+        "  return PRODUCT_COAS[slug] ?? [];\n"
+        "}\n",
+        encoding="utf-8",
     )
+    print("wrote", MAP_PATH)
 
 if __name__ == "__main__":
     main()

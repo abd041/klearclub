@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function StorePage() {
   return (
-    <div className="pb-24 pt-8">
+    <div className="pb-24">
       <Suspense fallback={<p className="page-wrap text-sm text-slate-500">Loading catalog…</p>}>
         <StoreCatalog />
       </Suspense>

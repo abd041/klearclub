@@ -49,7 +49,7 @@ export function HomeFaqSection() {
   const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <section className="bg-white px-5 py-16 font-sans sm:px-8 sm:py-20">
+    <section className="home-section-y bg-white px-5 font-sans sm:px-8">
       <div className="mx-auto w-full max-w-[860px]">
         <h2 className="text-center text-[28px] font-bold tracking-[-0.03em] text-[#111111] sm:text-[34px]">
           Frequently Asked Questions

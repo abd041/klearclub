@@ -33,49 +33,103 @@ export function ProductDetail({ product }: { product: Product }) {
 
   return (
     <CoaModalProvider slug={product.slug} productName={product.name}>
-    <div className="bg-white pb-[130px] font-sans text-[#131315] lg:pb-0">
-      <div className="bg-gradient-to-r from-[#2a2a2a] to-[#1a1a1a] px-4 py-3 text-center text-white">
+    <div className="bg-[#f5f4f8] pb-[130px] font-sans text-[#131315] lg:bg-white lg:pb-0">
+      <div className="hidden bg-gradient-to-r from-[#2a2a2a] to-[#1a1a1a] px-4 py-3 text-center text-white lg:block">
         <p className="text-xs font-medium">
           <span className="font-bold tracking-[0.08em] text-[#ffb4b4]">FOR RESEARCH USE ONLY.</span> This compound is
           not FDA approved. All data presented is from clinical trials for educational reference.
         </p>
       </div>
 
-      <section className="py-6 lg:py-8">
+      <section className="py-4 lg:py-8">
         <div className="site-container">
-          <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-5">
+          <div className="grid grid-cols-1 lg:grid-cols-2 lg:items-stretch lg:gap-5">
+            <div className="flex flex-col gap-3 lg:hidden">
+              <div className="overflow-hidden rounded-[24px] bg-white shadow-[0_1px_3px_rgba(15,23,42,0.05)]">
+                <ProductImageStage slug={product.slug} className="relative min-h-[320px]">
+                  <div className="relative flex min-h-[320px] flex-col items-center justify-center px-4 pt-8 pb-5">
+                    <Image
+                      src={productImage(product)}
+                      alt={product.name}
+                      width={640}
+                      height={800}
+                      priority
+                      unoptimized
+                      className={`relative z-[2] h-auto max-h-[260px] w-auto ${productImageClass}`}
+                    />
+                    <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
+                      <span className="inline-flex items-center gap-1.5 rounded-full border border-black/10 bg-white/90 px-3 py-1.5 text-[10px] font-semibold tracking-[0.08em] text-[#6b7280] uppercase backdrop-blur">
+                        <span className="h-1.5 w-1.5 rounded-full bg-[#16a34a]" />
+                        8x tested · ISO 17025
+                      </span>
+                      <span className="inline-flex items-center rounded-full border border-black/10 bg-white/90 px-3 py-1.5 text-[10px] font-semibold tracking-[0.08em] text-[#6b7280] uppercase backdrop-blur">
+                        99%+ purity
+                      </span>
+                    </div>
+                  </div>
+                </ProductImageStage>
+              </div>
+
+              <div className="rounded-[24px] bg-white px-5 py-5 shadow-[0_1px_3px_rgba(15,23,42,0.05)]">
+                <p className="mb-2 text-[11px] font-semibold tracking-[0.2em] text-[#9ca3af] uppercase">
+                  {pdpShortLabel(product)}
+                </p>
+                <h1 className="mb-3 text-[32px] leading-[1.05] font-bold tracking-[-0.02em] text-black">
+                  {product.name}
+                </h1>
+                {product.alsoKnownAs.length > 0 ? (
+                  <div className="mb-4 flex flex-wrap gap-2">
+                    {product.alsoKnownAs.map((alias) => (
+                      <span
+                        key={alias}
+                        className="rounded-full border border-[#e5e7eb] bg-white px-3 py-1 text-[12px] text-[#6b7280]"
+                      >
+                        {alias}
+                      </span>
+                    ))}
+                  </div>
+                ) : null}
+                <p className="text-[15px] leading-[1.65] text-[#6b7280]">{product.tagline}</p>
+                <ProductBuyBox product={product} variantId={variantId} onVariantId={setVariantId} />
+              </div>
+            </div>
+
             <ProductImageStage
               slug={product.slug}
-              className="relative flex min-h-[300px] items-center justify-center rounded-[20px] border border-[#ececec] p-4 lg:min-h-[450px] lg:rounded-[24px] lg:p-6"
+              className="relative hidden min-h-[500px] rounded-[24px] border border-[#ececec] lg:block lg:h-full"
             >
-              <Image
-                src={productImage(product)}
-                alt={product.name}
-                width={640}
-                height={800}
-                priority
-                unoptimized
-                className={`relative z-[2] h-auto max-h-[280px] w-auto lg:max-h-[400px] ${productImageClass}`}
-              />
-              <div className="absolute right-3.5 bottom-3.5 left-3.5 z-[3] flex flex-wrap gap-1.5">
-                <span className="inline-flex items-center gap-1.5 rounded-full border border-black/10 bg-white/85 px-2.5 py-1 text-[10px] font-semibold tracking-[0.1em] text-black/60 uppercase backdrop-blur">
-                  <span className="h-1.5 w-1.5 rounded-full bg-[#16a34a]" />
-                  8x tested · ISO 17025
-                </span>
-                <span className="inline-flex items-center rounded-full border border-black/10 bg-white/85 px-2.5 py-1 text-[10px] font-semibold tracking-[0.1em] text-black/60 uppercase backdrop-blur">
-                  99%+ purity
-                </span>
-                <span className="hidden items-center rounded-full border border-black/10 bg-white/85 px-2.5 py-1 text-[10px] font-semibold tracking-[0.1em] text-black/60 uppercase backdrop-blur sm:inline-flex">
-                  Research use only
-                </span>
+              <div className="relative flex h-full min-h-[500px] flex-col">
+                <div className="flex flex-1 items-center justify-center px-8 py-6">
+                  <Image
+                    src={productImage(product)}
+                    alt={product.name}
+                    width={640}
+                    height={800}
+                    priority
+                    unoptimized
+                    className={`relative z-[2] h-auto max-h-[460px] w-auto ${productImageClass}`}
+                  />
+                </div>
+                <div className="flex shrink-0 flex-wrap items-center justify-center gap-2 px-5 pb-5 pt-2">
+                  <span className="inline-flex items-center gap-1.5 rounded-full border border-black/10 bg-white/85 px-2.5 py-1 text-[10px] font-semibold tracking-[0.1em] text-black/60 uppercase backdrop-blur">
+                    <span className="h-1.5 w-1.5 rounded-full bg-[#16a34a]" />
+                    8x tested · ISO 17025
+                  </span>
+                  <span className="inline-flex items-center rounded-full border border-black/10 bg-white/85 px-2.5 py-1 text-[10px] font-semibold tracking-[0.1em] text-black/60 uppercase backdrop-blur">
+                    99%+ purity
+                  </span>
+                  <span className="inline-flex items-center rounded-full border border-black/10 bg-white/85 px-2.5 py-1 text-[10px] font-semibold tracking-[0.1em] text-black/60 uppercase backdrop-blur">
+                    Research use only
+                  </span>
+                </div>
               </div>
             </ProductImageStage>
 
-            <div className="flex flex-col rounded-[20px] border border-[#e8e8e8] bg-white p-5 lg:rounded-[24px] lg:p-7">
+            <div className="hidden flex-col rounded-[24px] border border-[#e8e8e8] bg-white p-7 lg:flex">
               <p className="mb-2 text-[11px] font-semibold tracking-[0.18em] text-black/45 uppercase">
                 {pdpShortLabel(product)}
               </p>
-              <h1 className="mb-1 text-3xl leading-none font-bold text-black lg:text-5xl">{product.name}</h1>
+              <h1 className="mb-1 text-5xl leading-none font-bold text-black">{product.name}</h1>
               {product.alsoKnownAs.length > 0 ? (
                 <div className="mb-4 flex flex-wrap gap-2">
                   {product.alsoKnownAs.map((alias) => (

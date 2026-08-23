@@ -2,15 +2,16 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { CoaDialog } from "@/components/CoaModal";
 import { HomeCtaSubscribeSection } from "@/components/HomeCtaSubscribeSection";
 import { getProductCoas, productCoas, type ProductCoaFile } from "@/data/coas";
-import { productImage, productImageClass, PRODUCT_IMAGE_BG } from "@/data/media";
+import { productCardImageClass, productImage } from "@/data/media";
 import { products } from "@/data/products";
 import { cn } from "@/lib/cn";
 import { formatMoney } from "@/lib/format";
 import { pdpPurity } from "@/lib/product-pdp";
+import { productCardStageStyle } from "@/lib/product-palette";
 import type { Product } from "@/types/catalog";
 
 const PAGE_SIZE = 12;
@@ -165,19 +166,6 @@ export function CoaLibrary() {
     files: ProductCoaFile[];
     active: string;
   } | null>(null);
-
-  useEffect(() => {
-    if (!viewer) return;
-    function onKey(event: KeyboardEvent) {
-      if (event.key === "Escape") setViewer(null);
-    }
-    window.addEventListener("keydown", onKey);
-    document.body.style.overflow = "hidden";
-    return () => {
-      window.removeEventListener("keydown", onKey);
-      document.body.style.overflow = "";
-    };
-  }, [viewer]);
 
   function openCertificate(entry: CoaEntry) {
     const files = getProductCoas(entry.slug);
@@ -350,15 +338,15 @@ export function CoaLibrary() {
                     <div className="flex items-start gap-3.5">
                       <Link
                         href={`/products/${entry.slug}`}
-                        className="relative h-[88px] w-[72px] shrink-0 overflow-hidden rounded-xl ring-1 ring-[#2a2a2a]"
-                        style={{ backgroundColor: PRODUCT_IMAGE_BG }}
+                        className="relative h-[88px] w-[72px] shrink-0 overflow-hidden rounded-xl"
+                        style={productCardStageStyle(entry.slug)}
                       >
                         <Image
                           src={productImage(entry.product)}
                           alt={entry.product.name}
                           fill
                           unoptimized
-                          className={`${productImageClass} transition-transform duration-300 group-hover:scale-105`}
+                          className={`${productCardImageClass} transition-transform duration-300 group-hover:scale-105`}
                           sizes="72px"
                         />
                       </Link>

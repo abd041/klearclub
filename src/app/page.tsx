@@ -1,3 +1,4 @@
+import { HomeStoreCreditSection } from "@/components/HomeStoreCreditSection";
 import { BulkOrdersSection } from "@/components/BulkOrdersSection";
 import { GuaranteeSection } from "@/components/GuaranteeSection";
 import { HomeCtaSubscribeSection } from "@/components/HomeCtaSubscribeSection";
@@ -19,6 +20,7 @@ export default function HomePage() {
       <SubscriptionBoxSection />
       <BulkOrdersSection />
       <ResearchBundlesSection />
+      <HomeStoreCreditSection />
       <SucceedSection />
       <QualityVerifySection />
       <WhyChooseSection />

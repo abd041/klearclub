@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { products } from "@/data/products";
 import { ProductCard } from "@/components/ProductCard";
@@ -22,14 +22,14 @@ type SortId = "popular" | "price-asc" | "price-desc" | "name";
 
 const FILTERS: Array<{ id: FilterId; label: string; spray?: boolean }> = [
   { id: "all", label: "All" },
+  { id: "tissue", label: "Tissue Repair" },
+  { id: "dermal", label: "Dermal" },
+  { id: "metabolic", label: "Metabolic" },
+  { id: "secretagogue", label: "Secretagogue" },
+  { id: "cellular", label: "Cellular" },
+  { id: "neuro", label: "Neuro" },
+  { id: "circadian", label: "Circadian" },
   { id: "sprays", label: "Sprays", spray: true },
-  { id: "tissue", label: "Tissue Repair Research" },
-  { id: "dermal", label: "Dermal Research" },
-  { id: "metabolic", label: "Metabolic Research" },
-  { id: "secretagogue", label: "Secretagogue Research" },
-  { id: "cellular", label: "Cellular Research" },
-  { id: "neuro", label: "Neuro Research" },
-  { id: "circadian", label: "Circadian Research" },
 ];
 
 const AREAS: Record<Exclude<FilterId, "all" | "sprays">, string[]> = {
@@ -83,6 +83,71 @@ const AREAS: Record<Exclude<FilterId, "all" | "sprays">, string[]> = {
   circadian: ["dsip", "dsip-spray", "epithalon"],
 };
 
+function midnightCountdown() {
+  const now = new Date();
+  const end = new Date(now);
+  end.setHours(24, 0, 0, 0);
+  const diff = Math.max(0, end.getTime() - now.getTime());
+  const totalSeconds = Math.floor(diff / 1000);
+  const hours = Math.floor(totalSeconds / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = totalSeconds % 60;
+  return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+}
+
+function ClubSaleBar() {
+  const [clock, setClock] = useState("00:00:00");
+
+  useEffect(() => {
+    function tick() {
+      setClock(midnightCountdown());
+    }
+    tick();
+    const id = window.setInterval(tick, 1000);
+    return () => window.clearInterval(id);
+  }, []);
+
+  return (
+    <div className="flex flex-col gap-3 rounded-[16px] bg-[#1b3022] px-4 py-3.5 text-white sm:flex-row sm:items-center sm:justify-between sm:gap-4 sm:px-5 sm:py-4">
+      <div className="min-w-0">
+        <p className="text-[14px] font-bold leading-tight sm:text-[15px]">
+          The Club Sale <span className="font-normal text-white/75">| 10 compounds · 50% off</span>
+        </p>
+        <p className="mt-1 font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-[#b8d4bc]">
+          Resets in {clock}
+        </p>
+      </div>
+      <Link
+        href="/store?sort=popular"
+        className="inline-flex h-9 shrink-0 items-center self-start rounded-full bg-white/12 px-4 text-[13px] font-semibold text-white no-underline ring-1 ring-white/20 sm:self-auto"
+      >
+        View the ten →
+      </Link>
+    </div>
+  );
+}
+
+function SortSelect({ sort, onChange, className }: { sort: SortId; onChange: (value: SortId) => void; className?: string }) {
+  return (
+    <div className={cn("relative", className)}>
+      <select
+        value={sort}
+        onChange={(event) => onChange(event.target.value as SortId)}
+        aria-label="Sort products"
+        className="h-10 w-full appearance-none rounded-full border border-[#e8e8e8] bg-[#f7f7f7] pr-9 pl-3.5 text-[13px] text-[#555555] outline-none sm:h-12 sm:pr-10 sm:pl-4 sm:text-[14px]"
+      >
+        <option value="popular">Most Popular</option>
+        <option value="price-asc">Price: Low to High</option>
+        <option value="price-desc">Price: High to Low</option>
+        <option value="name">Name A–Z</option>
+      </select>
+      <span className="pointer-events-none absolute top-1/2 right-3.5 -translate-y-1/2 text-[#9a9a9a] sm:right-4">
+        <ChevronIcon />
+      </span>
+    </div>
+  );
+}
+
 export function StoreCatalog() {
   const searchParams = useSearchParams();
   const initial = searchParams.get("category");
@@ -116,13 +181,71 @@ export function StoreCatalog() {
   }, [filter, query, sort]);
 
   return (
-    <div className="site-container pb-16 pt-8 sm:pb-20">
-      <div className="grid items-center gap-4 lg:grid-cols-[auto_minmax(280px,560px)_auto] lg:gap-8">
+    <div className="site-container pb-20 pt-4 sm:pb-24 sm:pt-6">
+      {/* Mobile header */}
+      <div className="lg:hidden">
+        <div className="flex items-start justify-between gap-3">
+          <p className="pt-1 text-[10px] font-medium uppercase tracking-[0.12em] text-[#9a9a9a]">
+            8x tested · 99%+ purity · ships in 0-2 days
+          </p>
+          <SortSelect sort={sort} onChange={setSort} className="w-[148px] shrink-0" />
+        </div>
+
+        <h1 className="mt-3 text-[30px] font-bold leading-[1.05] tracking-[-0.03em] text-black">
+          All <span className="font-serif italic">Products</span>
+        </h1>
+
+        <label className="relative mt-4 block w-full">
+          <span className="pointer-events-none absolute top-1/2 left-4 -translate-y-1/2 text-[#b0b0b0]">
+            <SearchIcon />
+          </span>
+          <input
+            value={query}
+            onChange={(event) => setQuery(event.target.value)}
+            placeholder="Search products..."
+            className="h-12 w-full rounded-full border border-[#e8e8e8] bg-[#f7f7f7] pr-4 pl-11 text-[14px] text-black outline-none placeholder:text-[#b0b0b0]"
+          />
+        </label>
+
+        <div className="mt-4">
+          <ClubSaleBar />
+        </div>
+
+        <div className="mt-4 flex flex-wrap gap-2">
+          {FILTERS.map((item) => {
+            const active = filter === item.id;
+            return (
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => setFilter(item.id)}
+                className={cn(
+                  "inline-flex h-9 items-center gap-1.5 rounded-full border px-3.5 text-[12px] font-semibold whitespace-nowrap sm:px-4 sm:text-[13px]",
+                  item.spray
+                    ? active
+                      ? "border-transparent text-white shadow-[0_4px_10px_rgba(33,209,237,0.35)]"
+                      : "border-transparent bg-[#21d1ed] text-white shadow-[0_4px_10px_rgba(33,209,237,0.35)]"
+                    : active
+                      ? "border-black bg-black text-white"
+                      : "border-[#e6e6e6] bg-white font-medium text-black hover:border-[#cfcfcf]",
+                )}
+                style={active && !item.spray ? { color: "#ffffff" } : item.spray ? { color: "#ffffff" } : undefined}
+              >
+                {item.spray ? <DropIcon /> : null}
+                {item.label}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Desktop header */}
+      <div className="hidden lg:grid lg:grid-cols-[auto_minmax(280px,560px)_auto] lg:items-center lg:gap-8">
         <div className="min-w-0">
           <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-[#9a9a9a]">
             8x tested · 99%+ purity · ships in 0-2 days
           </p>
-          <h1 className="mt-1 text-[34px] font-bold tracking-[-0.03em] text-black sm:text-[42px]">
+          <h1 className="mt-1 text-[42px] font-bold tracking-[-0.03em] text-black">
             All <span className="font-serif italic">Products</span>
           </h1>
         </div>
@@ -139,25 +262,14 @@ export function StoreCatalog() {
           />
         </label>
 
-        <div className="relative w-full lg:w-[168px] lg:justify-self-end">
-          <select
-            value={sort}
-            onChange={(event) => setSort(event.target.value as SortId)}
-            aria-label="Sort products"
-            className="h-12 w-full appearance-none rounded-full border border-[#e8e8e8] bg-[#f7f7f7] pr-10 pl-4 text-[14px] text-[#555555] outline-none"
-          >
-            <option value="popular">Most Popular</option>
-            <option value="price-asc">Price: Low to High</option>
-            <option value="price-desc">Price: High to Low</option>
-            <option value="name">Name A–Z</option>
-          </select>
-          <span className="pointer-events-none absolute top-1/2 right-4 -translate-y-1/2 text-[#9a9a9a]">
-            <ChevronIcon />
-          </span>
-        </div>
+        <SortSelect sort={sort} onChange={setSort} className="w-[168px] justify-self-end" />
       </div>
 
-      <div className="no-scrollbar mt-7 flex gap-2 overflow-x-auto pb-1">
+      <div className="mt-4 hidden lg:block">
+        <ClubSaleBar />
+      </div>
+
+      <div className="no-scrollbar mt-5 hidden gap-2 overflow-x-auto pb-1 lg:flex">
         {FILTERS.map((item) => {
           const active = filter === item.id;
           return (
@@ -188,7 +300,7 @@ export function StoreCatalog() {
         })}
       </div>
 
-      <div className="mt-6 grid gap-3 lg:grid-cols-3">
+      <div className="mt-6 hidden gap-3 lg:grid lg:grid-cols-3">
         <PromoCard
           href="/build-a-box"
           title="Build a Box"
@@ -219,8 +331,8 @@ export function StoreCatalog() {
         />
       </div>
 
-      <p className="mt-8 text-[13px] text-[#8a8a8a]">{visible.length} products</p>
-      <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <p className="mt-5 text-[13px] text-[#8a8a8a] lg:mt-8">{visible.length} products</p>
+      <div className="mt-3 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3 xl:grid-cols-4">
         {visible.map((product) => (
           <ProductCard key={product.slug} product={product} />
         ))}

@@ -3,6 +3,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { productCardImageClass, productImage } from "@/data/media";
+import { getProduct } from "@/data/products";
+import { cn } from "@/lib/cn";
 
 const TABS = [
   {
@@ -54,149 +57,176 @@ const TABS = [
 
 type TabId = (typeof TABS)[number]["id"];
 
+function QualityVisualPanel({ className }: { className?: string }) {
+  const product = getProduct("tb-500");
+
+  return (
+    <div
+      className={cn(
+        "relative w-full overflow-hidden rounded-[24px] bg-gradient-to-b from-[#dce8f4] to-[#eef3f8] sm:rounded-[28px]",
+        "aspect-[1.08/1] sm:aspect-[4/3] lg:aspect-auto lg:min-h-[520px]",
+        className,
+      )}
+    >
+      <div className="absolute right-3 top-3 z-10 flex max-w-[calc(100%-1.5rem)] items-center gap-2 rounded-2xl bg-white px-3 py-2 shadow-[0_8px_24px_rgba(15,23,42,0.08)] sm:right-5 sm:top-5 sm:px-3 sm:py-2.5">
+        <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#22c55e] text-white">
+          <CheckMini light />
+        </span>
+        <p className="min-w-0 text-[11px] leading-[1.25] text-black sm:text-[12px]">
+          <span className="block font-bold">99%+ Purity</span>
+          <span className="text-[#6b6b6b]">Verified by HPLC</span>
+        </p>
+      </div>
+
+      <div className="absolute inset-0 flex items-center justify-center px-[14%] pb-[18%] pt-[10%] sm:px-[12%] sm:pb-[16%]">
+        <div className="relative h-full w-full max-h-[320px] max-w-[220px] rotate-[14deg] sm:max-h-[360px] sm:max-w-[250px] sm:rotate-[16deg] lg:max-h-[420px] lg:max-w-[280px]">
+          {product ? (
+            <Image
+              src={productImage(product)}
+              alt={product.name}
+              fill
+              unoptimized
+              className={`${productCardImageClass} drop-shadow-[0_28px_40px_rgba(15,23,42,0.18)]`}
+            />
+          ) : null}
+        </div>
+      </div>
+
+      <Link
+        href="/quality"
+        className="absolute inset-x-3 bottom-3 z-10 flex items-center gap-2.5 rounded-full bg-white px-3 py-2.5 no-underline shadow-[0_8px_24px_rgba(15,23,42,0.08)] sm:inset-x-5 sm:bottom-4 sm:gap-3 sm:px-4 sm:py-3"
+      >
+        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-[#f3f3f3] text-[#555555] sm:h-9 sm:w-9">
+          <DocIcon />
+        </span>
+        <span className="min-w-0 flex-1 text-[12px] leading-[1.3] text-black sm:text-[13px]">
+          <span className="block font-bold">See the Proof</span>
+          <span className="block truncate text-[#6b6b6b] sm:whitespace-normal">View our quality procedures</span>
+        </span>
+        <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#f3f3f3] text-black sm:h-8 sm:w-8">
+          ›
+        </span>
+      </Link>
+    </div>
+  );
+}
+
 export function QualityVerifySection() {
   const [active, setActive] = useState<TabId>("potency");
   const tab = TABS.find((item) => item.id === active) ?? TABS[0];
 
   return (
-    <section className="bg-white px-5 py-16 font-sans sm:px-8 sm:py-20">
-      <div className="mx-auto grid w-full max-w-[1400px] items-start gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12">
-        <div>
-          <h2 className="max-w-[520px] text-[32px] font-bold leading-[1.12] tracking-[-0.035em] text-[#111111] sm:text-[40px]">
-            Quality you can verify, not just trust
-          </h2>
-          <p className="mt-4 max-w-[480px] text-[15px] leading-[1.65] text-[#6b6b6b]">
-            Every batch is 8x tested by accredited U.S. laboratories. We don&apos;t ask you to take our word for it: we
-            give you the proof.
-          </p>
+    <section className="home-section-y bg-white font-sans">
+      <div className="site-container">
+        <div className="grid w-full items-start gap-8 sm:gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-12 xl:gap-14">
+          <QualityVisualPanel className="order-1 lg:order-2 lg:sticky lg:top-24" />
 
-          <form
-            action="/coa"
-            method="get"
-            className="mt-6 flex max-w-[480px] overflow-hidden rounded-[12px] border border-[#d8dde5] bg-white shadow-[0_4px_16px_rgba(15,23,42,0.05)]"
-          >
-            <label className="sr-only" htmlFor="home-batch-search">
-              Search batch number
-            </label>
-            <input
-              id="home-batch-search"
-              name="q"
-              type="search"
-              placeholder="Look up a batch number…"
-              className="min-w-0 flex-1 border-0 bg-transparent px-4 py-3 text-[14px] text-[#111111] outline-none placeholder:text-[#9aa3ae]"
-            />
-            <button
-              type="submit"
-              className="shrink-0 bg-black px-4 text-[13px] font-semibold text-white"
-            >
-              Search
-            </button>
-          </form>
+          <div className="order-2 min-w-0 lg:order-1">
+            <h2 className="max-w-[520px] text-[28px] font-bold leading-[1.12] tracking-[-0.035em] text-[#111111] sm:text-[36px] lg:text-[40px]">
+              Quality you can verify, not just trust
+            </h2>
+            <p className="mt-3 max-w-[480px] text-[15px] leading-[1.65] text-[#6b6b6b] sm:mt-4">
+              Every batch is 8x tested by accredited U.S. laboratories. We don&apos;t ask you to take our word for it: we
+              give you the proof.
+            </p>
 
-          <div className="mt-8 flex max-w-[520px] items-stretch divide-x divide-[#e5e5e5]">
-            <Stat value="99%+" label="Purity Guaranteed" />
-            <Stat value="5" label="Quality Checks" />
-            <Stat value="100%" label="U.S. Verified" />
-          </div>
-
-          <div className="mt-8 flex flex-wrap gap-2">
-            {TABS.map((item) => {
-              const on = item.id === active;
-              return (
-                <button
-                  key={item.id}
-                  type="button"
-                  onClick={() => setActive(item.id)}
-                  className={`inline-flex h-10 items-center gap-1.5 rounded-full px-3.5 text-[13px] font-medium transition ${
-                    on ? "bg-black text-white" : "bg-[#f3f3f3] text-[#3f3f3f]"
-                  }`}
-                  style={on ? { color: "#ffffff" } : undefined}
-                >
-                  <TabIcon name={item.icon} />
-                  {item.label}
-                </button>
-              );
-            })}
-          </div>
-
-          <div className="mt-4 rounded-[22px] bg-[#f4f4f5] p-5 sm:p-6">
-            <div className="flex flex-wrap items-center gap-2.5">
-              <h3 className="text-[18px] font-bold text-black">{tab.title}</h3>
-              <span className="inline-flex items-center gap-1 rounded-full bg-[#e7f8ee] px-2.5 py-1 text-[11px] font-semibold text-[#16a34a]">
-                <CheckMini />
-                {tab.badge}
-              </span>
+            <div className="mt-6 grid max-w-[520px] grid-cols-3 sm:mt-8">
+              <Stat value="99%+" label="Purity Guaranteed" />
+              <Stat value="5" label="Quality Checks" bordered />
+              <Stat value="100%" label="U.S. Verified" bordered />
             </div>
-            <p className="mt-3 text-[14px] leading-[1.6] text-[#666666]">{tab.body}</p>
-            <div className="mt-4 rounded-[14px] border-l-[5px] border-[#22c55e] bg-white px-4 py-3.5">
-              <p className="text-[13.5px] leading-[1.55] text-[#333333]">
-                <span className="font-bold">Why it matters:</span> {tab.why}
+
+            <div className="relative mt-6 sm:mt-8">
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-gradient-to-l from-white to-transparent lg:hidden"
+              />
+              <div className="-mx-5 flex gap-2 overflow-x-auto scroll-smooth px-5 pb-1 [scrollbar-width:none] sm:-mx-8 sm:px-8 lg:mx-0 lg:flex-wrap lg:overflow-visible lg:px-0 [&::-webkit-scrollbar]:hidden">
+                {TABS.map((item) => {
+                  const on = item.id === active;
+                  return (
+                    <button
+                      key={item.id}
+                      type="button"
+                      onClick={() => setActive(item.id)}
+                      className={cn(
+                        "inline-flex h-10 shrink-0 snap-start items-center gap-1.5 rounded-full px-3.5 text-[13px] font-medium transition",
+                        on
+                          ? "bg-black text-white"
+                          : "border border-[#e5e5e5] bg-white text-[#3f3f3f] hover:border-[#cfcfcf]",
+                      )}
+                      style={on ? { color: "#ffffff" } : undefined}
+                    >
+                      <TabIcon name={item.icon} />
+                      {item.label}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className="mt-4 rounded-[20px] bg-[#f4f4f5] p-4 sm:rounded-[22px] sm:p-6">
+              <div className="flex flex-wrap items-center gap-2.5">
+                <h3 className="text-[17px] font-bold text-black sm:text-[18px]">{tab.title}</h3>
+                <span className="inline-flex items-center gap-1 rounded-full bg-[#e7f8ee] px-2.5 py-1 text-[11px] font-semibold text-[#16a34a]">
+                  <CheckMini />
+                  {tab.badge}
+                </span>
+              </div>
+              <p className="mt-3 text-[14px] leading-[1.6] text-[#666666]">{tab.body}</p>
+              <div className="mt-4 rounded-[14px] border-l-[5px] border-[#22c55e] bg-white px-3.5 py-3 sm:px-4 sm:py-3.5">
+                <p className="text-[13px] leading-[1.55] text-[#333333] sm:text-[13.5px]">
+                  <span className="font-bold">Why it matters:</span> {tab.why}
+                </p>
+              </div>
+            </div>
+
+            <form
+              action="/coa"
+              method="get"
+              className="mt-6 hidden max-w-[480px] overflow-hidden rounded-[12px] border border-[#d8dde5] bg-white shadow-[0_4px_16px_rgba(15,23,42,0.05)] lg:flex"
+            >
+              <label className="sr-only" htmlFor="home-batch-search">
+                Search batch number
+              </label>
+              <input
+                id="home-batch-search"
+                name="q"
+                type="search"
+                placeholder="Look up a batch number…"
+                className="min-w-0 flex-1 border-0 bg-transparent px-4 py-3 text-[14px] text-[#111111] outline-none placeholder:text-[#9aa3ae]"
+              />
+              <button type="submit" className="shrink-0 bg-black px-4 text-[13px] font-semibold text-white">
+                Search
+              </button>
+            </form>
+
+            <div className="mt-5 flex flex-col items-start gap-3 sm:mt-6 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
+              <Link
+                href="/store"
+                className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-full bg-black px-6 text-[14px] font-medium no-underline sm:w-auto"
+                style={{ color: "#ffffff" }}
+              >
+                Shop Now
+                <span aria-hidden="true">→</span>
+              </Link>
+              <p className="inline-flex items-center gap-1.5 text-[13px] font-medium text-[#16a34a]">
+                <CheckMini />
+                Free COA included with every order
               </p>
             </div>
           </div>
-
-          <div className="mt-6 flex flex-wrap items-center gap-4">
-            <Link
-              href="/store"
-              className="inline-flex h-11 items-center gap-2 rounded-full bg-black px-6 text-[14px] font-medium no-underline"
-              style={{ color: "#ffffff" }}
-            >
-              Shop Now
-              <span aria-hidden="true">→</span>
-            </Link>
-            <p className="inline-flex items-center gap-1.5 text-[13px] font-medium text-[#16a34a]">
-              <CheckMini />
-              Free COA included with every order
-            </p>
-          </div>
-        </div>
-
-        <div className="relative min-h-[420px] overflow-hidden rounded-[28px] bg-gradient-to-b from-[#dce8f4] to-[#eef3f8] sm:min-h-[520px]">
-          <div className="absolute right-5 top-5 z-10 flex items-center gap-2 rounded-2xl bg-white px-3 py-2.5 shadow-[0_8px_24px_rgba(15,23,42,0.08)]">
-            <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#22c55e] text-white">
-              <CheckMini light />
-            </span>
-            <p className="text-[12px] leading-[1.25] text-black">
-              <span className="block font-bold">99%+ Purity</span>
-              <span className="text-[#6b6b6b]">Verified by HPLC</span>
-            </p>
-          </div>
-
-          <Image
-            src="/hero/tb.png"
-            alt="TB-500 research vial"
-            width={420}
-            height={720}
-            unoptimized
-            className="absolute left-1/2 top-[12%] h-[72%] w-auto -translate-x-1/2 rotate-[18deg] object-contain drop-shadow-[0_28px_40px_rgba(15,23,42,0.18)]"
-          />
-
-          <Link
-            href="/quality"
-            className="absolute inset-x-4 bottom-4 z-10 flex items-center gap-3 rounded-2xl bg-white px-4 py-3 no-underline shadow-[0_8px_24px_rgba(15,23,42,0.08)]"
-          >
-            <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#f3f3f3] text-[#555555]">
-              <DocIcon />
-            </span>
-            <span className="min-w-0 flex-1 text-[13px] leading-[1.3] text-black">
-              <span className="block font-bold">See the Proof</span>
-              <span className="text-[#6b6b6b]">View our quality procedures</span>
-            </span>
-            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#f3f3f3] text-black">
-              ›
-            </span>
-          </Link>
         </div>
       </div>
     </section>
   );
 }
 
-function Stat({ value, label }: { value: string; label: string }) {
+function Stat({ value, label, bordered = false }: { value: string; label: string; bordered?: boolean }) {
   return (
-    <div className="flex-1 px-4 first:pl-0 last:pr-0">
-      <p className="text-[28px] font-bold leading-none tracking-[-0.03em] text-black sm:text-[32px]">{value}</p>
-      <p className="mt-2 text-[12px] leading-[1.3] text-[#7a7a7a]">{label}</p>
+    <div className={cn("min-w-0 px-2 first:pl-0 last:pr-0 sm:px-4", bordered && "border-l border-[#e5e5e5]")}>
+      <p className="text-[24px] font-bold leading-none tracking-[-0.03em] text-black sm:text-[32px]">{value}</p>
+      <p className="mt-1.5 text-[11px] leading-[1.3] text-[#7a7a7a] sm:mt-2 sm:text-[12px]">{label}</p>
     </div>
   );
 }

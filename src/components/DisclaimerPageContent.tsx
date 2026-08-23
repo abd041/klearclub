@@ -29,7 +29,7 @@ function WarningIcon({ className }: { className?: string }) {
 }
 
 /**
- * Live aminoclub.com/us/disclaimer — LEFT 1 BPC · RIGHT 2 TB + H2O
+ * Disclaimer hero — LEFT 1 BPC · RIGHT 2 TB + H2O
  * Soft amber hero + indigo "Important Notice" badge + Research Use Only callout.
  */
 export function DisclaimerPageContent() {

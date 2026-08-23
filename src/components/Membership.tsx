@@ -110,7 +110,7 @@ function CrossIcon({ className }: { className?: string }) {
 }
 
 export function Membership() {
-  const [selected, setSelected] = useState<TierId>("vip");
+  const [selected, setSelected] = useState<TierId>("insider");
   const [cycle, setCycle] = useState<Cycle>("monthly");
   const [planOpen, setPlanOpen] = useState(false);
 
@@ -292,69 +292,67 @@ export function Membership() {
       </section>
 
       {/* Join */}
-      <section id="join" className="scroll-mt-20 bg-[#f5f5f5]/60 py-12 lg:py-20">
-        <div className="site-container max-w-2xl">
+      <section id="join" className="scroll-mt-20 bg-[#f5f5f5] py-12 lg:py-20">
+        <div className="site-container max-w-xl">
           <div className="text-center">
-            <p className="text-xs font-semibold tracking-[0.2em] text-[#131315]/60 uppercase">Sign up</p>
-            <h2 className="mt-2 text-3xl font-semibold tracking-tight text-[#131315] lg:text-4xl">
+            <p className="text-[11px] font-semibold tracking-[0.2em] text-[#9ca3af] uppercase">Sign up</p>
+            <h2 className="mt-2 text-[32px] leading-[1.1] font-bold tracking-[-0.02em] text-[#131315] lg:text-[36px]">
               Start your membership
             </h2>
-            <p className="mx-auto mt-3 max-w-md text-sm text-[#131315]/60">
+            <p className="mx-auto mt-3 max-w-md text-[15px] leading-relaxed text-[#6b7280]">
               Sign in or create your account, then enter your card. Cancel anytime, no penalty.
             </p>
           </div>
 
-          <div className="mt-8 rounded-3xl border border-[#e8e8e8] bg-white p-6 shadow-[0px_8px_30px_-15px_rgba(0,0,0,0.1)] lg:p-8">
-            <div className="space-y-5">
-              <div className="flex items-center justify-between rounded-2xl bg-[#f5f5f5] p-4">
+          <div className="mt-8 overflow-hidden rounded-[20px] border border-[#e8e8e8] bg-white">
+            <div className="space-y-4 p-5 lg:p-6">
+              <div className="flex items-center justify-between rounded-xl bg-[#f5f5f5] px-5 py-4">
                 <div>
-                  <p className="text-xs font-semibold tracking-wider text-[#131315]/60 uppercase">Plan</p>
-                  <p className="text-base font-semibold text-[#131315]">
+                  <p className="text-[11px] font-semibold tracking-[0.16em] text-[#9ca3af] uppercase">Plan</p>
+                  <p className="mt-1 text-[16px] font-semibold text-[#131315]">
                     {plan.name} · {cycle === "monthly" ? "Monthly" : "Annual"}
                   </p>
                 </div>
-                <p className="text-2xl font-semibold text-[#131315] tabular-nums">{priceLabel}</p>
+                <p className="text-[32px] leading-none font-bold text-[#131315] tabular-nums">{priceLabel}</p>
               </div>
 
-              <div className="space-y-3 rounded-2xl border border-[#e8e8e8] p-5 text-center">
-                <p className="text-sm text-[#131315]">
+              <div className="rounded-xl border border-[#e8e8e8] px-5 py-6 text-center">
+                <p className="text-[15px] leading-relaxed text-[#374151]">
                   Sign in or create your account to start your membership.
                 </p>
                 <Link
                   href={`/account?mode=create&redirect=/membership?tier=${selected}&cycle=${cycle}#join`}
-                  className="inline-flex h-12 w-full items-center justify-center rounded-full bg-[#131315] text-sm font-semibold text-white transition-colors hover:bg-[#131315]/90"
+                  className="mt-4 inline-flex h-12 w-full items-center justify-center rounded-full bg-[#131315] text-[15px] font-semibold text-white transition-colors hover:bg-[#131315]/90"
                   style={{ color: "#ffffff" }}
                 >
                   Continue
                 </Link>
-                <p className="text-[11px] text-[#131315]/60">
+                <p className="mt-3 text-[12px] leading-relaxed text-[#9ca3af]">
                   Takes 20 seconds. We&apos;ll bring you right back here to enter your card.
                 </p>
               </div>
 
               <details
-                className="rounded-2xl border border-[#e8e8e8] p-4"
+                className="group rounded-xl border border-[#e8e8e8]"
                 open={planOpen}
                 onToggle={(event) => setPlanOpen((event.target as HTMLDetailsElement).open)}
               >
-                <summary className="cursor-pointer list-none text-xs font-medium text-[#131315]/70 hover:text-[#131315] [&::-webkit-details-marker]:hidden">
-                  <span className="inline-flex items-center gap-1.5">
-                    <span
-                      className={cn(
-                        "inline-block text-[10px] leading-none transition-transform",
-                        planOpen && "rotate-90",
-                      )}
-                      aria-hidden="true"
-                    >
-                      ▶
-                    </span>
-                    Change plan or billing cycle
+                <summary className="flex cursor-pointer list-none items-center gap-2 px-5 py-4 text-[13px] font-medium text-[#6b7280] hover:text-[#131315] [&::-webkit-details-marker]:hidden">
+                  <span
+                    className={cn(
+                      "inline-flex text-[10px] text-[#9ca3af] transition-transform",
+                      planOpen && "rotate-90",
+                    )}
+                    aria-hidden="true"
+                  >
+                    ▶
                   </span>
+                  Change plan or billing cycle
                 </summary>
 
-                <div className="mt-4 space-y-3">
+                <div className="space-y-4 border-t border-[#ececec] px-5 pt-4 pb-5">
                   <div>
-                    <p className="mb-2 text-xs font-semibold tracking-wider text-[#131315]/60 uppercase">Plan</p>
+                    <p className="mb-2 text-[11px] font-semibold tracking-[0.16em] text-[#9ca3af] uppercase">Plan</p>
                     <div className="grid grid-cols-3 gap-2">
                       {activeTier.map((tier) => {
                         const on = selected === tier.id;
@@ -372,7 +370,7 @@ export function Membership() {
                             style={on ? { color: "#ffffff" } : undefined}
                           >
                             <p className="text-sm font-semibold">{tier.name}</p>
-                            <p className={cn("text-[11px]", on ? "text-white/70" : "text-[#131315]/60")}>
+                            <p className={cn("text-[11px]", on ? "text-white/70" : "text-[#9ca3af]")}>
                               {formatMoney(tier.monthly ?? 0)}/mo
                             </p>
                           </button>
@@ -382,7 +380,7 @@ export function Membership() {
                   </div>
 
                   <div>
-                    <p className="mb-2 text-xs font-semibold tracking-wider text-[#131315]/60 uppercase">
+                    <p className="mb-2 text-[11px] font-semibold tracking-[0.16em] text-[#9ca3af] uppercase">
                       Billing
                     </p>
                     <div className="inline-flex rounded-full bg-[#f5f5f5] p-1">
@@ -393,7 +391,7 @@ export function Membership() {
                           "h-9 rounded-full px-4 text-xs font-medium transition-colors",
                           cycle === "monthly"
                             ? "bg-white text-[#131315] shadow-sm"
-                            : "text-[#131315]/60",
+                            : "text-[#9ca3af]",
                         )}
                       >
                         Monthly
@@ -405,7 +403,7 @@ export function Membership() {
                           "relative inline-flex h-9 items-center gap-1.5 rounded-full px-4 text-xs font-medium transition-colors",
                           cycle === "yearly"
                             ? "bg-white text-[#131315] shadow-sm"
-                            : "text-[#131315]/60",
+                            : "text-[#9ca3af]",
                         )}
                       >
                         Annual
@@ -417,7 +415,7 @@ export function Membership() {
                   </div>
 
                   {cycle === "yearly" && price != null ? (
-                    <p className="text-xs text-[#131315]/60">
+                    <p className="text-xs text-[#9ca3af]">
                       Billed {formatMoney(price)} once per year for {plan.name}.
                     </p>
                   ) : null}

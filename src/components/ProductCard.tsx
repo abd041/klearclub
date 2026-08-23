@@ -3,7 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { useCart } from "@/context/CartContext";
+import { useAddToCart } from "@/lib/use-add-to-cart";
+import { AddCartSpinner } from "@/components/AddCartSpinner";
 import { productImage, productCardImageClass } from "@/data/media";
 import { formatMoney } from "@/lib/format";
 import { SALE_OFF, salePrice } from "@/lib/commerce";
@@ -79,9 +80,8 @@ function shortLabel(product: Product) {
 }
 
 export function ProductCard({ product }: { product: Product }) {
-  const { addItem } = useCart();
+  const { addToCart, isAdding, justAdded, isBusy } = useAddToCart();
   const [variantId, setVariantId] = useState(product.variants[0].id);
-  const [justAdded, setJustAdded] = useState(false);
   const selected = product.variants.find((v) => v.id === variantId) ?? product.variants[0];
   const retail = selected.price;
   const sale = salePrice(retail);
@@ -90,9 +90,7 @@ export function ProductCard({ product }: { product: Product }) {
   const multiVariant = product.variants.length > 1;
 
   function handleAdd() {
-    addItem(product.slug, selected.id, 1);
-    setJustAdded(true);
-    window.setTimeout(() => setJustAdded(false), 1200);
+    addToCart(product.slug, selected.id, 1);
   }
 
   return (
@@ -140,10 +138,10 @@ export function ProductCard({ product }: { product: Product }) {
         </div>
       </ProductImageStage>
 
-      <div className="flex min-h-[172px] flex-1 flex-col px-3.5 pt-3 pb-3.5">
+      <div className="flex min-h-[168px] flex-1 flex-col px-3 pt-3 pb-3.5 sm:min-h-[172px] sm:px-3.5">
         <Link href={`/products/${product.slug}`} className="no-underline">
-          <h3 className="line-clamp-2 text-[15px] font-bold leading-[1.15] tracking-[-0.02em] text-black">{product.name}</h3>
-          <p className="mt-1 line-clamp-1 text-[12px] leading-tight text-[#8a8a8a]">{shortLabel(product)}</p>
+          <h3 className="line-clamp-2 text-[14px] font-bold leading-[1.15] tracking-[-0.02em] text-black sm:text-[15px]">{product.name}</h3>
+          <p className="mt-1 line-clamp-2 text-[11px] leading-tight text-[#8a8a8a] sm:line-clamp-1 sm:text-[12px]">{shortLabel(product)}</p>
         </Link>
 
         {multiVariant ? (
@@ -171,27 +169,28 @@ export function ProductCard({ product }: { product: Product }) {
           <p className="mt-2.5 text-[11px] text-[#9a9a9a]">{selected.label}</p>
         )}
 
-        <p className="mt-2.5 flex items-baseline gap-2">
-          <span className="text-[12px] text-[#aaa] line-through">{formatMoney(retail)}</span>
-          <span className="text-[19px] font-bold leading-none text-[#c4122f]">{formatMoney(sale)}</span>
+        <p className="mt-2 flex items-baseline gap-1.5 sm:mt-2.5 sm:gap-2">
+          <span className="text-[11px] text-[#aaa] line-through sm:text-[12px]">{formatMoney(retail)}</span>
+          <span className="text-[17px] font-bold leading-none text-[#c4122f] sm:text-[19px]">{formatMoney(sale)}</span>
         </p>
 
-        <div className="mt-auto flex gap-2 pt-3">
+        <div className="mt-auto flex gap-1.5 pt-2.5 sm:gap-2 sm:pt-3">
           <Link
             href={`/products/${product.slug}`}
-            className="inline-flex h-[38px] flex-1 items-center justify-center rounded-full border border-[#d4d4d4] bg-white text-[12px] font-medium text-black no-underline"
+            className="inline-flex h-[34px] flex-1 items-center justify-center rounded-full border border-[#d4d4d4] bg-white text-[11px] font-medium text-black no-underline sm:h-[38px] sm:text-[12px]"
           >
             Details
           </Link>
           <button
             type="button"
             onClick={handleAdd}
+            disabled={isBusy}
             className={cn(
-              "inline-flex h-[38px] flex-[1.08] items-center justify-center rounded-full text-[12px] font-semibold text-white transition-colors",
+              "inline-flex h-[34px] flex-[1.08] items-center justify-center rounded-full text-[11px] font-semibold text-white transition-colors disabled:opacity-90 sm:h-[38px] sm:text-[12px]",
               justAdded ? "bg-[#16a34a]" : "bg-black",
             )}
           >
-            {justAdded ? "Added ✓" : "+ Add"}
+            {isAdding ? <AddCartSpinner /> : justAdded ? "Added ✓" : "+ Add"}
           </button>
         </div>
       </div>

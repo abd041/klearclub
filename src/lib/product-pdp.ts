@@ -27,6 +27,11 @@ const SHORT: Record<string, string> = {
   "melanotan-ii": "Melanocortin Receptor Analog",
   "nad-plus": "Cellular Energy Coenzyme",
   "aod-9604": "Lipolytic Research Fragment",
+  "adalank-spray": "Cognitive Peptide",
+  "selank-spray": "Cognitive Peptide",
+  "semax-spray": "Cognitive Peptide",
+  selank: "Cognitive Peptide",
+  semax: "Cognitive Peptide",
 };
 
 export function pdpBackground(slug: string) {

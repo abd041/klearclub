@@ -16,7 +16,7 @@ function InfoIcon({ className }: { className?: string }) {
 }
 
 /**
- * Live aminoclub.com/us/terms — LEFT 1 BPC · RIGHT 2 TB + H2O
+ * Terms hero — LEFT 1 BPC · RIGHT 2 TB + H2O
  * Soft blue hero gradient + indigo "Legal Agreement" badge.
  */
 export function TermsPageContent() {

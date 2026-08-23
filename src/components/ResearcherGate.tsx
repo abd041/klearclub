@@ -64,7 +64,8 @@ export function ResearcherGate() {
                   alt=""
                   width={160}
                   height={220}
-                  className="h-auto w-full select-none object-contain drop-shadow-[0_25px_45px_rgba(15,23,42,0.1)]"
+                  unoptimized
+                  className="h-auto w-full select-none object-contain object-bottom drop-shadow-[0_25px_45px_rgba(15,23,42,0.1)]"
                   draggable={false}
                 />
               </div>

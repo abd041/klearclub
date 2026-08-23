@@ -77,8 +77,8 @@ export const productCoas: Record<string, ProductCoaFile[]> = {
     },
     {
       "lot": "GHK0001",
-      "label": "amino-club-GHK0001-qZhWXB",
-      "href": "/coas/pdf/ghk-cu/amino-club-GHK0001-qZhWXB.pdf"
+      "label": "klear-club-GHK0001-qZhWXB",
+      "href": "/coas/pdf/ghk-cu/klear-club-GHK0001-qZhWXB.pdf"
     },
     {
       "lot": "GHK0002",
@@ -185,8 +185,8 @@ export const productCoas: Record<string, ProductCoaFile[]> = {
     },
     {
       "lot": "CIP0001",
-      "label": "amino-club-CIP0001-vioFWN",
-      "href": "/coas/pdf/cjc-ipa-no-dac/amino-club-CIP0001-vioFWN.pdf"
+      "label": "klear-club-CIP0001-vioFWN",
+      "href": "/coas/pdf/cjc-ipa-no-dac/klear-club-CIP0001-vioFWN.pdf"
     },
     {
       "lot": "D3123",
@@ -327,15 +327,15 @@ export const productCoas: Record<string, ProductCoaFile[]> = {
     },
     {
       "lot": "IGF0001",
-      "label": "amino-club-IGF0001-svupIW",
-      "href": "/coas/pdf/igf-1-lr3/amino-club-IGF0001-svupIW.pdf"
+      "label": "klear-club-IGF0001-svupIW",
+      "href": "/coas/pdf/igf-1-lr3/klear-club-IGF0001-svupIW.pdf"
     }
   ],
   "klear-h2o": [
     {
       "lot": "H2O0001",
-      "label": "amino-club-H2O0001-wnFDcW",
-      "href": "/coas/pdf/klear-h2o/amino-club-H2O0001-wnFDcW.pdf"
+      "label": "klear-club-H2O0001-wnFDcW",
+      "href": "/coas/pdf/klear-h2o/klear-club-H2O0001-wnFDcW.pdf"
     }
   ],
   "cagrilintide": [
@@ -358,8 +358,8 @@ export const productCoas: Record<string, ProductCoaFile[]> = {
     },
     {
       "lot": "EPI0001",
-      "label": "amino-club-EPI0001-A4065f",
-      "href": "/coas/pdf/epithalon/amino-club-EPI0001-A4065f.pdf"
+      "label": "klear-club-EPI0001-A4065f",
+      "href": "/coas/pdf/epithalon/klear-club-EPI0001-A4065f.pdf"
     }
   ],
   "5-amino-1mq": [
@@ -377,8 +377,8 @@ export const productCoas: Record<string, ProductCoaFile[]> = {
     },
     {
       "lot": "MI0001",
-      "label": "amino-club-MI0001-pnA1FU",
-      "href": "/coas/pdf/melanotan-i/amino-club-MI0001-pnA1FU.pdf"
+      "label": "klear-club-MI0001-pnA1FU",
+      "href": "/coas/pdf/melanotan-i/klear-club-MI0001-pnA1FU.pdf"
     }
   ],
   "thymosin-alpha-1": [
@@ -566,15 +566,15 @@ export const productCoas: Record<string, ProductCoaFile[]> = {
   "ll-37": [
     {
       "lot": "LL0001",
-      "label": "amino-club-LL0001-zq_wW_",
-      "href": "/coas/pdf/ll-37/amino-club-LL0001-zq_wW_.pdf"
+      "label": "klear-club-LL0001-zq_wW_",
+      "href": "/coas/pdf/ll-37/klear-club-LL0001-zq_wW_.pdf"
     }
   ],
   "cartalax": [
     {
       "lot": "CTX0001",
-      "label": "amino-club-CTX0001-_jS5Ag",
-      "href": "/coas/pdf/cartalax/amino-club-CTX0001-_jS5Ag.pdf"
+      "label": "klear-club-CTX0001-_jS5Ag",
+      "href": "/coas/pdf/cartalax/klear-club-CTX0001-_jS5Ag.pdf"
     }
   ]
 };

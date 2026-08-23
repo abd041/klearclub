@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { HomeCtaSubscribeSection } from "@/components/HomeCtaSubscribeSection";
+import { productImage } from "@/data/media";
 import { cn } from "@/lib/cn";
 
 const FAQ = [
@@ -51,28 +52,28 @@ const FAQ = [
 
 const VIALS = [
   {
-    src: "/hero/tb.png",
+    src: productImage({ slug: "tb-500", form: "vial" }),
     alt: "TB-500 Peptide vial",
     className:
       "left-[5%] top-[15%] z-0 w-[15%] lg:left-[8%] lg:w-[12%] animate-float-slow",
     rotate: "-8deg",
   },
   {
-    src: "/hero/bpc.png",
+    src: productImage({ slug: "bpc-157", form: "vial" }),
     alt: "BPC-157 Peptide vial",
     className: "right-[8%] top-[10%] z-10 w-[18%] lg:right-[12%] lg:w-[14%] animate-float",
     rotate: "12deg",
   },
   {
-    src: "/hero/h2o.png",
+    src: productImage({ slug: "klear-h2o", form: "vial" }),
     alt: "Klear H2O",
     className:
       "bottom-[5%] left-[15%] z-0 w-[20%] lg:bottom-[10%] lg:left-[20%] lg:w-[16%] animate-float-delayed",
     rotate: "-5deg",
   },
   {
-    src: "/hero/tb.png",
-    alt: "TB-500 Peptide vial",
+    src: productImage({ slug: "ghk-cu", form: "vial" }),
+    alt: "GHK-Cu Peptide vial",
     className: "right-[5%] bottom-[15%] z-0 w-[14%] lg:right-[8%] lg:w-[10%] animate-float-slow",
     rotate: "15deg",
   },

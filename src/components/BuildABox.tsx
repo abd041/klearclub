@@ -6,11 +6,13 @@ import { BoxAuthSheet } from "@/components/BoxAuthSheet";
 import { BoxCheckoutSheet, type BoxLine } from "@/components/BoxCheckoutSheet";
 import { useCart } from "@/context/CartContext";
 import { getProductCoas } from "@/data/coas";
-import { productImage, productImageClass, PRODUCT_IMAGE_BG } from "@/data/media";
+import { ProductImageStage } from "@/components/ProductImageStage";
+import { productCardImageClass, productImage, productImageClass } from "@/data/media";
 import { products } from "@/data/products";
 import { cn } from "@/lib/cn";
 import { formatMoney } from "@/lib/format";
 import { pdpBackground, pdpPurity, pdpShortLabel } from "@/lib/product-pdp";
+import { productCardStageStyle } from "@/lib/product-palette";
 import type { Product, ProductVariant } from "@/types/catalog";
 
 const BOX_SIZE = 4;
@@ -478,20 +480,20 @@ export function BuildABox() {
                     key={product.slug}
                     className="flex h-full flex-col overflow-hidden rounded-[20px] border border-transparent bg-[#f9f9f9] transition-colors"
                   >
-                    <div className="relative aspect-[4/5] overflow-hidden" style={{ backgroundColor: PRODUCT_IMAGE_BG }}>
+                    <ProductImageStage slug={product.slug} className="relative aspect-[4/5]">
                       <Image
                         src={productImage(product)}
                         alt={product.name}
                         fill
                         unoptimized
                         sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                        className={productImageClass}
+                        className={productCardImageClass}
                       />
                       <a
                         href={coa?.href || `/coas/${product.slug}.svg`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="absolute bottom-2 left-2 inline-flex h-7 items-center gap-1 rounded-full border border-[#e0e0e0] bg-white pr-1.5 pl-2 text-[11px] text-[#131315] shadow-sm transition-colors hover:border-[#131315]/50"
+                        className="absolute bottom-2 left-2 z-[2] inline-flex h-7 items-center gap-1 rounded-full border border-[#e0e0e0] bg-white pr-1.5 pl-2 text-[11px] text-[#131315] shadow-sm transition-colors hover:border-[#131315]/50"
                         aria-label={`View certificate of analysis for ${product.name}`}
                       >
                         <svg
@@ -517,7 +519,7 @@ export function BuildABox() {
                           <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
                         </svg>
                       </a>
-                    </div>
+                    </ProductImageStage>
 
                     <div className="flex flex-1 flex-col gap-2 p-3">
                       <div>
@@ -872,7 +874,7 @@ function BoxPanel({
               >
                 <div
                   className="relative h-12 w-12 shrink-0 overflow-hidden rounded-xl"
-                  style={{ backgroundColor: PRODUCT_IMAGE_BG }}
+                  style={productCardStageStyle(product.slug)}
                 >
                   <Image
                     src={productImage(product)}

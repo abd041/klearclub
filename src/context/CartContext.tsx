@@ -76,7 +76,6 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const addItem = useCallback(
     (productSlug: string, variantId: string, quantity = 1) => {
       commitLines((current) => [...current, { productSlug, variantId, quantity }]);
-      setIsOpen(true);
     },
     [commitLines],
   );
@@ -85,7 +84,6 @@ export function CartProvider({ children }: { children: ReactNode }) {
     (items: CartLine[]) => {
       if (items.length === 0) return;
       commitLines((current) => [...current, ...items]);
-      setIsOpen(true);
     },
     [commitLines],
   );

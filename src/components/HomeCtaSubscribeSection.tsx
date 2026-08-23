@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FormEvent, useState } from "react";
+import { productImage } from "@/data/media";
 
 export function HomeCtaSubscribeSection() {
   const [email, setEmail] = useState("");
@@ -17,14 +18,14 @@ export function HomeCtaSubscribeSection() {
   return (
     <div className="relative overflow-x-clip">
       <section
-        className="relative w-full bg-gradient-to-b from-[#fffde7] to-[#fef9c3] pt-12 pb-20 sm:pb-24 lg:pt-20 lg:pb-28"
+        className="home-section-y relative w-full bg-gradient-to-b from-[#fffde7] to-[#fef9c3] !pb-24 sm:!pb-28 lg:!pb-32"
         aria-label="Call to action"
       >
         {/* DSIP — top left */}
         <div className="pointer-events-none absolute top-[-20px] left-[-15px] z-10 h-[110px] w-[55px] sm:left-[-5px] sm:h-[130px] sm:w-[65px] lg:top-[-35px] lg:left-[35px] lg:h-[170px] lg:w-[85px] xl:left-[75px] xl:h-[200px] xl:w-[100px]">
           <div className="relative h-full w-full rotate-[18deg]">
             <Image
-              src="/hero/dsip.png"
+              src={productImage({ slug: "dsip", form: "vial" })}
               alt="DSIP peptide vial"
               fill
               unoptimized
@@ -38,7 +39,7 @@ export function HomeCtaSubscribeSection() {
         <div className="pointer-events-none absolute right-[-20px] bottom-[-40px] z-[70] h-[120px] w-[60px] sm:right-[-10px] sm:h-[150px] sm:w-[75px] lg:right-[40px] lg:bottom-[-70px] lg:h-[190px] lg:w-[95px] xl:right-[80px] xl:h-[220px] xl:w-[110px]">
           <div className="relative h-full w-full rotate-[-8deg]">
             <Image
-              src="/hero/nad.png"
+              src={productImage({ slug: "nad-plus", form: "vial" })}
               alt="NAD+ peptide vial"
               fill
               unoptimized

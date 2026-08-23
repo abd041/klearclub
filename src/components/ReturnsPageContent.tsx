@@ -1,30 +1,31 @@
 import Image from "next/image";
 import { HomeCtaSubscribeSection } from "@/components/HomeCtaSubscribeSection";
+import { productImage } from "@/data/media";
 
 const HERO_VIALS = [
   {
-    src: "/hero/AminoH2ODesktop.png",
+    src: productImage({ slug: "klear-h2o", form: "vial" }),
     alt: "Klear H2O",
     className:
       "left-[4%] top-[12%] z-0 w-[18%] animate-float-delayed lg:left-[7%] lg:w-[14%]",
     rotate: "-6deg",
   },
   {
-    src: "/hero/TB500Desktop.webp",
+    src: productImage({ slug: "tb-500", form: "vial" }),
     alt: "TB-500 Peptide vial",
     className: "right-[5%] top-[18%] z-10 w-[15%] animate-float lg:right-[9%] lg:w-[12%]",
     rotate: "14deg",
   },
   {
-    src: "/hero/BPC157Desktop.webp",
+    src: productImage({ slug: "bpc-157", form: "vial" }),
     alt: "BPC-157 Peptide vial",
     className:
       "bottom-[10%] left-[12%] z-0 w-[16%] animate-float-slow lg:left-[16%] lg:w-[12%]",
     rotate: "-10deg",
   },
   {
-    src: "/hero/AminoH2ODesktop.png",
-    alt: "Klear H2O",
+    src: productImage({ slug: "ghk-cu", form: "vial" }),
+    alt: "GHK-Cu Peptide vial",
     className: "right-[8%] bottom-[5%] z-0 w-[14%] animate-float lg:right-[12%] lg:w-[10%]",
     rotate: "18deg",
   },

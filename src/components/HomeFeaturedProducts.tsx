@@ -55,13 +55,17 @@ const FEATURED_SLUGS = [
   "bpc-spray",
   "pinealon",
   "ahk-cu",
-];
+] as const;
+
+const FEATURED_LIMIT = 8;
 
 export function HomeFeaturedProducts() {
-  const featured = FEATURED_SLUGS.map((slug) => products.find((p) => p.slug === slug)).filter(Boolean);
+  const featured = FEATURED_SLUGS.slice(0, FEATURED_LIMIT)
+    .map((slug) => products.find((p) => p.slug === slug))
+    .filter(Boolean);
 
   return (
-    <section className="bg-white py-14 sm:py-16">
+    <section className="home-section-y bg-white">
       <div className="site-container">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
@@ -76,11 +80,11 @@ export function HomeFeaturedProducts() {
             href="/store"
             className="inline-flex h-10 items-center rounded-[10px] border border-[#d5dbe3] bg-white px-5 text-[13px] font-medium text-black no-underline hover:border-black"
           >
-            Shop all →
+            View all →
           </Link>
         </div>
 
-        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
           {featured.map((product) => (
             <ProductCard key={product!.slug} product={product!} />
           ))}

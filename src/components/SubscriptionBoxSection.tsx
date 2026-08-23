@@ -1,14 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
-import { productImage, productImageClass, PRODUCT_IMAGE_BG } from "@/data/media";
+import { productCardImageClass, productImage } from "@/data/media";
 import { getProduct } from "@/data/products";
 import { formatMoney } from "@/lib/format";
+import { productCardStageStyle } from "@/lib/product-palette";
 
 const BOX_ITEMS = [
-  { slug: "glp-3", bg: "#ece8f7" },
-  { slug: "glp-2", bg: "#dceaf8" },
-  { slug: "glp-1", bg: "#f3e8e4" },
-  { slug: "ghk-cu-spray", bg: "#d5e4f4" },
+  { slug: "glp-3" },
+  { slug: "glp-2" },
+  { slug: "glp-1" },
+  { slug: "ghk-cu-spray" },
 ] as const;
 
 const perks = [
@@ -27,8 +28,8 @@ export function SubscriptionBoxSection() {
   const sale = Math.round(retail * 0.6 * 100) / 100;
 
   return (
-    <section className="grid bg-white lg:grid-cols-2">
-      <div className="flex items-center bg-white px-5 py-14 sm:px-10 lg:px-16 xl:px-20">
+    <section className="home-section-y grid bg-white lg:grid-cols-2">
+      <div className="flex items-center bg-white px-5 sm:px-10 lg:px-16 xl:px-20">
         <div className="w-full max-w-[560px]">
           <span className="inline-flex items-center rounded-full bg-[#dcfce7] px-3.5 py-1 text-[13px] font-medium text-[#15803d]">
             Membership savings
@@ -65,37 +66,40 @@ export function SubscriptionBoxSection() {
         </div>
       </div>
 
-      <div className="relative flex items-center justify-center bg-gradient-to-br from-[#e8f5e9] via-[#eef8f1] to-[#e8f0f8] px-5 py-16 sm:px-10 lg:justify-end lg:pr-16 lg:pl-6">
-        <div className="relative w-full max-w-[300px] rounded-[32px] bg-white p-6 shadow-[0_20px_50px_rgba(15,23,42,0.10)] lg:-ml-4 lg:mr-2">
-          <div className="absolute -right-4 -top-4 flex h-[84px] w-[84px] items-center justify-center rounded-full bg-[#fff3a3] text-center shadow-[0_8px_20px_rgba(180,150,20,0.18)]">
-            <span className="font-serif text-[22px] font-bold leading-[0.95] text-black">
+      <div className="relative flex items-center justify-center bg-gradient-to-br from-[#e8f5e9] via-[#eef8f1] to-[#e8f0f8] px-5 py-12 sm:px-10 sm:py-14 lg:justify-end lg:py-10 lg:pr-16 lg:pl-6">
+        <div className="relative w-full max-w-[320px] rounded-[28px] bg-white px-5 pt-6 pb-8 shadow-[0_20px_50px_rgba(15,23,42,0.10)] sm:max-w-[300px] sm:rounded-[32px] sm:px-6 sm:pt-7 sm:pb-9 lg:-ml-4 lg:mr-2">
+          <div className="absolute -right-3 -top-3 flex h-[78px] w-[78px] items-center justify-center rounded-full bg-[#fff3a3] text-center shadow-[0_8px_20px_rgba(180,150,20,0.18)] sm:-right-4 sm:-top-4 sm:h-[84px] sm:w-[84px]">
+            <span className="font-serif text-[21px] font-bold leading-[0.95] text-black sm:text-[22px]">
               40%
-              <span className="mt-0.5 block font-sans text-[11px] font-bold tracking-[0.08em]">OFF</span>
+              <span className="mt-0.5 block font-sans text-[10px] font-bold tracking-[0.08em] sm:text-[11px]">OFF</span>
             </span>
           </div>
 
-          <div className="flex items-center gap-2.5 pr-12">
+          <div className="flex flex-wrap items-center gap-2 pr-14 sm:gap-2.5 sm:pr-12">
             <h3 className="text-[18px] font-bold text-black">Your box</h3>
-            <span className="rounded-full bg-[#ececec] px-2.5 py-1 text-[10px] font-semibold tracking-[0.05em] text-black">
+            <span className="rounded-full bg-[#ececec] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.05em] text-[#2D4BF0]">
               4 ITEMS + 1 FREE
             </span>
           </div>
 
-          <div className="mt-4 grid grid-cols-2 gap-3">
+          <div className="mt-5 grid grid-cols-2 gap-3.5 sm:mt-6 sm:gap-4">
             {items.map((item) =>
               item.product ? (
-                <div key={item.slug} className="overflow-hidden rounded-2xl" style={{ backgroundColor: PRODUCT_IMAGE_BG }}>
-                  <div className="relative aspect-[4/5]">
+                <div key={item.slug} className="min-w-0">
+                  <div
+                    className="relative aspect-square overflow-hidden rounded-[16px]"
+                    style={productCardStageStyle(item.slug)}
+                  >
                     <Image
                       src={productImage(item.product)}
                       alt={item.product.name}
                       fill
                       unoptimized
                       sizes="160px"
-                      className={productImageClass}
+                      className={productCardImageClass}
                     />
                   </div>
-                  <p className="px-2 pb-2.5 text-center text-[11px] font-bold text-black">
+                  <p className="mt-2.5 text-center text-[11px] font-medium leading-tight text-black sm:mt-3">
                     {item.product.name}
                   </p>
                 </div>
@@ -103,18 +107,18 @@ export function SubscriptionBoxSection() {
             )}
           </div>
 
-          <div className="mt-3 flex items-center justify-between rounded-full bg-[#e8f5e9] px-4 py-2.5">
+          <div className="mt-5 flex items-center justify-between rounded-full bg-[#e8f5e9] px-4 py-3 sm:mt-6">
             <span className="text-[13px] text-[#6b6b6b]">
               <span className="font-bold text-black">Klear H2O</span> included
             </span>
             <span className="text-[13px] font-bold text-[#2e7d32]">FREE</span>
           </div>
 
-          <div className="mt-4 flex items-end justify-between border-t border-[#eee] pt-4">
-            <p className="text-[13px] text-[#9e9e9e] line-through">{formatMoney(retail)} retail</p>
-            <p className="text-[28px] font-extrabold leading-none text-black">
+          <div className="mt-5 flex items-end justify-between border-t border-[#eeeeee] pt-5 sm:mt-6">
+            <p className="pb-1 text-[13px] text-[#9e9e9e] line-through">{formatMoney(retail)} retail</p>
+            <p className="pb-0.5 text-[26px] font-extrabold leading-none tracking-[-0.02em] text-black sm:text-[28px]">
               {formatMoney(sale)}
-              <span className="ml-0.5 text-[15px] font-medium">/mo</span>
+              <span className="ml-0.5 text-[14px] font-medium sm:text-[15px]">/mo</span>
             </p>
           </div>
         </div>

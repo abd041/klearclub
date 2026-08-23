@@ -94,14 +94,14 @@ export function CartDrawer() {
   }
 
   return (
-    <div className="fixed inset-0 z-50">
+    <div className="fixed inset-0 z-50" role="dialog" aria-modal="true" aria-label="Shopping cart">
       <button
         type="button"
-        className="absolute inset-0 bg-black/20"
+        className="absolute inset-0 animate-cart-backdrop-in bg-black/20"
         aria-label="Close cart"
         onClick={closeCart}
       />
-      <aside className="absolute inset-y-0 right-0 flex w-full max-w-[400px] flex-col bg-white font-sans shadow-[-8px_0_32px_rgba(0,0,0,0.08)]">
+      <aside className="absolute inset-y-0 right-0 flex w-full max-w-[400px] animate-cart-drawer-in flex-col bg-white font-sans shadow-[-8px_0_32px_rgba(0,0,0,0.08)]">
         <header className="relative flex h-[52px] shrink-0 items-center border-b border-[#eeeeee]">
           <button
             type="button"

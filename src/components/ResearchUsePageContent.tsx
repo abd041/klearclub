@@ -111,7 +111,7 @@ function XIcon({ className }: { className?: string }) {
 }
 
 /**
- * Live: aminoclub.com/us/research-use
+ * Research-use page layout
  */
 export function ResearchUsePageContent() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
