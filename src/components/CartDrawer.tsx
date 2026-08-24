@@ -70,6 +70,9 @@ export function CartDrawer() {
   const showUpsell = Boolean(water) && !hasWater && !upsellHidden && resolved.length > 0;
 
   const priced = resolved;
+  const retailSubtotal = priced.reduce((sum, line) => sum + line.unitPrice * line.quantity, 0);
+  const discountTotal = Math.round((retailSubtotal - subtotal) * 100) / 100;
+  const showDiscount = promoApplied && discountTotal > 0;
   const remaining = Math.max(0, FREE_SHIPPING_AT - subtotal);
   const progress = Math.min(100, (subtotal / FREE_SHIPPING_AT) * 100);
   const points = Math.round(subtotal * 2.5);
@@ -181,7 +184,16 @@ export function CartDrawer() {
                               ))}
                             </select>
                           </label>
-                          <p className="text-[17px] font-bold text-black">{formatMoney(line.lineTotal)}</p>
+                          {showDiscount ? (
+                            <div className="flex items-baseline gap-1.5">
+                              <span className="text-[14px] text-[#b0b0b0] line-through">
+                                {formatMoney(line.unitPrice * line.quantity)}
+                              </span>
+                              <span className="text-[17px] font-bold text-[#22a45a]">{formatMoney(line.lineTotal)}</span>
+                            </div>
+                          ) : (
+                            <p className="text-[17px] font-bold text-black">{formatMoney(line.lineTotal)}</p>
+                          )}
                         </div>
                       </div>
                       <button
@@ -292,6 +304,27 @@ export function CartDrawer() {
                       Apply
                     </button>
                   </div>
+                ) : promoApplied ? (
+                  <div className="flex items-center justify-between">
+                    <span className="inline-flex items-center gap-2 text-[13px] text-[#8a8a8a]">
+                      <TagIcon />
+                      HEAT35 applied
+                      <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
+                        <circle cx="7" cy="7" r="7" fill="#22a45a" />
+                        <path d="M4.2 7.1 6.1 9l3.7-4.1" fill="none" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setPromoApplied(false);
+                        setPromoCode("");
+                      }}
+                      className="text-[13px] text-[#8a8a8a] underline underline-offset-2"
+                    >
+                      Remove
+                    </button>
+                  </div>
                 ) : (
                   <button
                     type="button"
@@ -299,7 +332,7 @@ export function CartDrawer() {
                     className="inline-flex items-center gap-2 text-[13px] text-[#8a8a8a]"
                   >
                     <TagIcon />
-                    {promoApplied ? "HEAT35 applied" : "Add promo code"}
+                    Add promo code
                   </button>
                 )}
               </div>
@@ -331,10 +364,21 @@ export function CartDrawer() {
           <div className="shrink-0 px-5 pt-2 pb-4">
             <div className="flex items-end justify-between">
               <span className="pb-0.5 text-[16px] font-bold text-black">Subtotal</span>
-              <span className="text-[22px] leading-none font-bold tracking-[-0.02em] text-black">
-                {formatMoney(subtotal)}
-              </span>
+              <div className="flex items-baseline gap-2">
+                {showDiscount ? (
+                  <span className="text-[15px] text-[#b0b0b0] line-through">{formatMoney(retailSubtotal)}</span>
+                ) : null}
+                <span className="text-[22px] leading-none font-bold tracking-[-0.02em] text-black">
+                  {formatMoney(subtotal)}
+                </span>
+              </div>
             </div>
+            {showDiscount ? (
+              <div className="mt-1 flex items-center justify-between">
+                <span className="text-[14px] font-medium text-[#22a45a]">Discount</span>
+                <span className="text-[14px] font-bold text-[#22a45a]">-{formatMoney(discountTotal)}</span>
+              </div>
+            ) : null}
             <p className="mt-2 flex items-center gap-1.5 text-[12px] text-[#8a8a8a]">
               <StarIcon />
               <span>
