@@ -47,6 +47,24 @@ export const metadata: Metadata = {
   },
   description:
     "USA-based research peptides with 99%+ purity, third-party testing, and a certificate of analysis on every lot.",
+  applicationName: "Klear Club",
+  authors: [{ name: "Klear Club" }],
+  creator: "Klear Club",
+  publisher: "Klear Club",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    siteName: "Klear Club",
+    title: "Klear Club | Research Grade Peptides",
+    description:
+      "USA-based research peptides with 99%+ purity, third-party testing, and a certificate of analysis on every lot.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Klear Club | Research Grade Peptides",
+    description:
+      "USA-based research peptides with 99%+ purity, third-party testing, and a certificate of analysis on every lot.",
+  },
   icons: {
     icon: "/favicon.png",
     apple: "/apple-touch-icon.png",

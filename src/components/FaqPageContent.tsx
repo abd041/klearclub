@@ -2,31 +2,32 @@ import Image from "next/image";
 import Link from "next/link";
 import { HomeCtaSubscribeSection } from "@/components/HomeCtaSubscribeSection";
 import { faqSections } from "@/data/faq";
+import { productImage } from "@/data/media";
 
 const HERO_VIALS = [
   {
-    src: "/hero/h2o.png",
+    src: productImage({ slug: "klear-h2o", form: "vial" }),
     alt: "Klear H2O",
     className:
       "absolute left-[4%] top-[12%] z-0 aspect-[1/1.5] w-[18%] animate-float-delayed pointer-events-none select-none lg:left-[7%] lg:w-[14%]",
     rotate: "-6deg",
   },
   {
-    src: "/hero/tb.png",
+    src: productImage({ slug: "tb-500", form: "vial" }),
     alt: "TB-500 Peptide vial",
     className:
       "absolute right-[5%] top-[18%] z-10 aspect-[1/1.5] w-[15%] animate-float pointer-events-none select-none lg:right-[9%] lg:w-[12%]",
     rotate: "14deg",
   },
   {
-    src: "/hero/bpc.png",
+    src: productImage({ slug: "bpc-157", form: "vial" }),
     alt: "BPC-157 Peptide vial",
     className:
       "absolute bottom-[10%] left-[12%] z-0 aspect-[1/1.5] w-[16%] animate-float-slow pointer-events-none select-none lg:bottom-[10%] lg:left-[16%] lg:w-[12%]",
     rotate: "-10deg",
   },
   {
-    src: "/hero/h2o.png",
+    src: productImage({ slug: "klear-h2o", form: "vial" }),
     alt: "Klear H2O",
     className:
       "absolute right-[8%] bottom-[5%] z-0 aspect-[1/1.5] w-[14%] animate-float pointer-events-none select-none lg:right-[12%] lg:w-[10%]",

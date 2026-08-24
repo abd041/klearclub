@@ -6,6 +6,7 @@ import Link from "next/link";
 import { AddCartSpinner } from "@/components/AddCartSpinner";
 import { useAddToCart } from "@/lib/use-add-to-cart";
 import { CoaOpenButton } from "@/components/CoaModal";
+import { PaymentMarks } from "@/components/PaymentMarks";
 import { productImage } from "@/data/media";
 import { formatMoney } from "@/lib/format";
 import { FREE_SHIPPING_AT, SALE_OFF, salePrice, volumeUnitPrice } from "@/lib/commerce";
@@ -94,34 +95,34 @@ export function ProductBuyBox({
     <>
       <div className="mt-5 border-t border-black/[0.06] pt-5 lg:mt-1">
         <div className="lg:hidden">
-          <div className="flex items-start justify-between gap-3">
-            <div className="min-w-0 flex-1">
-              <p className="mb-2.5 text-[11px] font-semibold tracking-[0.14em] text-[#9ca3af] uppercase">Mass</p>
-              <div className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-                {product.variants.map((variant) => {
-                  const on = variant.id === selected.id;
-                  return (
-                    <button
-                      key={variant.id}
-                      type="button"
-                      onClick={() => onVariantId(variant.id)}
-                      className={cn(
-                        "shrink-0 rounded-xl border px-4 py-2.5 text-[13px] font-semibold tracking-[0.04em]",
-                        on ? "border-[#131315] bg-[#131315]" : "border-[#e5e7eb] bg-white text-[#4b5563]",
-                      )}
-                      style={on ? { color: "#ffffff" } : undefined}
-                    >
-                      {variant.label.toUpperCase()}
-                    </button>
-                  );
-                })}
-              </div>
+          <div className="min-w-0">
+            <p className="mb-2.5 text-[11px] font-semibold tracking-[0.14em] text-[#9ca3af] uppercase">Mass</p>
+            <div className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+              {product.variants.map((variant) => {
+                const on = variant.id === selected.id;
+                return (
+                  <button
+                    key={variant.id}
+                    type="button"
+                    onClick={() => onVariantId(variant.id)}
+                    className={cn(
+                      "shrink-0 rounded-xl border px-4 py-2.5 text-[13px] font-semibold tracking-[0.04em]",
+                      on ? "border-[#131315] bg-[#131315]" : "border-[#e5e7eb] bg-white text-[#4b5563]",
+                    )}
+                    style={on ? { color: "#ffffff" } : undefined}
+                  >
+                    {variant.label.toUpperCase()}
+                  </button>
+                );
+              })}
             </div>
+          </div>
 
-            <div className="shrink-0 pt-6 text-right">
-              <div className="flex items-baseline justify-end gap-2">
+          <div className="mt-3 flex items-center justify-between gap-4">
+            <div className="text-left">
+              <div className="flex items-baseline gap-2">
                 <span className="text-sm text-[#9a9a9a] line-through">{formatMoney(retail)}</span>
-                <span className="text-[30px] leading-none font-extrabold tracking-tight text-[#c2183a]">
+                <span className="text-[28px] leading-none font-extrabold tracking-tight text-[#c2183a]">
                   {formatMoney(sale)}
                 </span>
               </div>
@@ -137,6 +138,26 @@ export function ProductBuyBox({
                 <span className="underline decoration-dotted underline-offset-2">
                   {heatApplied ? "applied" : "tap to apply"}
                 </span>
+              </button>
+            </div>
+
+            <div className="flex h-11 shrink-0 items-center rounded-full border border-[#e0e0e0]">
+              <button
+                type="button"
+                className="flex h-full w-11 items-center justify-center text-lg text-[#555]"
+                onClick={() => setQty((n) => Math.max(1, n - 1))}
+                aria-label="Decrease quantity"
+              >
+                −
+              </button>
+              <span className="w-8 text-center text-sm font-medium">{qty}</span>
+              <button
+                type="button"
+                className="flex h-full w-11 items-center justify-center text-lg text-[#555]"
+                onClick={() => setQty((n) => Math.min(50, n + 1))}
+                aria-label="Increase quantity"
+              >
+                +
               </button>
             </div>
           </div>
@@ -190,8 +211,8 @@ export function ProductBuyBox({
           </div>
         </div>
 
-        <p className="mt-5 mb-2 text-[11px] font-semibold tracking-[0.14em] text-black/45 uppercase">Quantity</p>
-        <div className="flex h-11 max-w-[220px] items-center rounded-full border border-[#e0e0e0]">
+        <p className="mt-5 mb-2 hidden text-[11px] font-semibold tracking-[0.14em] text-black/45 uppercase lg:block">Quantity</p>
+        <div className="hidden h-11 max-w-[220px] items-center rounded-full border border-[#e0e0e0] lg:flex">
           <button
             type="button"
             className="flex h-full w-12 items-center justify-center text-lg text-[#555]"
@@ -315,12 +336,7 @@ export function ProductBuyBox({
               Secure 256-bit checkout
             </span>
           </span>
-          <div className="flex items-center gap-2.5">
-            <img src="https://cdn.simpleicons.org/visa" alt="Visa" className="h-4 w-auto" />
-            <img src="https://cdn.simpleicons.org/americanexpress" alt="American Express" className="h-5 w-auto" />
-            <img src="https://cdn.simpleicons.org/applepay" alt="Apple Pay" className="h-5 w-auto" />
-            <img src="https://cdn.simpleicons.org/googlepay" alt="Google Pay" className="h-5 w-auto" />
-          </div>
+          <PaymentMarks />
         </div>
       </div>
 

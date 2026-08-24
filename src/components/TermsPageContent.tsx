@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { HomeCtaSubscribeSection } from "@/components/HomeCtaSubscribeSection";
+import { productImage } from "@/data/media";
 
 function InfoIcon({ className }: { className?: string }) {
   return (
@@ -103,7 +104,7 @@ export function TermsPageContent() {
           <div className="terms-vial terms-vial-bpc animate-float">
             <div className="terms-vial-inner">
               <Image
-                src="/hero/bpc.png"
+                src={productImage({ slug: "bpc-157", form: "vial" })}
                 alt="BPC-157 Peptide vial"
                 fill
                 unoptimized
@@ -116,7 +117,7 @@ export function TermsPageContent() {
           <div className="terms-vial terms-vial-tb animate-float-slow">
             <div className="terms-vial-inner">
               <Image
-                src="/hero/tb.png"
+                src={productImage({ slug: "tb-500", form: "vial" })}
                 alt="TB-500 Peptide vial"
                 fill
                 unoptimized
@@ -129,7 +130,7 @@ export function TermsPageContent() {
           <div className="terms-vial terms-vial-h2o animate-float-delayed">
             <div className="terms-vial-inner">
               <Image
-                src="/hero/h2o.png"
+                src={productImage({ slug: "klear-h2o", form: "vial" })}
                 alt="Klear H2O"
                 fill
                 unoptimized

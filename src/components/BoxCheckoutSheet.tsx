@@ -191,7 +191,7 @@ export function BoxCheckoutSheet({
             <div className="flex items-center gap-3 rounded-2xl bg-[#e9fce6] px-2.5 py-2.5">
               <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-xl bg-white/70">
                 <Image
-                  src="/hero/h2o-box.png"
+                  src={productImage({ slug: "klear-h2o", form: "vial" })}
                   alt="Klear H2O"
                   fill
                   unoptimized

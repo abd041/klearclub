@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { HomeCtaSubscribeSection } from "@/components/HomeCtaSubscribeSection";
+import { productImage } from "@/data/media";
 
 function ShieldCheckIcon({ className }: { className?: string }) {
   return (
@@ -112,7 +113,7 @@ export function PrivacyPageContent() {
           <div className="privacy-vial privacy-vial-bpc animate-float">
             <div className="privacy-vial-inner">
               <Image
-                src="/hero/bpc.png"
+                src={productImage({ slug: "bpc-157", form: "vial" })}
                 alt="BPC-157 Peptide vial"
                 fill
                 unoptimized
@@ -125,7 +126,7 @@ export function PrivacyPageContent() {
           <div className="privacy-vial privacy-vial-tb animate-float-slow">
             <div className="privacy-vial-inner">
               <Image
-                src="/hero/tb.png"
+                src={productImage({ slug: "tb-500", form: "vial" })}
                 alt="TB-500 Peptide vial"
                 fill
                 unoptimized
@@ -138,7 +139,7 @@ export function PrivacyPageContent() {
           <div className="privacy-vial privacy-vial-h2o animate-float-delayed">
             <div className="privacy-vial-inner">
               <Image
-                src="/hero/h2o.png"
+                src={productImage({ slug: "klear-h2o", form: "vial" })}
                 alt="Klear H2O"
                 fill
                 unoptimized

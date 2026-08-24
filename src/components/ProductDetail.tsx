@@ -44,10 +44,10 @@ export function ProductDetail({ product }: { product: Product }) {
       <section className="py-4 lg:py-8">
         <div className="site-container">
           <div className="grid grid-cols-1 lg:grid-cols-2 lg:items-stretch lg:gap-5">
-            <div className="flex flex-col gap-3 lg:hidden">
-              <div className="overflow-hidden rounded-[24px] bg-white shadow-[0_1px_3px_rgba(15,23,42,0.05)]">
-                <ProductImageStage slug={product.slug} className="relative min-h-[320px]">
-                  <div className="relative flex min-h-[320px] flex-col items-center justify-center px-4 pt-8 pb-5">
+            <div className="flex flex-col gap-4 lg:hidden">
+              <div className="relative isolate overflow-hidden rounded-[24px] bg-white shadow-[0_1px_3px_rgba(15,23,42,0.05)]">
+                <ProductImageStage slug={product.slug} className="relative min-h-[260px]">
+                  <div className="relative flex min-h-[260px] items-center justify-center px-4 pt-6 pb-4">
                     <Image
                       src={productImage(product)}
                       alt={product.name}
@@ -55,22 +55,22 @@ export function ProductDetail({ product }: { product: Product }) {
                       height={800}
                       priority
                       unoptimized
-                      className={`relative z-[2] h-auto max-h-[260px] w-auto ${productImageClass}`}
+                      className={`relative z-[2] h-auto max-h-[220px] w-auto ${productImageClass}`}
                     />
-                    <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
-                      <span className="inline-flex items-center gap-1.5 rounded-full border border-black/10 bg-white/90 px-3 py-1.5 text-[10px] font-semibold tracking-[0.08em] text-[#6b7280] uppercase backdrop-blur">
-                        <span className="h-1.5 w-1.5 rounded-full bg-[#16a34a]" />
-                        8x tested · ISO 17025
-                      </span>
-                      <span className="inline-flex items-center rounded-full border border-black/10 bg-white/90 px-3 py-1.5 text-[10px] font-semibold tracking-[0.08em] text-[#6b7280] uppercase backdrop-blur">
-                        99%+ purity
-                      </span>
-                    </div>
                   </div>
                 </ProductImageStage>
               </div>
+              <div className="hidden flex-wrap items-center justify-center gap-2 px-4 py-3 lg:flex">
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-black/10 bg-white/90 px-3 py-1.5 text-[10px] font-semibold tracking-[0.08em] text-[#6b7280] uppercase backdrop-blur">
+                  <span className="h-1.5 w-1.5 rounded-full bg-[#16a34a]" />
+                  8x tested · ISO 17025
+                </span>
+                <span className="inline-flex items-center rounded-full border border-black/10 bg-white/90 px-3 py-1.5 text-[10px] font-semibold tracking-[0.08em] text-[#6b7280] uppercase backdrop-blur">
+                  99%+ purity
+                </span>
+              </div>
 
-              <div className="rounded-[24px] bg-white px-5 py-5 shadow-[0_1px_3px_rgba(15,23,42,0.05)]">
+              <div className="relative z-10 rounded-[24px] bg-white px-5 py-5 shadow-[0_1px_3px_rgba(15,23,42,0.05)]">
                 <p className="mb-2 text-[11px] font-semibold tracking-[0.2em] text-[#9ca3af] uppercase">
                   {pdpShortLabel(product)}
                 </p>

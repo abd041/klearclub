@@ -334,7 +334,7 @@ export function BuildABox() {
               <div className="relative flex min-h-[136px] flex-col justify-between overflow-hidden rounded-[20px] bg-[#e9fce6] p-4 lg:min-h-[160px]">
                 <div className="absolute -top-4 -right-4 h-24 w-24 rotate-6 overflow-hidden rounded-3xl shadow-md lg:h-28 lg:w-28">
                   <Image
-                    src="/hero/h2o-box.png"
+                    src={productImage({ slug: "klear-h2o", form: "vial" })}
                     alt="Klear H2O"
                     fill
                     unoptimized
@@ -922,7 +922,7 @@ function BoxPanel({
               )}
             >
               <Image
-                src="/hero/h2o-box.png"
+                src={productImage({ slug: "klear-h2o", form: "vial" })}
                 alt="Klear H2O"
                 fill
                 unoptimized

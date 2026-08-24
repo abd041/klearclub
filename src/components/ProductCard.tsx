@@ -103,7 +103,11 @@ export function ProductCard({ product }: { product: Product }) {
           fill
           unoptimized
           sizes="(max-width: 640px) 50vw, (max-width: 1280px) 33vw, 25vw"
-          className={productCardImageClass}
+          className={
+            product.form === "spray"
+              ? "object-contain object-center px-4 pt-3 pb-2 sm:px-5 sm:pt-4 sm:pb-3"
+              : productCardImageClass
+          }
         />
 
         {product.form === "spray" ? (

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { FormEvent, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import { productImage } from "@/data/media";
 import { cn } from "@/lib/cn";
 import { formatMoney } from "@/lib/format";
 
@@ -287,7 +288,7 @@ export function BoxAuthSheet({
           <div className="mt-8 flex items-center gap-3 rounded-[18px] bg-[#e9fce6] px-3.5 py-3.5">
             <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-xl bg-white/70">
               <Image
-                src="/hero/h2o-box.png"
+                src={productImage({ slug: "klear-h2o", form: "vial" })}
                 alt="Klear H2O"
                 fill
                 unoptimized

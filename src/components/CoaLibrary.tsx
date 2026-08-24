@@ -66,14 +66,14 @@ const FAQ = [
 ];
 
 const HERO_TILES = [
-  { left: "2%", top: "22%", size: 88, opacity: 0.95, tilt: -8, dur: "26s", delay: "-6.3s", src: "/hero/bpc.png" },
-  { left: "11%", top: "60%", size: 52, opacity: 0.65, tilt: 10, dur: "32s", delay: "-18.3s", src: "/hero/tb.png" },
-  { left: "18%", top: "12%", size: 70, opacity: 0.8, tilt: -4, dur: "28s", delay: "-9s", src: "/hero/nad.png" },
-  { left: "78%", top: "18%", size: 84, opacity: 0.9, tilt: 7, dur: "24s", delay: "-3s", src: "/hero/ghk.png" },
-  { left: "88%", top: "55%", size: 58, opacity: 0.7, tilt: -11, dur: "30s", delay: "-14s", src: "/hero/dsip.png" },
-  { left: "72%", top: "68%", size: 64, opacity: 0.75, tilt: 5, dur: "27s", delay: "-20s", src: "/hero/aod.png" },
-  { left: "6%", top: "78%", size: 48, opacity: 0.55, tilt: 8, dur: "34s", delay: "-11s", src: "/hero/melanotan.png" },
-  { left: "92%", top: "28%", size: 46, opacity: 0.5, tilt: -6, dur: "29s", delay: "-22s", src: "/hero/spray.png" },
+  { left: "2%", top: "22%", size: 88, opacity: 0.95, tilt: -8, dur: "26s", delay: "-6.3s", src: productImage({ slug: "bpc-157", form: "vial" }) },
+  { left: "11%", top: "60%", size: 52, opacity: 0.65, tilt: 10, dur: "32s", delay: "-18.3s", src: productImage({ slug: "tb-500", form: "vial" }) },
+  { left: "18%", top: "12%", size: 70, opacity: 0.8, tilt: -4, dur: "28s", delay: "-9s", src: productImage({ slug: "nad-plus", form: "vial" }) },
+  { left: "78%", top: "18%", size: 84, opacity: 0.9, tilt: 7, dur: "24s", delay: "-3s", src: productImage({ slug: "ghk-cu", form: "vial" }) },
+  { left: "88%", top: "55%", size: 58, opacity: 0.7, tilt: -11, dur: "30s", delay: "-14s", src: productImage({ slug: "dsip", form: "vial" }) },
+  { left: "72%", top: "68%", size: 64, opacity: 0.75, tilt: 5, dur: "27s", delay: "-20s", src: productImage({ slug: "aod-9604", form: "vial" }) },
+  { left: "6%", top: "78%", size: 48, opacity: 0.55, tilt: 8, dur: "34s", delay: "-11s", src: productImage({ slug: "melanotan-ii", form: "vial" }) },
+  { left: "92%", top: "28%", size: 46, opacity: 0.5, tilt: -6, dur: "29s", delay: "-22s", src: productImage({ slug: "ghk-cu-spray", form: "vial" }) },
 ];
 
 function hash(str: string) {
