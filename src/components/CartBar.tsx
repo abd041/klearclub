@@ -3,17 +3,27 @@
 import { usePathname } from "next/navigation";
 import { useCart } from "@/context/CartContext";
 import { formatMoney } from "@/lib/format";
+import { cn } from "@/lib/cn";
 
 export function CartBar() {
   const pathname = usePathname();
   const { count, subtotal, isOpen, openCart } = useCart();
   const hidden =
     count === 0 || isOpen || pathname === "/cart" || pathname === "/checkout";
+  const onMobileProductPage =
+    pathname != null && /^\/products\/[^/]+$/.test(pathname);
 
   if (hidden) return null;
 
   return (
-    <div className="pointer-events-none fixed right-5 bottom-5 z-[45] flex justify-end">
+    <div
+      className={cn(
+        "pointer-events-none fixed right-5 z-[45] flex justify-end",
+        onMobileProductPage
+          ? "bottom-[calc(7.25rem+env(safe-area-inset-bottom,0px))] lg:bottom-5"
+          : "bottom-5",
+      )}
+    >
       <button
         type="button"
         onClick={openCart}

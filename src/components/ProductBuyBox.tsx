@@ -341,7 +341,7 @@ export function ProductBuyBox({
       </div>
 
       <div className="fixed inset-x-0 bottom-0 z-40 lg:hidden">
-        <div className="border-t border-[#e8e8e8] bg-white shadow-[0_-4px_20px_rgba(0,0,0,0.08)]">
+        <div className="border-t border-[#e8e8e8] bg-white pb-[env(safe-area-inset-bottom,0px)] shadow-[0_-4px_20px_rgba(0,0,0,0.08)]">
           <div className="flex flex-col gap-y-2 p-4">
             <div className="flex items-center justify-between text-sm">
               <span className="font-medium">{product.name}</span>

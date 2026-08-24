@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { cn } from "@/lib/cn";
 
 const SALE_END = new Date("2026-08-31T23:59:59");
 
@@ -23,13 +24,27 @@ function remaining() {
 const CYAN = "#00e5ff";
 const CYAN_DIM = "#00b8d4";
 
-function TimeUnit({ value, label }: { value: string; label: string }) {
+function TimeUnit({ value, label, compact = false }: { value: string; label: string; compact?: boolean }) {
   return (
-    <div className="flex flex-col items-center gap-[3px]">
-      <span className="flex h-[36px] w-[40px] items-center justify-center rounded-lg border border-[#00e5ff]/20 bg-[#0a1628]/80 font-mono text-[18px] font-bold tabular-nums leading-none text-white sm:h-[40px] sm:w-[44px] sm:text-[20px]">
+    <div className={cn("flex flex-col items-center", compact ? "gap-[2px]" : "gap-[3px]")}>
+      <span
+        className={cn(
+          "flex items-center justify-center rounded-lg border border-[#00e5ff]/20 bg-[#0a1628]/80 font-mono font-bold tabular-nums leading-none text-white",
+          compact
+            ? "h-[26px] w-[30px] text-[13px]"
+            : "h-[36px] w-[40px] text-[18px] sm:h-[40px] sm:w-[44px] sm:text-[20px]",
+        )}
+      >
         {value}
       </span>
-      <span className="text-[7px] font-semibold uppercase tracking-[0.14em] text-[#00e5ff]/50 sm:text-[8px]">{label}</span>
+      <span
+        className={cn(
+          "font-semibold uppercase tracking-[0.14em] text-[#00e5ff]/50",
+          compact ? "text-[6px]" : "text-[7px] sm:text-[8px]",
+        )}
+      >
+        {label}
+      </span>
     </div>
   );
 }
@@ -77,26 +92,36 @@ export function SaleBanner() {
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#00e5ff]/10 to-transparent" />
 
       <div className="site-container relative flex justify-center">
-        {/* ── Mobile ── */}
-        <div className="flex w-full flex-col items-center gap-2.5 py-3.5 sm:hidden">
-          <div className="flex items-center gap-3">
-            <span className="text-[9px] font-bold uppercase tracking-[0.22em]" style={{ color: CYAN }}>End of summer</span>
-            <span className="text-[22px] font-extrabold tracking-tight text-white">SALE</span>
-          </div>
-          <div className="flex items-center gap-3">
-            <span className="text-[18px] font-extrabold text-white">35%<span className="text-[14px]"> OFF</span></span>
-            <div className="flex items-center gap-1.5 rounded-lg border border-[#00e5ff]/20 bg-[#0a1628]/60 px-3 py-[5px]">
-              <span className="font-mono text-[12px] font-bold tracking-[0.06em] text-white">HEAT35</span>
-              <button type="button" onClick={copyCode} className="ml-0.5 text-[#00e5ff]/50 transition hover:text-[#00e5ff]" aria-label="Copy code">
-                <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="5" y="5" width="9" height="9" rx="1.5" /><path d="M5 11H3.5A1.5 1.5 0 0 1 2 9.5V3.5A1.5 1.5 0 0 1 3.5 2h6A1.5 1.5 0 0 1 11 3.5V5" /></svg>
+        {/* ── Mobile — compact single block ── */}
+        <div className="flex w-full flex-col items-center gap-1.5 py-2 sm:hidden">
+          <div className="flex flex-wrap items-center justify-center gap-x-2.5 gap-y-1">
+            <span className="text-[8px] font-bold uppercase tracking-[0.16em]" style={{ color: CYAN }}>
+              End of summer
+            </span>
+            <span className="text-[15px] font-extrabold leading-none tracking-tight text-white">SALE</span>
+            <span className="text-[14px] font-extrabold leading-none text-white">
+              35%<span className="text-[11px] font-bold"> OFF</span>
+            </span>
+            <div className="flex items-center gap-1 rounded-md border border-[#00e5ff]/20 bg-[#0a1628]/60 px-2 py-[3px]">
+              <span className="font-mono text-[10px] font-bold tracking-[0.06em] text-white">HEAT35</span>
+              <button
+                type="button"
+                onClick={copyCode}
+                className="text-[#00e5ff]/50 transition hover:text-[#00e5ff]"
+                aria-label="Copy code"
+              >
+                <svg width="10" height="10" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
+                  <rect x="5" y="5" width="9" height="9" rx="1.5" />
+                  <path d="M5 11H3.5A1.5 1.5 0 0 1 2 9.5V3.5A1.5 1.5 0 0 1 3.5 2h6A1.5 1.5 0 0 1 11 3.5V5" />
+                </svg>
               </button>
             </div>
           </div>
-          <div className="flex items-center gap-1">
-            <TimeUnit value={clock.d} label="days" />
-            <TimeUnit value={clock.h} label="hrs" />
-            <TimeUnit value={clock.m} label="mins" />
-            <TimeUnit value={clock.s} label="secs" />
+          <div className="flex items-center gap-0.5">
+            <TimeUnit value={clock.d} label="days" compact />
+            <TimeUnit value={clock.h} label="hrs" compact />
+            <TimeUnit value={clock.m} label="mins" compact />
+            <TimeUnit value={clock.s} label="secs" compact />
           </div>
         </div>
 

@@ -89,6 +89,15 @@ export function HomeFeaturedProducts() {
             <ProductCard key={product!.slug} product={product!} />
           ))}
         </div>
+
+        <div className="mt-8 flex justify-center sm:justify-end">
+          <Link
+            href="/store"
+            className="inline-flex h-10 items-center rounded-[10px] border border-[#d5dbe3] bg-white px-5 text-[13px] font-medium text-black no-underline hover:border-black"
+          >
+            View all →
+          </Link>
+        </div>
       </div>
     </section>
   );

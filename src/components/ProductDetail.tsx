@@ -33,7 +33,7 @@ export function ProductDetail({ product }: { product: Product }) {
 
   return (
     <CoaModalProvider slug={product.slug} productName={product.name}>
-    <div className="bg-[#f5f4f8] pb-[130px] font-sans text-[#131315] lg:bg-white lg:pb-0">
+    <div className="bg-[#f5f4f8] pb-[calc(130px+env(safe-area-inset-bottom,0px))] font-sans text-[#131315] lg:bg-white lg:pb-0">
       <div className="hidden bg-gradient-to-r from-[#2a2a2a] to-[#1a1a1a] px-4 py-3 text-center text-white lg:block">
         <p className="text-xs font-medium">
           <span className="font-bold tracking-[0.08em] text-[#ffb4b4]">FOR RESEARCH USE ONLY.</span> This compound is
@@ -46,8 +46,8 @@ export function ProductDetail({ product }: { product: Product }) {
           <div className="grid grid-cols-1 lg:grid-cols-2 lg:items-stretch lg:gap-5">
             <div className="flex flex-col gap-4 lg:hidden">
               <div className="relative isolate overflow-hidden rounded-[24px] bg-white shadow-[0_1px_3px_rgba(15,23,42,0.05)]">
-                <ProductImageStage slug={product.slug} className="relative min-h-[260px]">
-                  <div className="relative flex min-h-[260px] items-center justify-center px-4 pt-6 pb-4">
+                <ProductImageStage slug={product.slug} className="relative min-h-[360px]">
+                  <div className="relative flex min-h-[360px] items-center justify-center px-1 pt-3 pb-2">
                     <Image
                       src={productImage(product)}
                       alt={product.name}
@@ -55,7 +55,7 @@ export function ProductDetail({ product }: { product: Product }) {
                       height={800}
                       priority
                       unoptimized
-                      className={`relative z-[2] h-auto max-h-[220px] w-auto ${productImageClass}`}
+                      className="relative z-[2] h-auto w-auto max-h-[300px] max-w-[92%] object-contain object-center"
                     />
                   </div>
                 </ProductImageStage>
